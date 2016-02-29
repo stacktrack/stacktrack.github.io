@@ -314,9 +314,7 @@ function update(source) {
     }
 
     // Check if a link is in the trace array
-    function is_traced(link){
-        source = link.source;
-        target = link.target;
+    function is_traced(source, target){
         traced = false;
         trace_source = trace[source.label];
         if( !trace_source || ! target ){
@@ -324,7 +322,7 @@ function update(source) {
         }
         trace_source.forEach(function(trace_dest){
             if (trace_dest == target.label){
-                traced = true;
+                traced = ! source.parent || is_traced(source.parent, source) ? true : false;
              }
         });
         return traced;
@@ -332,7 +330,7 @@ function update(source) {
 
     function get_link_class(link){
         pclass = "link";
-        if(is_traced(link)){
+        if(is_traced(link.source,link.target)){
             pclass += " trace";
         }
         return pclass;
