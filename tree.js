@@ -1,3 +1,7 @@
+/* This code needs some refactoring
+ * Hell isn't other people, hell is javascript.
+ *
+ */
 
 ///////// Spinner 
 
