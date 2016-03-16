@@ -60,7 +60,20 @@ class KxrBreakpoint(gdb.Breakpoint):
 {% endhighlight %}
 
 
+{% highlight linenos=table %}
 
+python
+breakpoint.del_bps()
+import breakpoint, importlib
+importlib.reload(breakpoint)
+breakpoint.KxrBreakpoint('sys_fchmodat')
+end
+
+python
+KxrBreakpoint.graph.dump_nodes('/tmp')
+end
+
+{% endhighlight %}
 Call trees without tracing: <br>
 
 <a href="/tree.html?json=sys_accept.json">sys_accept</a>
