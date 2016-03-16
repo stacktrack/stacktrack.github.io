@@ -26,11 +26,8 @@ class KxrBreakpoint(gdb.Breakpoint):
     def __init__(self, func_name, parent=None):
 
         self.func_name = func_name
-        # node = self.node      = self.graph.add_node(func_name)
-        # if not node in self.graph.nodes: self.graph.load_node(self.node)
         self.parent    = parent
         KxrBreakpoint.bplist.add(func_name)
-        # print('ini %s'%str(func_name))
         super(KxrBreakpoint, self).__init__(
             func_name, gdb.BP_BREAKPOINT, internal=False
         )
@@ -59,12 +56,6 @@ class KxrBreakpoint(gdb.Breakpoint):
                 KxrBreakpoint(callee,self.func_name)
 
         KxrBreakpoint.todelete += [self]
-        #gdb.execute('continue')
-        #self.delete()
-
-
-
-print('loaded')
 
 {% endhighlight %}
 
