@@ -3,157 +3,21 @@
  *
  */
 
-///////// Spinner 
+var trace =[]; // Holds the trace tree
+var tree; // Holds the call tree
 
-var opts = {
-  lines: 13, // The number of lines to draw
-  length: 7, // The length of each line
-  width: 4, // The line thickness
-  radius: 10, // The radius of the inner circle
-  rotate: 0, // The rotation offset
-  color: 'steelblue', // #rgb or #rrggbb
-  speed: 1, // Rounds per second
-  trail: 60, // Afterglow percentage
-  shadow: false, // Whether to render a shadow
-  hwaccel: false, // Whether to use hardware acceleration
-  className: 'spinner', // The CSS class to assign to the spinner
-  zIndex: 2e9, // The z-index (defaults to 2000000000)
-  top: 'auto', // Top position relative to parent in px
-  left: 'auto' // Left position relative to parent in px
-};
-var spinner = new Spinner(opts).spin();
-$("#loading").append(spinner.el);
-
-///////// End Spinner
-
-
-trace =[];
-trace["activate_task"]=[];
-trace["check_preempt_curr"]=[];
-trace["clockevents_program_event"]=[];
-trace["_cond_resched"]=[];
-trace["deactivate_task"]=[];
-trace["dput"]=[];
-trace["filename_lookup"]=[];
-trace["getname_flags"]=[];
-trace["hrtimer_cancel"]=[];
-trace["hrtimer_try_to_cancel"]=[];
-trace["__inode_permission"]=[];
-trace["inode_permission"]=[];
-trace["kmem_cache_alloc"]=[];
-trace["kmem_cache_free"]=[];
-trace["legitimize_mnt"]=[];
-trace["link_path_walk"]=[];
-trace["mntput_no_expire"]=[];
-trace["None"]=[];
-trace["path_get"]=[];
-trace["path_init"]=[];
-trace["path_lookupat"]=[];
-trace["preempt_schedule_common"]=[];
-trace["__remove_hrtimer"]=[];
-trace["sched_clock_cpu"]=[];
-trace["__schedule"]=[];
-trace["__slab_free"]=[];
-trace["sys_chdir"]=[];
-trace["task_work_add"]=[];
-trace["tick_program_event"]=[];
-trace["timerqueue_del"]=[];
-trace["ttwu_do_wakeup"]=[];
-trace["unlazy_walk"]=[];
-trace["update_rq_clock"]=[];
-trace["user_path_at_empty"]=[];
-trace["walk_component"]=[];
-trace["activate_task"].push("enqueue_task");
-trace["check_preempt_curr"].push("resched_curr");
-trace["clockevents_program_event"].push("ktime_get");
-trace["_cond_resched"].push("preempt_schedule_common");
-trace["deactivate_task"].push("dequeue_task");
-trace["dput"].push("lockref_put_return");
-trace["filename_lookup"].push("path_lookupat");
-trace["filename_lookup"].push("restore_nameidata");
-trace["getname_flags"].push("kfree");
-trace["getname_flags"].push("kmem_cache_alloc");
-trace["getname_flags"].push("kmem_cache_alloc_trace");
-trace["getname_flags"].push("kmem_cache_free");
-trace["getname_flags"].push("putname");
-trace["getname_flags"].push("strncpy_from_user");
-trace["hrtimer_cancel"].push("hrtimer_try_to_cancel");
-trace["hrtimer_try_to_cancel"].push("_raw_spin_unlock_irqrestore");
-trace["hrtimer_try_to_cancel"].push("__remove_hrtimer");
-trace["__inode_permission"].push("generic_permission");
-trace["inode_permission"].push("__inode_permission");
-trace["__inode_permission"].push("security_inode_permission");
-trace["kmem_cache_alloc"].push("_cond_resched");
-trace["kmem_cache_alloc"].push("memset");
-trace["kmem_cache_free"].push("__slab_free");
-trace["legitimize_mnt"].push("__legitimize_mnt");
-trace["legitimize_mnt"].push("mntput_no_expire");
-trace["link_path_walk"].push("dput");
-trace["link_path_walk"].push("mntput");
-trace["link_path_walk"].push("unlazy_walk");
-trace["mntput_no_expire"].push("task_work_add");
-trace["None"].push("sys_chdir");
-trace["path_get"].push("lockref_get");
-trace["path_get"].push("mntget");
-trace["path_init"].push("fput");
-trace["path_init"].push("path_get");
-trace["path_init"].push("set_root_rcu");
-trace["path_lookupat"].push("complete_walk");
-trace["path_lookupat"].push("link_path_walk");
-trace["path_lookupat"].push("path_init");
-trace["path_lookupat"].push("terminate_walk");
-trace["path_lookupat"].push("walk_component");
-trace["preempt_schedule_common"].push("__schedule");
-trace["__remove_hrtimer"].push("__hrtimer_get_next_event");
-trace["__remove_hrtimer"].push("tick_program_event");
-trace["__remove_hrtimer"].push("timerqueue_del");
-trace["sched_clock_cpu"].push("sched_clock");
-trace["__schedule"].push("activate_task");
-trace["__schedule"].push("deactivate_task");
-trace["__schedule"].push("finish_task_switch");
-trace["__schedule"].push("hrtimer_active");
-trace["__schedule"].push("hrtimer_cancel");
-trace["__schedule"].push("_raw_spin_lock");
-trace["__schedule"].push("_raw_spin_lock_irq");
-trace["__schedule"].push("rcu_note_context_switch");
-trace["__schedule"].push("__switch_to");
-trace["__schedule"].push("ttwu_do_wakeup");
-trace["__schedule"].push("ttwu_stat");
-trace["__schedule"].push("update_rq_clock");
-trace["__slab_free"].push("cmpxchg_double_slab");
-trace["__slab_free"].push("_raw_spin_lock_irqsave");
-trace["sys_chdir"].push("inode_permission");
-trace["sys_chdir"].push("path_put");
-trace["sys_chdir"].push("set_fs_pwd");
-trace["sys_chdir"].push("user_path_at_empty");
-trace["task_work_add"].push("kick_process");
-trace["tick_program_event"].push("clockevents_program_event");
-trace["timerqueue_del"].push("rb_erase");
-trace["timerqueue_del"].push("rb_next");
-trace["ttwu_do_wakeup"].push("check_preempt_curr");
-trace["unlazy_walk"].push("drop_links");
-trace["unlazy_walk"].push("legitimize_mnt");
-trace["unlazy_walk"].push("lockref_get_not_dead");
-trace["update_rq_clock"].push("sched_clock_cpu");
-trace["user_path_at_empty"].push("filename_lookup");
-trace["user_path_at_empty"].push("getname_flags");
-trace["walk_component"].push("mutex_lock");
-trace["walk_component"].push("mutex_unlock");
-
-
-
-
+// nodenames to be excluded
+var omit_list = ['__fentry__', '#','__stack_chk_fail'];
 
 var depth = 1;
 var node_depth = 100;
 var node_height = 20;
 
 var m = [20, 120, 20, 120],
-    w = 80000 - m[1] - m[3],
+    w = 80000 - m[1] - m[3], // TODO: adjust h & w to svg size
     h = 80000 - m[0] - m[2],
     i = 0;
 
-var tree; // = d3.layout.tree() .size([h, w]);
 
 var diagonal = d3.svg.diagonal()
     .projection(function(d) {
@@ -171,10 +35,13 @@ var vis = d3.select("#tree").append("svg:svg")
 
 var gdict = [];
 
-// nodenames to be excluded
-var omit_list = ['__fentry__', '#','__stack_chk_fail'];
-
-function omit(node) {
+// Copy all node info into the 'gdict' lookup table
+// We use this table to expand "copied" and "duplicate" nodes
+// when they are toggled
+function node_to_dict(node) {
+    // if a child nodename is in the omit_list it shouldn't be displayed
+    // we remove it from the children but we still need to process its
+    // children
     omit_list.forEach(function(f) {
         if (node.children) {
             filtered = [];
@@ -182,18 +49,13 @@ function omit(node) {
                 if (c.label != f) {
                     filtered.push(c);
                 }
+                else{
+                    node_to_dict(c);
+                }
             });
             node.children = filtered;
         }
     });
-    if (node.children == []) {
-        node.children = null;
-    }
-    return node;
-}
-
-function node_to_dict(node) {
-    node = omit(node);
     children = node.children ? node.children : []; 
 
     children.forEach(function(child) {
@@ -209,11 +71,27 @@ function node_to_dict(node) {
 
 
 function init() {
-
+    
+    // Show the spinner while the tree is drawn
     $("#loading").show();
-    depth = $("input[name='depth']").val();
-    depth = parseInt(depth) - 1;
-    tree = d3.layout.tree();//
+    // Tree depth
+    depth = getParameterByName('depth');
+    if(!depth){
+        depth = $("input[name='depth']").val();
+    }
+    depth = parseInt(depth) ;
+    $("input[name='depth']").val(depth + 1)
+    tree = d3.layout.tree();
+
+    var trace_f = getParameterByName('trace');
+    if (trace_f){
+        d3.json(trace_f, function(error, tree) {
+            if(tree){
+                trace = tree;
+            }
+        });
+    }
+
     var json_f = getParameterByName('json') ? getParameterByName('json') : 'sys_chdir.json' ;
     d3.json(json_f, function(error, tree) {
 
@@ -242,7 +120,7 @@ function init() {
 }
 
 function toggle_to(node,depth){
-    if (depth <= 0 ){ // || node.type != "original"){
+    if (depth <= 0 ){ 
         return;
     }
     children = node.children ? node.children : node._children;
@@ -276,69 +154,98 @@ function resize(direction, pm) {
     goto_node(root);
 }
 
+// return path from root of tree to node
+function get_path(node){
+    if(node.parent){
+        path = get_path(node.parent)
+        path.push( node.label );
+        return path;
+    }
+    return [node.label];
+}
 
-function update(source) {
 
-    function has_children(node) {
-        original = gdict[node.label];
-        if (original && original._children && original._children.length > 0) {
-            return true;
-        }
+// Retrieve url parameter values
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+function has_children(node) {
+    original = gdict[node.label];
+    if (original && original._children && original._children.length > 0) {
+        return true;
+    }
+    return false;
+}
+
+function is_collapsed(node){
+    if ( ! has_children(node) ){
         return false;
     }
-
-    function is_collapsed(node){
-        if ( ! has_children(node) ){
-            return false;
+    original = gdict[node.label];
+    return original.children ? false : true ;
+}
+        
+// TODO : use css classes instead of hardcoded colors
+function node_color(node) {
+    if (node.type == "duplicate" || node.type == "copy") {
+        if (node.children){
+            return "white";
         }
-        original = gdict[node.label];
-        return original.children ? false : true ;
-    }
-            
-
-    function node_color(node) {
-        if (node.type == "duplicate" || node.type == "copy") {
-            if (node.children){
-                return "white";
-            }
-            if (is_collapsed(node)) {
-                return "lightsteelblue";
-            } else {
-                return "darksalmon";
-            }
-        }
-        if (node._children && has_children(node) ) {
+        if (is_collapsed(node)) {
             return "lightsteelblue";
+        } else {
+            return "darksalmon";
         }
-        return "white";
     }
+    if (node._children && has_children(node) ) {
+        return "lightsteelblue";
+    }
+    return "white";
+}
 
-    // Check if a link is in the trace array
-    function is_traced(source, target){
-        traced = false;
-        trace_source = trace[source.label];
-        if( !trace_source || ! target ){
-            return traced;
-        }
-        trace_source.forEach(function(trace_dest){
-            if (trace_dest == target.label){
-                traced = ! source.parent || is_traced(source.parent, source) ? true : false;
-             }
-        });
-        return traced;
+// Check if a node is in the trace tree
+// TODO: optimize
+function is_traced(node){
+    path   = get_path(node);
+    traced = trace;
+    if( ! traced || ! traced.children){
+        return false;
     }
+    for (var i = 1 ; i <= path.length; i++ ){
+        for (var j = 0 ; j <= traced.children.length;j++){
+            if(j >= traced.children.length ){
+                return false;
+            }
+            if(path[i] == traced.children[j].label){
+                traced = traced.children[j];
+                break;
+            }
+        }
+        if (node.label == traced.label){
+            return true;
+        }
+    }
+    return false;
+}
 
-    function get_link_class(link){
-        pclass = "link";
-        if(is_traced(link.source,link.target)){
-            pclass += " trace";
-        }
-        return pclass;
+// CSS class of traced links
+function get_link_class(link){
+    pclass = "link";
+    if(is_traced(link.target)){
+        pclass += " trace";
     }
+    return pclass;
+}
+
+// D3 update function
+function update(source) {
 
     var duration = d3.event && d3.event.altKey ? 5000 : 500;
 
-    // compute the new height
+    // Compute the new tree layout.
     var levelWidth = [1];
     var childCount = function(level, n) {
 
@@ -356,7 +263,6 @@ function update(source) {
     };
     childCount(0, root);
 
-    // Compute the new tree layout.
     var newHeight = d3.max(levelWidth) * node_height; // 20 pixels per line
 
     if(! tree.cust_size){
@@ -388,7 +294,7 @@ function update(source) {
         .on("click", function(d) {
             toggle(d);
             update(d);
-            //console.log(d);
+            console.log(get_path(d));
             //goto_node(d);
         });
 
@@ -504,7 +410,7 @@ function toggle(d) {
             original = gdict[node.label];
             node.type = "copy";
             if (!original || !original._children) {
-                console.log('ERR: NO ORIGINAL');
+                console.log('ERR: NO ORIGINAL for ' + node.label);
                 console.log(node);
                 return;
             }
@@ -526,24 +432,31 @@ function toggle(d) {
     }
 }
 
-function get_ancestors(node, chain) {
-    console.log(node.parent);
-    if (node.parent){
-        chain.push(node.parent);
-        get_ancestors(node.parent,chain);
-    }
-}
+
+///////// Spinner 
+var opts = {
+    lines: 13, // The number of lines to draw
+    length: 7, // The length of each line
+    width: 4, // The line thickness
+    radius: 10, // The radius of the inner circle
+    rotate: 0, // The rotation offset
+    color: 'steelblue', // #rgb or #rrggbb
+    speed: 1, // Rounds per second
+    trail: 60, // Afterglow percentage
+    shadow: false, // Whether to render a shadow
+    hwaccel: false, // Whether to use hardware acceleration
+    className: 'spinner', // The CSS class to assign to the spinner
+    zIndex: 2e9, // The z-index (defaults to 2000000000)
+    top: 'auto', // Top position relative to parent in px
+    left: 'auto' // Left position relative to parent in px
+};
+var spinner = new Spinner(opts).spin();
+$("#loading").append(spinner.el);
+///////// End Spinner
 
 
-// Retrieve url parameter values
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
 
-init();
+init(); // Draw the tree
 //$("#control").draggable();
 
 // Cause enter on the depth to expand
@@ -552,5 +465,3 @@ $("#depth").keyup(function(event){
         $("#expand").click();
     }
 });
-
-
