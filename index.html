@@ -15,10 +15,57 @@ title: StackTrack
             <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
             </li>
 
-{% highlight javascript linenos=table %}
-function code_example_with_line_numbers() {
-  console.log("Showing the line number rendering of code using gh-pages-blog.");
-}
+{% highlight python linenos=table %}
+class KxrBreakpoint(gdb.Breakpoint):
+
+    bplist   = set()
+    todelete = []
+    edges    = []
+    graph    = Graph()
+
+    def __init__(self, func_name, parent=None):
+
+        self.func_name = func_name
+        # node = self.node      = self.graph.add_node(func_name)
+        # if not node in self.graph.nodes: self.graph.load_node(self.node)
+        self.parent    = parent
+        KxrBreakpoint.bplist.add(func_name)
+        # print('ini %s'%str(func_name))
+        super(KxrBreakpoint, self).__init__(
+            func_name, gdb.BP_BREAKPOINT, internal=False
+        )
+
+    def stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+            return
+
+        if self.parent:
+            KxrBreakpoint.graph.add_edge(self.parent,self.func_name)
+
+        for bp in KxrBreakpoint.todelete:
+            try:
+                if bp.func_name != self.func_name:
+                    bp.delete()
+            except:
+                pass
+
+
+        #callees = [ c.name for c in self.node.get_callees()]
+
+        for callee in get_callees(self.func_name):
+            self.edges += [(self.func_name,callee)]
+            if callee not in KxrBreakpoint.bplist:
+                KxrBreakpoint(callee,self.func_name)
+
+        KxrBreakpoint.todelete += [self]
+        #gdb.execute('continue')
+        #self.delete()
+
+
+
+print('loaded')
+
 {% endhighlight %}
 
 
