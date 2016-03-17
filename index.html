@@ -27,7 +27,15 @@ title: StackTrack
             The json graph output is rendered using the <a>d3js</a> javascript library. 
             </p>
 
+            <h2>Indirect Function Calls</h2>
+            <p>
+            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.
+            
+            </p>
             <h2>Tracing</h2>
+            <p>
+            To trace execution we put breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
+            </p>
             <!--{% gist 8387126 %}-->
 {% highlight bash session linenos=table%}
 rlah
