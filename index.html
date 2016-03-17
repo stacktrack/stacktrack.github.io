@@ -9,6 +9,143 @@ title: StackTrack
             <p>When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
             An example graph showing the codepath for the sys_chdir system call can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>. The graphs are represented as expandable trees.
 
+            </p>
+            <p>For the sake of brevity this page is lacking a lot of details. Should you need more information regarding some of the details, please feel free to drop me an e-mail.
+            </p>
+            <h2>Overview and Setup</h2>
+            <p>
+            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-debugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
+            </p>
+
+            <h2>Cross Reference Database, Graph Datastructure and Visualization</h2> 
+            <p>
+            A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee.
+            </p>
+            <p>
+            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method.
+            </p>
+
+            <p>
+            The json graph output is rendered using the <a>d3js</a> javascript library. 
+            </p>
+
+            <h2>Indirect Function Calls</h2>
+            <p>
+            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.
+            
+            </p>
+            <h2>Tracing</h2>
+            <p>
+            To trace execution we put breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
+            </p>
+            <!--{% gist 8387126 %}-->
+{% highlight bash session linenos=table%}
+ubuntu pygdb # gdb -q vmlinux
+Reading symbols from vmlinux...done.
+(gdb) set pagination off
+(gdb) target remote u:8864
+Remote debugging using u:8864
+native_safe_halt () at ./arch/x86/include/asm/irqflags.h:50
+50      }
+(gdb) python
+>import breakpoint, importlib
+>importlib.reload(breakpoint)
+>breakpoint.KxrBreakpoint('sys_chdir')
+>end
+loaded
+loaded
+Breakpoint 1 at 0xffffffff811f7dc0: file fs/open.c, line 422.
+(gdb) c
+Continuing.
+Breakpoint 2 at 0xffffffff817c0990: file arch/x86/kernel/mcount_64.S, line 151.
+Breakpoint 3 at 0xffffffff81209420: file fs/namei.c, line 2327.
+Breakpoint 4 at 0xffffffff81203fd0: file fs/namei.c, line 459.
+Breakpoint 5 at 0xffffffff81203560: path_put. (36 locations)
+Breakpoint 6 at 0xffffffff8122d310: file fs/fs_struct.c, line 33.
+Breakpoint 7 at 0xffffffff8107a090: file kernel/panic.c, line 493.
+DEBUG:root:Creating Node sys_chdir 0
+DEBUG:root:Creating Node user_path_at_empty 1
+Breakpoint 8 at 0xffffffff81208e60: file fs/namei.c, line 126.
+Breakpoint 9 at 0xffffffff81209200: file fs/namei.c, line 2151.
+DEBUG:root:Creating Node getname_flags 2
+Breakpoint 10 at 0xffffffff811dad30: file mm/slub.c, line 2519.
+Breakpoint 11 at 0xffffffff813ee620: file lib/strncpy_from_user.c, line 100.
+Breakpoint 12 at 0xffffffff8111e430: file kernel/auditsc.c, line 1701.
+Breakpoint 13 at 0xffffffff8111e490: file kernel/auditsc.c, line 1724.
+Breakpoint 14 at 0xffffffff811da560: file mm/slub.c, line 2744.
+Breakpoint 15 at 0xffffffff811da8e0: file mm/slub.c, line 2531.
+...
+{% endhighlight %}
+
+{% highlight bash session linenos=table%}
+(gdb) python
+>breakpoint.KxrBreakpoint.graph.dump_nodes('/tmp')
+>end
+DEBUG:root:dumping Node fsnotify to /tmp/fsnotify.json
+DEBUG:root:Ignoring Node fsnotify
+DEBUG:root:dumping Node hrtimer_cancel to /tmp/hrtimer_cancel.json
+DEBUG:root:Ignoring Node hrtimer_cancel
+DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
+DEBUG:root:Ignoring Node getname_flags
+DEBUG:root:dumping Node __wake_up to /tmp/__wake_up.json
+DEBUG:root:Ignoring Node __wake_up
+...
+
+{% endhighlight %}
+
+The node(s) dumped contain the trace. 
+
+
+{% highlight python linenos=table %}
+class KxrBreakpoint(gdb.Breakpoint):
+
+    bplist   = set()
+    todelete = []
+    edges    = []
+    graph    = Graph()
+
+    def __init__(self, func_name, parent=None):
+
+        self.func_name = func_name
+        self.parent    = parent
+        KxrBreakpoint.bplist.add(func_name)
+        super(KxrBreakpoint, self).__init__(
+            func_name, gdb.BP_BREAKPOINT, internal=False
+        )
+
+    def stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+            return
+
+        if self.parent:
+            KxrBreakpoint.graph.add_edge(self.parent,self.func_name)
+
+        for bp in KxrBreakpoint.todelete:
+            try:
+                if bp.func_name != self.func_name:
+                    bp.delete()
+            except:
+                pass
+
+
+        #callees = [ c.name for c in self.node.get_callees()]
+
+        for callee in get_callees(self.func_name):
+            self.edges += [(self.func_name,callee)]
+            if callee not in KxrBreakpoint.bplist:
+                KxrBreakpoint(callee,self.func_name)
+
+        KxrBreakpoint.todelete += [self]
+
+{% endhighlight %}
+
+
+            <p>
+            <li>
+            <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
+            </li>
+
 
 <a href="/tree.html?json=sys_accept.json">sys_accept</a>
 <a href="/tree.html?json=sys_acct.json">sys_acct</a>
