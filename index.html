@@ -15,7 +15,16 @@ title: StackTrack
 
             <h2>Cross Reference Database</h2> 
             <p>
-            A function call cross reference database table is built by parsing the output of the egypt tool. ( http://www.gson.org/egypt/egypt.html )
+            A function call cross reference database table is built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. 
+            <code>
+            ubuntu ~ # mysql stacktrack -e "desc xrefs"
+            +--------+---------------+------+-----+---------+-------+
+            | Field  | Type          | Null | Key | Default | Extra |
+            +--------+---------------+------+-----+---------+-------+
+            | caller | varchar(1024) | YES  |     | NULL    |       |
+            | callee | varchar(1024) | YES  |     | NULL    |       |
+            +--------+---------------+------+-----+---------+-------+
+            </code>
             </p>
 
             <!--{% gist 8387126 %}-->
