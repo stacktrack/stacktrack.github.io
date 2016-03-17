@@ -10,7 +10,7 @@ title: StackTrack
             An example graph can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>
 
             </p>
-            <h2>Setup and Overview</h2>
+            <h2>Overview and Setup</h2>
             The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . 
             <p>
             </p>
@@ -19,15 +19,6 @@ title: StackTrack
             <p>
             A function call cross reference database table is built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump
 
-            {% highlight bash %}
-            ubuntu ~ # mysql stacktrack -e "desc xrefs"
-            +--------+---------------+------+-----+---------+-------+
-            | Field  | Type          | Null | Key | Default | Extra |
-            +--------+---------------+------+-----+---------+-------+
-            | caller | varchar(1024) | YES  |     | NULL    |       |
-            | callee | varchar(1024) | YES  |     | NULL    |       |
-            +--------+---------------+------+-----+---------+-------+
-            {% highlight bash %}
             </p>
 
             <!--{% gist 8387126 %}-->
