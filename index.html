@@ -7,24 +7,24 @@ title: StackTrack
 			<h1>StackTrack</h1>
             <h2>Introduction</h2>
             <p>When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
-            An example graph can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>
+            An example graph showing the codepath for the sys_chdir system call can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>.
 
             </p>
             <h2>Overview and Setup</h2>
             <p>
-            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . 
+            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a gdb session. The graph generating code is written in python and uses a mysql server.
             </p>
 
             <h2>Cross Reference Database, Graph Datastructure and Visualization</h2> 
             <p>
-            A function call cross reference database table is built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee. 
+            A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee.
             </p>
             <p>
-            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph nodes can be exported in json format with the dump_node(s) method.
+            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method.
             </p>
 
             <p>
-            The graphs are rendered using the <a>d3js</a> javascript library. 
+            The json graph output is rendered using the <a>d3js</a> javascript library. 
             </p>
 
             <h2>Tracing</h2>
