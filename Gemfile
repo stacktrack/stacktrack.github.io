@@ -1,3 +1,9 @@
 source 'https://rubygems.org'
-gem 'jekyll', '3.0.3'
+require 'json'
+require 'open-uri'
+versions = JSON.parse(open('https://pages.github.com/versions.json').read)
+
+gem 'jekyll'
+gem 'jekyll-last-modified-at'
+gem 'jekyll-watch'
 gem 'github-pages'
