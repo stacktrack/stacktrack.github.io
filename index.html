@@ -15,12 +15,15 @@ title: StackTrack
             The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . 
             </p>
 
-            <h2>Cross Reference Database</h2> 
+            <h2>Cross Reference Database and Graph Datastructure</h2> 
             <p>
-            A function call cross reference database table is built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump
-
+            A function call cross reference database table is built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee. 
+            </p>
+            <p>
+            The <a href=Graph.py> script python script creates a "Graph" datastructure based on this table. This graph consists 
             </p>
 
+            <h2>Tracing</a>
             <!--{% gist 8387126 %}-->
 {% highlight python linenos=table %}
 class KxrBreakpoint(gdb.Breakpoint):
