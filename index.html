@@ -21,66 +21,6 @@ title: StackTrack
             <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
             </li>
 
-{% highlight python linenos=table %}
-class KxrBreakpoint(gdb.Breakpoint):
-
-    bplist   = set()
-    todelete = []
-    edges    = []
-    graph    = Graph()
-
-    def __init__(self, func_name, parent=None):
-
-        self.func_name = func_name
-        self.parent    = parent
-        KxrBreakpoint.bplist.add(func_name)
-        super(KxrBreakpoint, self).__init__(
-            func_name, gdb.BP_BREAKPOINT, internal=False
-        )
-
-    def stop(self):
-        comm = get_current()['comm'].string()
-        if not comm.startswith('trinity'):
-            return
-
-        if self.parent:
-            KxrBreakpoint.graph.add_edge(self.parent,self.func_name)
-
-        for bp in KxrBreakpoint.todelete:
-            try:
-                if bp.func_name != self.func_name:
-                    bp.delete()
-            except:
-                pass
-
-
-        #callees = [ c.name for c in self.node.get_callees()]
-
-        for callee in get_callees(self.func_name):
-            self.edges += [(self.func_name,callee)]
-            if callee not in KxrBreakpoint.bplist:
-                KxrBreakpoint(callee,self.func_name)
-
-        KxrBreakpoint.todelete += [self]
-
-{% endhighlight %}
-
-
-{% highlight linenos=table %}
-
-python
-breakpoint.del_bps()
-import breakpoint, importlib
-importlib.reload(breakpoint)
-breakpoint.KxrBreakpoint('sys_fchmodat')
-end
-
-python
-KxrBreakpoint.graph.dump_nodes('/tmp')
-end
-
-{% endhighlight %}
-Call trees without tracing: <br>
 
 <a href="/tree.html?json=sys_accept.json">sys_accept</a>
 <a href="/tree.html?json=sys_acct.json">sys_acct</a>
