@@ -7,11 +7,15 @@ title: StackTrack
 			<h1>StackTrack</h1>
             <h2>Introduction</h2>
             <p>When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
+            An example graph can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>
             </p>
             <h2>Setup and Overview</h2>
+            <p>
+            </p>
 
             <h2>Cross Reference Database</h2> 
             <p>
+            A function call cross reference database table is built by parsing the output of the egypt tool. ( http://www.gson.org/egypt/egypt.html )
             </p>
 
             <!--{% gist 8387126 %}-->
