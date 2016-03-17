@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StackTrack</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+  
+  </head>
+
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/stacktrack/stacktrack.github.com/">Github</a></li>
+<li><a href="/about">About</a></li>
+</ul>
+    </nav>
+<div class="container">
+
+  		<div class="blurb">
+			<h1>StackTrack</h1>
+            <h2>Introduction</h2>
+            <p>Whe browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
+            An example graph showing the codepath for the sys_chdir system call can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>. The graphs are represented as expandable trees.
+
+            </p>
+            <p>For the sake of brevity this page is lacking a lot of details. Should you need more information regarding some of the details, please feel free to drop me an e-mail.
+            </p>
+            <h2>Overview and Setup</h2>
+            <p>
+            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-debugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
+            </p>
+
+            <h2>Cross Reference Database, Graph Datastructure and Visualization</h2> 
+            <p>
+            A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee.
+            </p>
+            <p>
+            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method.
+            </p>
+
+            <p>
+            The json graph output is rendered using the <a>d3js</a> javascript library. 
+            </p>
+
+            <h2>Indirect Function Calls</h2>
+            <p>
+            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.
+            
+            </p>
+            <h2>Tracing</h2>
+            <p>
+            To trace execution we put breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
+            </p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></td><td class="code"><pre>ubuntu pygdb <span class="c"># gdb -q vmlinux</span>
+Reading symbols from vmlinux...done.
+<span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set </span>pagination off
+<span class="o">(</span>gdb<span class="o">)</span> target remote u:8864
+Remote debugging using u:8864
+native_safe_halt <span class="o">()</span> at ./arch/x86/include/asm/irqflags.h:50
+50      <span class="o">}</span>
+<span class="o">(</span>gdb<span class="o">)</span> python
+&gt;import breakpoint, importlib
+&gt;importlib.reload<span class="o">(</span>breakpoint<span class="o">)</span>
+&gt;breakpoint.KxrBreakpoint<span class="o">(</span><span class="s1">'sys_chdir'</span><span class="o">)</span>
+&gt;end
+loaded
+loaded
+Breakpoint 1 at 0xffffffff811f7dc0: file fs/open.c, line 422.
+<span class="o">(</span>gdb<span class="o">)</span> c
+Continuing.
+Breakpoint 2 at 0xffffffff817c0990: file arch/x86/kernel/mcount_64.S, line 151.
+Breakpoint 3 at 0xffffffff81209420: file fs/namei.c, line 2327.
+Breakpoint 4 at 0xffffffff81203fd0: file fs/namei.c, line 459.
+Breakpoint 5 at 0xffffffff81203560: path_put. <span class="o">(</span>36 locations<span class="o">)</span>
+Breakpoint 6 at 0xffffffff8122d310: file fs/fs_struct.c, line 33.
+Breakpoint 7 at 0xffffffff8107a090: file kernel/panic.c, line 493.
+DEBUG:root:Creating Node sys_chdir 0
+DEBUG:root:Creating Node user_path_at_empty 1
+Breakpoint 8 at 0xffffffff81208e60: file fs/namei.c, line 126.
+Breakpoint 9 at 0xffffffff81209200: file fs/namei.c, line 2151.
+DEBUG:root:Creating Node getname_flags 2
+Breakpoint 10 at 0xffffffff811dad30: file mm/slub.c, line 2519.
+Breakpoint 11 at 0xffffffff813ee620: file lib/strncpy_from_user.c, line 100.
+Breakpoint 12 at 0xffffffff8111e430: file kernel/auditsc.c, line 1701.
+Breakpoint 13 at 0xffffffff8111e490: file kernel/auditsc.c, line 1724.
+Breakpoint 14 at 0xffffffff811da560: file mm/slub.c, line 2744.
+Breakpoint 15 at 0xffffffff811da8e0: file mm/slub.c, line 2531.
+...<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td><td class="code"><pre><span class="o">(</span>gdb<span class="o">)</span> python
+&gt;breakpoint.KxrBreakpoint.graph.dump_nodes<span class="o">(</span><span class="s1">'/tmp'</span><span class="o">)</span>
+&gt;end
+DEBUG:root:dumping Node fsnotify to /tmp/fsnotify.json
+DEBUG:root:Ignoring Node fsnotify
+DEBUG:root:dumping Node hrtimer_cancel to /tmp/hrtimer_cancel.json
+DEBUG:root:Ignoring Node hrtimer_cancel
+DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
+DEBUG:root:Ignoring Node getname_flags
+DEBUG:root:dumping Node __wake_up to /tmp/__wake_up.json
+DEBUG:root:Ignoring Node __wake_up
+...<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+The node(s) dumped contain the trace. 
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">KxrBreakpoint</span><span class="p">(</span><span class="n">gdb</span><span class="o">.</span><span class="n">Breakpoint</span><span class="p">):</span>
+
+    <span class="n">bplist</span>   <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">todelete</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edges</span>    <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">graph</span>    <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>    <span class="o">=</span> <span class="n">parent</span>
+        <span class="n">KxrBreakpoint</span><span class="o">.</span><span class="n">bplist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">func_name</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">KxrBreakpoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">func_name</span><span class="p">,</span> <span class="n">gdb</span><span class="o">.</span><span class="n">BP_BREAKPOINT</span><span class="p">,</span> <span class="n">internal</span><span class="o">=</span><span class="bp">False</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">comm</span> <span class="o">=</span> <span class="n">get_current</span><span class="p">()[</span><span class="s">'comm'</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">comm</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'trinity'</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="n">KxrBreakpoint</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="n">KxrBreakpoint</span><span class="o">.</span><span class="n">todelete</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">bp</span><span class="o">.</span><span class="n">func_name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span>
+                    <span class="n">bp</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+
+        <span class="c">#callees = [ c.name for c in self.node.get_callees()]</span>
+
+        <span class="k">for</span> <span class="n">callee</span> <span class="ow">in</span> <span class="n">get_callees</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">+=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span><span class="n">callee</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="n">callee</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">KxrBreakpoint</span><span class="o">.</span><span class="n">bplist</span><span class="p">:</span>
+                <span class="n">KxrBreakpoint</span><span class="p">(</span><span class="n">callee</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span>
+
+        <span class="n">KxrBreakpoint</span><span class="o">.</span><span class="n">todelete</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+
+            <p>
+            <li>
+            <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
+            </li>
+
+
+<a href="/tree.html?json=sys_accept.json">sys_accept</a>
+<a href="/tree.html?json=sys_acct.json">sys_acct</a>
+<a href="/tree.html?json=sys_adjtimex.json">sys_adjtimex</a>
+<a href="/tree.html?json=sys_arch_prctl.json">sys_arch_prctl</a>
+<a href="/tree.html?json=sys_bpf.json">sys_bpf</a>
+<a href="/tree.html?json=sys_capget.json">sys_capget</a>
+<a href="/tree.html?json=sys_capset.json">sys_capset</a>
+<a href="/tree.html?json=sys_chdir.json">sys_chdir</a>
+<a href="/tree.html?json=sys_chmod.json">sys_chmod</a>
+<a href="/tree.html?json=sys_chown.json">sys_chown</a>
+<a href="/tree.html?json=sys_clock_nanosleep.json">sys_clock_nanosleep</a>
+<a href="/tree.html?json=sys_connect.json">sys_connect</a>
+<a href="/tree.html?json=sys_creat.json">sys_creat</a>
+<a href="/tree.html?json=sys_delete_module.json">sys_delete_module</a>
+<a href="/tree.html?json=sys_dup2.json">sys_dup2</a>
+<a href="/tree.html?json=sys_dup.json">sys_dup</a>
+<a href="/tree.html?json=sys_epoll_create.json">sys_epoll_create</a>
+<a href="/tree.html?json=sys_epoll_ctl.json">sys_epoll_ctl</a>
+<a href="/tree.html?json=sys_epoll_wait.json">sys_epoll_wait</a>
+<a href="/tree.html?json=sys_execve.json">sys_execve</a>
+<a href="/tree.html?json=sys_exit_group.json">sys_exit_group</a>
+<a href="/tree.html?json=sys_exit.json">sys_exit</a>
+<a href="/tree.html?json=sys_faccessat.json">sys_faccessat</a>
+<a href="/tree.html?json=sys_fadvise64.json">sys_fadvise64</a>
+<a href="/tree.html?json=sys_fchdir.json">sys_fchdir</a>
+<a href="/tree.html?json=sys_fchmodat.json">sys_fchmodat</a>
+<a href="/tree.html?json=sys_fchmod.json">sys_fchmod</a>
+<a href="/tree.html?json=sys_fchown16.json">sys_fchown16</a>
+<a href="/tree.html?json=sys_fchownat.json">sys_fchownat</a>
+<a href="/tree.html?json=sys_fcntl.json">sys_fcntl</a>
+<a href="/tree.html?json=sys_fdatasync.json">sys_fdatasync</a>
+<a href="/tree.html?json=sys_flistxattr.json">sys_flistxattr</a>
+<a href="/tree.html?json=sys_flock.json">sys_flock</a>
+<a href="/tree.html?json=sys_fremovexattr.json">sys_fremovexattr</a>
+<a href="/tree.html?json=sys_fsync.json">sys_fsync</a>
+<a href="/tree.html?json=sys_ftruncate.json">sys_ftruncate</a>
+<a href="/tree.html?json=sys_futex.json">sys_futex</a>
+<a href="/tree.html?json=sys_getcwd.json">sys_getcwd</a>
+<a href="/tree.html?json=sys_getdents.json">sys_getdents</a>
+<a href="/tree.html?json=sys_geteuid16.json">sys_geteuid16</a>
+<a href="/tree.html?json=sys_getgid16.json">sys_getgid16</a>
+<a href="/tree.html?json=sys_getpeername.json">sys_getpeername</a>
+<a href="/tree.html?json=sys_getpgid.json">sys_getpgid</a>
+<a href="/tree.html?json=sys_getpriority.json">sys_getpriority</a>
+<a href="/tree.html?json=sys_getrandom.json">sys_getrandom</a>
+<a href="/tree.html?json=sys_getresuid16.json">sys_getresuid16</a>
+<a href="/tree.html?json=sys_getsockopt.json">sys_getsockopt</a>
+<a href="/tree.html?json=sys_gettid.json">sys_gettid</a>
+<a href="/tree.html?json=sys_getuid.json">sys_getuid</a>
+<a href="/tree.html?json=sys_init_module.json">sys_init_module</a>
+<a href="/tree.html?json=sys_inotify_init.json">sys_inotify_init</a>
+<a href="/tree.html?json=sys_inotify_rm_watch.json">sys_inotify_rm_watch</a>
+<a href="/tree.html?json=sys_ioctl.json">sys_ioctl</a>
+<a href="/tree.html?json=sys_iopl.json">sys_iopl</a>
+<a href="/tree.html?json=sys_ioprio_get.json">sys_ioprio_get</a>
+<a href="/tree.html?json=sys_io_setup.json">sys_io_setup</a>
+<a href="/tree.html?json=sys_io_submit.json">sys_io_submit</a>
+<a href="/tree.html?json=sys_kcmp.json">sys_kcmp</a>
+<a href="/tree.html?json=sys_kexec_file_load.json">sys_kexec_file_load</a>
+<a href="/tree.html?json=sys_kexec_load.json">sys_kexec_load</a>
+<a href="/tree.html?json=sys_lchown.json">sys_lchown</a>
+<a href="/tree.html?json=sys_lgetxattr.json">sys_lgetxattr</a>
+<a href="/tree.html?json=sys_linkat.json">sys_linkat</a>
+<a href="/tree.html?json=sys_llistxattr.json">sys_llistxattr</a>
+<a href="/tree.html?json=sys_lookup_dcookie.json">sys_lookup_dcookie</a>
+<a href="/tree.html?json=sys_lremovexattr.json">sys_lremovexattr</a>
+<a href="/tree.html?json=sys_lseek.json">sys_lseek</a>
+<a href="/tree.html?json=sys_mbind.json">sys_mbind</a>
+<a href="/tree.html?json=sys_mincore.json">sys_mincore</a>
+<a href="/tree.html?json=sys_mknodat.json">sys_mknodat</a>
+<a href="/tree.html?json=sys_mknod.json">sys_mknod</a>
+<a href="/tree.html?json=sys_mlockall.json">sys_mlockall</a>
+<a href="/tree.html?json=sys_mlock.json">sys_mlock</a>
+<a href="/tree.html?json=sys_mmap.json">sys_mmap</a>
+<a href="/tree.html?json=sys_mmap_pgoff.json">sys_mmap_pgoff</a>
+<a href="/tree.html?json=sys_move_pages.json">sys_move_pages</a>
+<a href="/tree.html?json=sys_mq_notify.json">sys_mq_notify</a>
+<a href="/tree.html?json=sys_mq_timedsend.json">sys_mq_timedsend</a>
+<a href="/tree.html?json=sys_mremap.json">sys_mremap</a>
+<a href="/tree.html?json=sys_msgsnd.json">sys_msgsnd</a>
+<a href="/tree.html?json=sys_munlockall.json">sys_munlockall</a>
+<a href="/tree.html?json=sys_munmap.json">sys_munmap</a>
+<a href="/tree.html?json=sys_name_to_handle_at.json">sys_name_to_handle_at</a>
+<a href="/tree.html?json=sys_nanosleep.json">sys_nanosleep</a>
+<a href="/tree.html?json=sys_newfstatat.json">sys_newfstatat</a>
+<a href="/tree.html?json=sys_newlstat.json">sys_newlstat</a>
+<a href="/tree.html?json=sys_newstat.json">sys_newstat</a>
+<a href="/tree.html?json=sys_ni_syscall.json">sys_ni_syscall</a>
+<a href="/tree.html?json=sys_old_getrlimit.json">sys_old_getrlimit</a>
+<a href="/tree.html?json=sys_oldumount.json">sys_oldumount</a>
+<a href="/tree.html?json=sys_openat.json">sys_openat</a>
+<a href="/tree.html?json=sys_open.json">sys_open</a>
+<a href="/tree.html?json=sys_pause.json">sys_pause</a>
+<a href="/tree.html?json=sys_pciconfig_iobase.json">sys_pciconfig_iobase</a>
+<a href="/tree.html?json=sys_pciconfig_read.json">sys_pciconfig_read</a>
+<a href="/tree.html?json=sys_perf_event_open.json">sys_perf_event_open</a>
+<a href="/tree.html?json=sys_personality.json">sys_personality</a>
+<a href="/tree.html?json=sys_pipe.json">sys_pipe</a>
+<a href="/tree.html?json=sys_poll.json">sys_poll</a>
+<a href="/tree.html?json=sys_prlimit64.json">sys_prlimit64</a>
+<a href="/tree.html?json=sys_process_vm_readv.json">sys_process_vm_readv</a>
+<a href="/tree.html?json=sys_process_vm_writev.json">sys_process_vm_writev</a>
+<a href="/tree.html?json=sys_ptrace.json">sys_ptrace</a>
+<a href="/tree.html?json=sys_quotactl.json">sys_quotactl</a>
+<a href="/tree.html?json=sys_readahead.json">sys_readahead</a>
+<a href="/tree.html?json=sys_read.json">sys_read</a>
+<a href="/tree.html?json=sys_readlinkat.json">sys_readlinkat</a>
+<a href="/tree.html?json=sys_readv.json">sys_readv</a>
+<a href="/tree.html?json=sys_recvfrom.json">sys_recvfrom</a>
+<a href="/tree.html?json=sys_removexattr.json">sys_removexattr</a>
+<a href="/tree.html?json=sys_request_key.json">sys_request_key</a>
+<a href="/tree.html?json=sys_restart_syscall.json">sys_restart_syscall</a>
+<a href="/tree.html?json=sys_rmdir.json">sys_rmdir</a>
+<a href="/tree.html?json=sys_rt_sigpending.json">sys_rt_sigpending</a>
+<a href="/tree.html?json=sys_rt_sigqueueinfo.json">sys_rt_sigqueueinfo</a>
+<a href="/tree.html?json=sys_rt_sigtimedwait.json">sys_rt_sigtimedwait</a>
+<a href="/tree.html?json=sys_s390_pci_mmio_read.json">sys_s390_pci_mmio_read</a>
+<a href="/tree.html?json=sys_sched_getaffinity.json">sys_sched_getaffinity</a>
+<a href="/tree.html?json=sys_sched_getparam.json">sys_sched_getparam</a>
+<a href="/tree.html?json=sys_sched_get_priority_max.json">sys_sched_get_priority_max</a>
+<a href="/tree.html?json=sys_sched_getscheduler.json">sys_sched_getscheduler</a>
+<a href="/tree.html?json=sys_sched_setaffinity.json">sys_sched_setaffinity</a>
+<a href="/tree.html?json=sys_sched_setattr.json">sys_sched_setattr</a>
+<a href="/tree.html?json=sys_sched_setparam.json">sys_sched_setparam</a>
+<a href="/tree.html?json=sys_sched_setscheduler.json">sys_sched_setscheduler</a>
+<a href="/tree.html?json=sys_seccomp.json">sys_seccomp</a>
+<a href="/tree.html?json=sys_semctl.json">sys_semctl</a>
+<a href="/tree.html?json=sys_semget.json">sys_semget</a>
+<a href="/tree.html?json=sys_semop.json">sys_semop</a>
+<a href="/tree.html?json=sys_semtimedop.json">sys_semtimedop</a>
+<a href="/tree.html?json=sys_send.json">sys_send</a>
+<a href="/tree.html?json=sys_sendto.json">sys_sendto</a>
+<a href="/tree.html?json=sys_setdomainname.json">sys_setdomainname</a>
+<a href="/tree.html?json=sys_setfsgid16.json">sys_setfsgid16</a>
+<a href="/tree.html?json=sys_setfsgid.json">sys_setfsgid</a>
+<a href="/tree.html?json=sys_setfsuid16.json">sys_setfsuid16</a>
+<a href="/tree.html?json=sys_setgid16.json">sys_setgid16</a>
+<a href="/tree.html?json=sys_setgroups16.json">sys_setgroups16</a>
+<a href="/tree.html?json=sys_setgroups.json">sys_setgroups</a>
+<a href="/tree.html?json=sys_setitimer.json">sys_setitimer</a>
+<a href="/tree.html?json=sys_set_mempolicy.json">sys_set_mempolicy</a>
+<a href="/tree.html?json=sys_setns.json">sys_setns</a>
+<a href="/tree.html?json=sys_setpgid.json">sys_setpgid</a>
+<a href="/tree.html?json=sys_setpriority.json">sys_setpriority</a>
+<a href="/tree.html?json=sys_setregid16.json">sys_setregid16</a>
+<a href="/tree.html?json=sys_setregid.json">sys_setregid</a>
+<a href="/tree.html?json=sys_setresgid16.json">sys_setresgid16</a>
+<a href="/tree.html?json=sys_setresgid.json">sys_setresgid</a>
+<a href="/tree.html?json=sys_setresuid.json">sys_setresuid</a>
+<a href="/tree.html?json=sys_set_robust_list.json">sys_set_robust_list</a>
+<a href="/tree.html?json=sys_set_thread_area.json">sys_set_thread_area</a>
+<a href="/tree.html?json=sys_setuid16.json">sys_setuid16</a>
+<a href="/tree.html?json=sys_setuid.json">sys_setuid</a>
+<a href="/tree.html?json=sys_setxattr.json">sys_setxattr</a>
+<a href="/tree.html?json=sys_shmat.json">sys_shmat</a>
+<a href="/tree.html?json=sys_shmctl.json">sys_shmctl</a>
+<a href="/tree.html?json=sys_shmdt.json">sys_shmdt</a>
+<a href="/tree.html?json=sys_signalfd4.json">sys_signalfd4</a>
+<a href="/tree.html?json=sys_signal.json">sys_signal</a>
+<a href="/tree.html?json=sys_sigpending.json">sys_sigpending</a>
+<a href="/tree.html?json=sys_sigsuspend.json">sys_sigsuspend</a>
+<a href="/tree.html?json=sys_socketcall.json">sys_socketcall</a>
+<a href="/tree.html?json=sys_socketpair.json">sys_socketpair</a>
+<a href="/tree.html?json=sys_spu_create.json">sys_spu_create</a>
+<a href="/tree.html?json=sys_ssetmask.json">sys_ssetmask</a>
+<a href="/tree.html?json=sys_statfs64.json">sys_statfs64</a>
+<a href="/tree.html?json=sys_statfs.json">sys_statfs</a>
+<a href="/tree.html?json=sys_subpage_prot.json">sys_subpage_prot</a>
+<a href="/tree.html?json=sys_swapoff.json">sys_swapoff</a>
+<a href="/tree.html?json=sys_symlinkat.json">sys_symlinkat</a>
+<a href="/tree.html?json=sys_symlink.json">sys_symlink</a>
+<a href="/tree.html?json=sys_sysctl.json">sys_sysctl</a>
+<a href="/tree.html?json=sys_sysfs.json">sys_sysfs</a>
+<a href="/tree.html?json=sys_sysinfo.json">sys_sysinfo</a>
+<a href="/tree.html?json=sys_syslog.json">sys_syslog</a>
+<a href="/tree.html?json=sys_tgkill.json">sys_tgkill</a>
+<a href="/tree.html?json=sys_timer_create.json">sys_timer_create</a>
+<a href="/tree.html?json=sys_timerfd_create.json">sys_timerfd_create</a>
+<a href="/tree.html?json=sys_timerfd_gettime.json">sys_timerfd_gettime</a>
+<a href="/tree.html?json=sys_timerfd_settime.json">sys_timerfd_settime</a>
+<a href="/tree.html?json=sys_timer_gettime.json">sys_timer_gettime</a>
+<a href="/tree.html?json=sys_timer_settime.json">sys_timer_settime</a>
+<a href="/tree.html?json=sys_times.json">sys_times</a>
+<a href="/tree.html?json=sys_tkill.json">sys_tkill</a>
+<a href="/tree.html?json=sys_umask.json">sys_umask</a>
+<a href="/tree.html?json=sys_unshare.json">sys_unshare</a>
+<a href="/tree.html?json=sys_utime.json">sys_utime</a>
+<a href="/tree.html?json=sys_utimensat.json">sys_utimensat</a>
+<a href="/tree.html?json=sys_utimes.json">sys_utimes</a>
+<a href="/tree.html?json=sys_vfork.json">sys_vfork</a>
+<a href="/tree.html?json=sys_vhangup.json">sys_vhangup</a>
+<a href="/tree.html?json=sys_vm86old.json">sys_vm86old</a>
+<a href="/tree.html?json=sys_wait4.json">sys_wait4</a>
+<a href="/tree.html?json=sys_waitpid.json">sys_waitpid</a>
+<a href="/tree.html?json=sys_write.json">sys_write</a>
+
+
+		</div> 
+
+
+</div>
+  
+  <footer>
+   <ul>
+   <li><a href="mailto:thomaspollet@gmail.com">email</a></li>
+   <li><a href="https://github.com/stacktrack">github.com/stacktrack</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>
