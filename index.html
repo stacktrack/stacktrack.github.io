@@ -17,7 +17,7 @@ title: StackTrack
             The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-debugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
             </p>
 
-            <h2>Cross Reference Database, Graph Datastructure and Visualization</h2> 
+            <h2>Cross References and Graph Visualization</h2> 
             <p>
             A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee.
             </p>
@@ -26,7 +26,7 @@ title: StackTrack
             </p>
 
             <p>
-            The json graph output is rendered using the <a>d3js</a> javascript library. 
+            The json graph output is rendered using the <a href="https://d3js.org/">d3js</a> javascript library. 
             </p>
 
             <h2>Indirect Function Calls</h2>
