@@ -9,16 +9,19 @@ python
 breakpoint.del_bps()
 end
 
+
+
 python
-
-import breakpoint, importlib
+from Graph import *
+import importlib, breakpoint
 importlib.reload(breakpoint)
-breakpoint.KxrBreakpoint('sys_fchmodat')
-
+breakpoint.KxrBreakpoint('sys_chdir')
 end
 
+
+
 python
-    KxrBreakpoint.graph.dump_nodes('/tmp')
+KxrBreakpoint.graph.dump_nodes('/tmp')
 end
 
 '''
@@ -28,15 +31,12 @@ import linux
 import sys
 import MySQLdb as mdb
 import json
+import importlib
 from Graph import *
 
 
 def get_callees(symbol):
-    con = mdb.connect('127.0.0.1','root','fucksec','stacktrack')
-    cursor = con.cursor()
-    query = "select callee from xrefs where caller = %s"
-    cursor.execute(query,(symbol,))
-    return [ x[0] for x in  cursor.fetchall()]
+    return g.xrefdb.get_callees(symbol)
 
 def del_bps(start=None,end=None):
     for bp in gdb.breakpoints():
@@ -56,6 +56,7 @@ class KxrBreakpoint(gdb.Breakpoint):
     def __init__(self, func_name, parent=None):
 
         self.func_name = func_name        
+        print(func_name)
         # node = self.node      = self.graph.add_node(func_name)
         # if not node in self.graph.nodes: self.graph.load_node(self.node)
         self.parent    = parent
@@ -92,6 +93,11 @@ class KxrBreakpoint(gdb.Breakpoint):
         #gdb.execute('continue')
         #self.delete()
         
-    
 
+symbol = 'sys_chdir'
+print('loading '+symbol)
+g = Graph()
+node = g.add_node(symbol)
+g.load(load_callers = False, load_callees = True)
 print('loaded')
+

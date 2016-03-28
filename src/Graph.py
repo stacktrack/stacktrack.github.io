@@ -22,6 +22,8 @@ class Graph():
     def __init__(self):
 
         self.nodes  = {}
+        self.xrefdb = XRefDB()
+        log.debug('Loaded xrefs')
     
     def add_node(self,node):
         '''
@@ -57,8 +59,9 @@ class Graph():
         node = self.nodes[name]
         return node
 
-    def get_node(self,node_name):
+    def get_node(self,node):
         
+        node_name = node.name if type(node) == Node else node
         return self.nodes.get(node_name,None)
 
 
@@ -93,7 +96,6 @@ class Graph():
 
             nodes = set(self.get_nodes())
 
-
     def load_node(self, node , load_callers = True, load_callees = True):
         '''
             Get the xrefs from the database and create an edge
@@ -102,41 +104,32 @@ class Graph():
         
         log.debug('Loading {}'.format(node))
 
-        cursor  = con.cursor(mdb.cursors.DictCursor)
+        if load_callers:
+            callers = self.xrefdb.get_callers(node.name)
+            for caller in callers:
+                self.add_edge(caller,node.name)
 
-        query = ''' SELECT caller, callee
-                    FROM xrefs
-                    WHERE 
-                        caller COLLATE latin1_general_cs LIKE %s 
-                        OR 
-                        callee COLLATE latin1_general_cs LIKE %s
-                '''
-
-        if load_callers and load_callees:
-            cursor.execute(query,(node.name,node.name))
-        elif load_callers:
-            cursor.execute(query,(None,node.name))
-        elif load_callees:
-            cursor.execute(query,(node.name,None))
-        else:
-            return
-        rows = cursor.fetchall()
-        for row in rows:
-            callee_name     = row['callee']
-            caller_name     = row['caller']
-            #if callee_name == caller_name:
-            caller, callee  = self.add_edge(caller_name,callee_name)
+        if load_callees:
+            callees = self.xrefdb.get_callees(node.name)
+            for callee in callees:
+                self.add_edge(node.name,callee)
 
     def dump_nodes(self, destdir = '.'):
         for node in self.get_nodes():
             self.dump_node(node,destdir)
     
-    def dump_node(self,node,destdir):
-        outfile = os.path.join(destdir,node.name + '.json' )
-        if node.get_callers() or not node.get_callees():
-            log.debug('Ignoring {}'.format(node))
+    def dump_node(self, node, destdir, direction = 'callees'):
+        node = self.get_node(node)
+        outfile = os.path.join(destdir,'{}_{}.json'.format(node.name, direction ) )
+        if not getattr(node,direction):
+            log.info('{} has no {}'.format(node,direction))
             return
-        log.info('dumping {} to {}'.format(node,outfile))
+        inv_direction = 'callers' if direction == 'callees' else 'callees'
+        if getattr(node,inv_direction):
+            log.info('{} is not a leaf for {}'.format(node,direction))
+            return
+        log.info('dumping {} of {} to {}'.format(direction, node, outfile))
+        NodeEncoder.direction = direction
         with open(outfile, 'w+') as f:
             f.write(json.dumps(node,cls=NodeEncoder,indent=True,check_circular=False))
 
@@ -174,12 +167,57 @@ class Node(object):
         return self.callees
            
 
+class XRefDB:
+
+    def __init__(self):
+
+        self.con = mdb.connect(DBHOST,DBUSER,DBPASS,DB)
+        self.callee_xrefs , self.caller_xrefs = self.load_db()
+
+    def load_db(self):
+        
+        query  = '''select * from xrefs'''
+        cursor = self.con.cursor(mdb.cursors.DictCursor)
+        cursor.execute(query)
+        caller_xrefs = {}
+        callee_xrefs = {}
+        for row in cursor.fetchall():
+            callee = row['callee']
+            caller = row['caller']
+            if not caller in callee_xrefs:
+                callee_xrefs[caller] = set([callee])
+            else:
+                callee_xrefs[caller].add(callee)
+            if not callee in caller_xrefs:
+                caller_xrefs[callee] = set([caller])
+            else:
+                caller_xrefs[callee].add(caller)
+
+        return callee_xrefs, caller_xrefs
+
+    def _get_children(self, xrefs, func):
+
+        return xrefs.get(func,[])
+
+    def get_callers(self,func):
+
+        return self._get_children(self.caller_xrefs,func)
+
+    def get_callees(self,func):
+
+        return self._get_children(self.callee_xrefs, func)
+
+
 class NodeEncoder(json.JSONEncoder):
     '''
         Encodes nodes, the processed variable is used 
         to avoid circular references
     '''
+
+    direction = 'callees'
+
     def __init__(self, *args, **kwargs):
+    
         super(NodeEncoder, self).__init__(*args, **kwargs)
         self.processed = set()
 
@@ -206,7 +244,7 @@ class NodeEncoder(json.JSONEncoder):
         else:
             self.processed.add(node)
             children = []
-            for child in getattr(node,'callees'):
+            for child in getattr(node,self.direction):
                 children.append(child)
 
             result = {  "name"      : node.name, 
@@ -232,20 +270,26 @@ def get_all_funcs():
 
 
 def main():
-    #get_all_funcs()
+    #nodenames = get_all_funcs()
     nodenames = sys.argv[1:]
     g = Graph()
     for noden in nodenames:
         node = g.add_node(noden)
+
     g.load(load_callers = False, load_callees = True)
-    g.dump_nodes(OUTDIR)
+    #print len(g.nodes)
+    
+    for node in nodenames:
+        for direction in ( 'callers', 'callees' ):
+            g.dump_node(node, OUTDIR, direction)    
     exit()
 
 
-if __name__ == '__main__':
-    con = mdb.connect(DBHOST,DBUSER,DBPASS,DB)
-    logging.basicConfig()
-    log = logging.getLogger()
-    log.setLevel(logging.DEBUG)
+con = mdb.connect(DBHOST,DBUSER,DBPASS,DB)
+logging.basicConfig()
+log = logging.getLogger()
+log.setLevel(logging.INFO)
 
+if __name__ == '__main__':
     main()
+    
