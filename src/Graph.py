@@ -8,6 +8,13 @@ import argparse
 
 #
 # Database settings
+# The stacktrack database consists of an "xrefs" table 
+# +--------+---------------+------+-----+---------+-------+
+# | Field  | Type          | Null | Key | Default | Extra |
+# +--------+---------------+------+-----+---------+-------+
+# | caller | varchar(1024) | YES  |     | NULL    |       |
+# | callee | varchar(1024) | YES  |     | NULL    |       |
+# +--------+---------------+------+-----+---------+-------+
 #
 DBHOST = 'localhost'
 DBUSER = 'root'
@@ -60,7 +67,6 @@ class Graph():
         
         node_name = node.name if type(node) == Node else node
         return self.nodes.get(node_name,None)
-
 
     def get_nodes(self):
 
@@ -129,7 +135,6 @@ class Graph():
         NodeEncoder.direction = direction
         with open(outfile, 'w+') as f:
             f.write(json.dumps(node,cls=NodeEncoder,indent=True,check_circular=False))
-
 
 
 class Node(object):
