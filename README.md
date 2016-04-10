@@ -1,14 +1,15 @@
 stacktrack.github.io
 =====================
 ```
-# Download database 
-$ curl https://raw.githubusercontent.com/stacktrack/stacktrack.github.com/master/database/stacktrack.sql > stacktrack.sql
+git clone git@github.com:stacktrack/stacktrack.github.com.git
+cd stackrack.github.com
+```
 
 # Load database 
-$ mysql stacktrack < stacktrack.sql
 
+```
+mysql stacktrack < database/stacktrack.sql
 
-$ python Graph.py tun_get_user -r -e
-
+python src/Graph.py tun_get_user -r -e
 ```
 
