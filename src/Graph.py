@@ -3,6 +3,8 @@ import sys, os
 import MySQLdb as mdb
 import json
 import logging
+import argparse
+
 
 #
 # Database settings
@@ -11,11 +13,6 @@ DBHOST = 'localhost'
 DBUSER = 'root'
 DBPASS = 'fucksec'
 DB     = 'stacktrack'
-
-# 
-# Output directory for the json dumps
-#
-OUTDIR = '/var/u/json'
 
 class Graph():
 
@@ -118,15 +115,15 @@ class Graph():
         for node in self.get_nodes():
             self.dump_node(node,destdir)
     
-    def dump_node(self, node, destdir, direction = 'callees'):
+    def dump_node(self, node, destdir, direction = 'callees', force = False):
         node = self.get_node(node)
         outfile = os.path.join(destdir,'{}_{}.json'.format(node.name, direction ) )
         if not getattr(node,direction):
-            log.info('{} has no {}'.format(node,direction))
+            log.debug('{} has no {}'.format(node,direction))
             return
         inv_direction = 'callers' if direction == 'callees' else 'callees'
-        if getattr(node,inv_direction):
-            log.info('{} is not a leaf for {}'.format(node,direction))
+        if not force and getattr(node,inv_direction) :
+            log.debug('{} is not a leaf for {}'.format(node,direction))
             return
         log.info('dumping {} of {} to {}'.format(direction, node, outfile))
         NodeEncoder.direction = direction
@@ -229,7 +226,7 @@ class NodeEncoder(json.JSONEncoder):
 
     def encode_node(self,node):
         '''
-            encode a node as a d3 json object
+            encode a node as a json object (can be used by d3)
         '''
             
         log.debug('Encoding {}'.format(node.name))
@@ -257,6 +254,7 @@ class NodeEncoder(json.JSONEncoder):
 
         return result
 
+
 def get_all_funcs():
     '''
         Retrieve all functionss from the xref databases
@@ -266,22 +264,37 @@ def get_all_funcs():
     cursor.execute(query)
     rows = cursor.fetchall()
     result = [ x[0] for x in rows ]
-    print(result)
+    return result
 
 
 def main():
-    #nodenames = get_all_funcs()
-    nodenames = sys.argv[1:]
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-v", "--verbose", help="Logging level (10: debug, 20 : info, etc )", default = logging.INFO, type = int)
+    parser.add_argument("-r", "--callers", help="Export caller tree", action='store_true')
+    parser.add_argument("-e", "--callees", help="Export caller tree", action='store_true')
+    parser.add_argument("-a", "--allnodes", help="Dump all nodes", action='store_true')
+    parser.add_argument("-d", "--directory", help="Output directory", default = '/tmp')
+    parser.add_argument("nodes",nargs="*")
+    args = parser.parse_args()
+    if args.allnodes:
+        # Dump everything
+        # This still needs -r or -e to be specified
+        nodenames = get_all_funcs()
+        force = False
+    else:
+        nodenames = args.nodes
+        force = True
+    log.setLevel(args.verbose)
+    log.debug(args)
     g = Graph()
     for noden in nodenames:
         node = g.add_node(noden)
 
-    g.load(load_callers = False, load_callees = True)
-    #print len(g.nodes)
+    g.load(load_callers = args.callers, load_callees = args.callees)
     
     for node in nodenames:
         for direction in ( 'callers', 'callees' ):
-            g.dump_node(node, OUTDIR, direction)    
+            g.dump_node(node, args.directory , direction, force = force)    
     exit()
 
 
@@ -289,6 +302,7 @@ con = mdb.connect(DBHOST,DBUSER,DBPASS,DB)
 logging.basicConfig()
 log = logging.getLogger()
 log.setLevel(logging.INFO)
+
 
 if __name__ == '__main__':
     main()
