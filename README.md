@@ -5,7 +5,7 @@ Clone repository
 
 ```
 git clone git@github.com:stacktrack/stacktrack.github.com.git
-cd stackrack.github.com
+cd stacktrack.github.com
 ```
 
 Load database 
