@@ -14,7 +14,7 @@ Load database
 mysql stacktrack < database/stacktrack.sql
 ```
 
-generate a graph
+Generate a graph
 ```
 python src/Graph.py tun_get_user -r -e
 ```
