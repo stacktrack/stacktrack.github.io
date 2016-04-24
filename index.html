@@ -96,7 +96,7 @@ The node(s) dumped contain the trace.
 
 
 {% highlight python linenos=table %}
-class KxrBreakpoint(gdb.Breakpoint):
+class STBreakpoint(gdb.Breakpoint):
 
     bplist   = set()
     todelete = []
@@ -106,11 +106,20 @@ class KxrBreakpoint(gdb.Breakpoint):
     def __init__(self, func_name, parent=None):
 
         self.func_name = func_name
+        # node = self.node      = self.graph.add_node(func_name)
+        # if not node in self.graph.nodes: self.graph.load_node(self.node)
         self.parent    = parent
-        KxrBreakpoint.bplist.add(func_name)
-        super(KxrBreakpoint, self).__init__(
+        STBreakpoint.bplist.add(func_name)
+        #print('ini %s'%str(func_name))
+        super(STBreakpoint, self).__init__(
             func_name, gdb.BP_BREAKPOINT, internal=False
         )
+
+    def _stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+            return
+        print(self.func_name)
 
     def stop(self):
         comm = get_current()['comm'].string()
@@ -118,24 +127,23 @@ class KxrBreakpoint(gdb.Breakpoint):
             return
 
         if self.parent:
-            KxrBreakpoint.graph.add_edge(self.parent,self.func_name)
+            STBreakpoint.graph.add_edge(self.parent,self.func_name)
+        else:
+            get_bt_start()
 
-        for bp in KxrBreakpoint.todelete:
+
+        for bp in STBreakpoint.todelete:
             try:
                 if bp.func_name != self.func_name:
                     bp.delete()
             except:
                 pass
 
-
-        #callees = [ c.name for c in self.node.get_callees()]
-
         for callee in get_callees(self.func_name):
-            self.edges += [(self.func_name,callee)]
-            if callee not in KxrBreakpoint.bplist:
-                KxrBreakpoint(callee,self.func_name)
+            if callee not in STBreakpoint.bplist:
+                STBreakpoint(callee,self.func_name)
 
-        KxrBreakpoint.todelete += [self]
+        STBreakpoint.todelete += [self]
 
 {% endhighlight %}
 
