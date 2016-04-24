@@ -38,6 +38,7 @@ title: StackTrack
             <p>
             To trace execution we put breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
             </p>
+
 {% highlight bash session linenos=table%}
 ubuntu pygdb # gdb -q vmlinux
 Reading symbols from vmlinux...done.
@@ -153,6 +154,18 @@ class STBreakpoint(gdb.Breakpoint):
             <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
             </li>
 
+<h2>Traced Syscalls</h2>
+<p>
+
+<a href="http://192.168.125.131/stacktrack.github.com/tree.html?json=sys_chdir.json&trace=chdir_trace.json">sys_chdir</a>
+<br>
+<a href="http://192.168.125.131/stacktrack.github.com/tree.html?json=sys_pipe.json&trace=sys_pipe2_callees.json">sys_pipe2</a>
+<br>
+
+</p>
+
+
+<h2> </h2
 
 <a href="/tree.html?json=sys_accept.json">sys_accept</a>
 <a href="/tree.html?json=sys_acct.json">sys_acct</a>
