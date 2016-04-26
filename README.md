@@ -46,7 +46,7 @@ optional arguments:
 ## Content Description
 This repository contains following items:
 
-+ The root folder contains all the files used to render the web interface on <stacktrack.github.io>
++ The root folder contains all the files used to render the web interface on stacktrack.github.io[stacktrack.github.io]
 
 + The src directory contains the source code used to create the json graphs
 
