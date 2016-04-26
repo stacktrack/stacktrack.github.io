@@ -6,12 +6,12 @@ title: StackTrack
 		<div class="blurb">
 			<h1 style="display: inline">StackTrack</h1> &mdash; Call graph visualization and tracing
             <h2>Introduction</h2>
+            <p>This site presents a code flow visualization and tracing tool called stacktrack</p>
+            <img src="img/sys_chdir_trace.png">
             <p>When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
             An example interactive graph showing the codepath for the sys_chdir system call can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>. The graphs are represented as expandable trees.
-            <img src="img/sys_chdir_trace.png">
-
             </p>
-            <p>For the sake of brevity this page is lacking a lot of details. Should you need more information regarding some of the details, please feel free to drop me an e-mail.
+            <p>For the sake of brevity this page is lacking a lot of implementation details. Should you need more information regarding some of the details, please feel free to drop me an e-mail.
             </p>
             <h2>Overview and Setup</h2>
             <p>
@@ -227,7 +227,7 @@ syscalls.forEach(print_syscall);
 </p>
 
 
-<h2> </h2
+<!--h2> </h2
 
 <a href="/tree.html?json=sys_accept.json">sys_accept</a>
 <a href="/tree.html?json=sys_acct.json">sys_acct</a>
@@ -423,7 +423,7 @@ syscalls.forEach(print_syscall);
 <a href="/tree.html?json=sys_vm86old.json">sys_vm86old</a>
 <a href="/tree.html?json=sys_wait4.json">sys_wait4</a>
 <a href="/tree.html?json=sys_waitpid.json">sys_waitpid</a>
-<a href="/tree.html?json=sys_write.json">sys_write</a>
+<a href="/tree.html?json=sys_write.json">sys_write</a-->
 
 
 		</div> 
