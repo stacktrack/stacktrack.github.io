@@ -51,3 +51,10 @@ optional arguments:
 
 + The database directory contains a dump of the xref database
 
+## Setup 
+
+In order to create your own graphs you need the following setup:
+
++ Linux server with virsh, gdb, samba, mysql
++ Guest vm with a kernel compiled with debug symbols
++ The database needs to be loaded and Graph.py must be able to create graphs
