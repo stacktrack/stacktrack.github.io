@@ -44,6 +44,7 @@ optional arguments:
 ```
 
 ## Content Description
+This repository contains following items:
 
 + The root folder contains all the files used to render the web interface on stacktrack.github.io
 
@@ -51,3 +52,12 @@ optional arguments:
 
 + The database directory contains a dump of the xref database
 
++ The json directory contains some rendered graphs and traces 
+
+## Setup 
+
+In order to create your own graphs you need the following setup:
+
++ Linux server with virsh, gdb, samba, mysql
++ Guest vm with a kernel compiled with debug symbols
++ The database needs to be loaded and Graph.py must be able to create graphs
