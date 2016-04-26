@@ -1,0 +1,11 @@
+file vmlinux
+set pagination off
+target remote u:8864
+
+python
+import breakpoint
+breakpoint.load('_SYSCALL_')
+breakpoint.STBreakpoint('_SYSCALL_')
+end
+
+continue
