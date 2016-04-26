@@ -1,0 +1,84 @@
+{
+ "name": "sys_poll",
+ "type": "original",
+ "label": "sys_poll",
+ "size": 1,
+ "children": [
+  {
+   "name": "do_sys_poll",
+   "type": "original",
+   "label": "do_sys_poll",
+   "size": 1,
+   "children": [
+    {
+     "name": "__fdget",
+     "type": "original",
+     "label": "__fdget",
+     "size": 1,
+     "children": [
+      {
+       "name": "__fget_light",
+       "type": "original",
+       "label": "__fget_light",
+       "size": 1,
+       "children": [],
+       "sourcefile": ""
+      }
+     ],
+     "sourcefile": ""
+    },
+    {
+     "name": "_copy_from_user",
+     "type": "original",
+     "label": "_copy_from_user",
+     "size": 1,
+     "children": [],
+     "sourcefile": ""
+    },
+    {
+     "name": "poll_freewait",
+     "type": "original",
+     "label": "poll_freewait",
+     "size": 1,
+     "children": [],
+     "sourcefile": ""
+    },
+    {
+     "name": "local_clock",
+     "type": "original",
+     "label": "local_clock",
+     "size": 1,
+     "children": [
+      {
+       "name": "sched_clock_cpu",
+       "type": "original",
+       "label": "sched_clock_cpu",
+       "size": 1,
+       "children": [],
+       "sourcefile": ""
+      },
+      {
+       "name": "sched_clock",
+       "type": "original",
+       "label": "sched_clock",
+       "size": 1,
+       "children": [],
+       "sourcefile": ""
+      }
+     ],
+     "sourcefile": ""
+    }
+   ],
+   "sourcefile": ""
+  },
+  {
+   "name": "poll_select_set_timeout",
+   "type": "original",
+   "label": "poll_select_set_timeout",
+   "size": 1,
+   "children": [],
+   "sourcefile": ""
+  }
+ ],
+ "sourcefile": ""
+}

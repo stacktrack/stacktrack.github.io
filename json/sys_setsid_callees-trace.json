@@ -1,0 +1,557 @@
+{
+ "label": "sys_setsid",
+ "children": [
+  {
+   "label": "proc_clear_tty",
+   "children": [
+    {
+     "label": "_raw_spin_unlock_irqrestore",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "_raw_spin_unlock_irqrestore"
+    },
+    {
+     "label": "_raw_spin_lock_irqsave",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "_raw_spin_lock_irqsave"
+    }
+   ],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "proc_clear_tty"
+  },
+  {
+   "label": "change_pid",
+   "children": [
+    {
+     "label": "__change_pid",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "__change_pid"
+    }
+   ],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "change_pid"
+  },
+  {
+   "label": "proc_sid_connector",
+   "children": [
+    {
+     "label": "ktime_get",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "ktime_get"
+    }
+   ],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "proc_sid_connector"
+  },
+  {
+   "label": "pid_task",
+   "children": [],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "pid_task"
+  },
+  {
+   "label": "sched_autogroup_create_attach",
+   "children": [
+    {
+     "label": "autogroup_move_group",
+     "children": [
+      {
+       "label": "sched_move_task",
+       "children": [
+        {
+         "label": "enqueue_task",
+         "children": [],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "enqueue_task"
+        },
+        {
+         "label": "task_wants_autogroup",
+         "children": [],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "task_wants_autogroup"
+        },
+        {
+         "label": "dequeue_task",
+         "children": [],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "dequeue_task"
+        }
+       ],
+       "type": "original",
+       "sourcefile": "",
+       "size": 1,
+       "name": "sched_move_task"
+      },
+      {
+       "label": "__lock_task_sighand",
+       "children": [],
+       "type": "original",
+       "sourcefile": "",
+       "size": 1,
+       "name": "__lock_task_sighand"
+      }
+     ],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "autogroup_move_group"
+    },
+    {
+     "label": "sched_online_group",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "sched_online_group"
+    },
+    {
+     "label": "kmem_cache_alloc_trace",
+     "children": [
+      {
+       "label": "memset",
+       "children": [],
+       "type": "original",
+       "sourcefile": "",
+       "size": 1,
+       "name": "memset"
+      },
+      {
+       "label": "_cond_resched",
+       "children": [
+        {
+         "label": "preempt_schedule_common",
+         "children": [
+          {
+           "label": "__schedule",
+           "children": [
+            {
+             "label": "__switch_to",
+             "children": [],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "__switch_to"
+            },
+            {
+             "label": "__perf_event_task_sched_out",
+             "children": [
+              {
+               "label": "local_clock",
+               "children": [],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "local_clock"
+              },
+              {
+               "label": "perf_event_update_userpage",
+               "children": [],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "perf_event_update_userpage"
+              },
+              {
+               "label": "ctx_sched_out",
+               "children": [
+                {
+                 "label": "group_sched_out",
+                 "children": [
+                  {
+                   "label": "event_sched_out",
+                   "children": [],
+                   "type": "original",
+                   "sourcefile": "",
+                   "size": 1,
+                   "name": "event_sched_out"
+                  }
+                 ],
+                 "type": "original",
+                 "sourcefile": "",
+                 "size": 1,
+                 "name": "group_sched_out"
+                },
+                {
+                 "label": "perf_pmu_enable",
+                 "children": [],
+                 "type": "original",
+                 "sourcefile": "",
+                 "size": 1,
+                 "name": "perf_pmu_enable"
+                },
+                {
+                 "label": "perf_pmu_disable",
+                 "children": [],
+                 "type": "original",
+                 "sourcefile": "",
+                 "size": 1,
+                 "name": "perf_pmu_disable"
+                }
+               ],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "ctx_sched_out"
+              }
+             ],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "__perf_event_task_sched_out"
+            },
+            {
+             "label": "finish_task_switch",
+             "children": [
+              {
+               "label": "__perf_event_task_sched_in",
+               "children": [
+                {
+                 "label": "perf_event_context_sched_in",
+                 "children": [
+                  {
+                   "label": "perf_ctx_unlock",
+                   "children": [],
+                   "type": "original",
+                   "sourcefile": "",
+                   "size": 1,
+                   "name": "perf_ctx_unlock"
+                  },
+                  {
+                   "label": "perf_event_sched_in",
+                   "children": [
+                    {
+                     "label": "ctx_sched_in",
+                     "children": [
+                      {
+                       "label": "group_sched_in",
+                       "children": [
+                        {
+                         "label": "event_sched_in",
+                         "children": [],
+                         "type": "original",
+                         "sourcefile": "",
+                         "size": 1,
+                         "name": "event_sched_in"
+                        }
+                       ],
+                       "type": "original",
+                       "sourcefile": "",
+                       "size": 1,
+                       "name": "group_sched_in"
+                      }
+                     ],
+                     "type": "original",
+                     "sourcefile": "",
+                     "size": 1,
+                     "name": "ctx_sched_in"
+                    }
+                   ],
+                   "type": "original",
+                   "sourcefile": "",
+                   "size": 1,
+                   "name": "perf_event_sched_in"
+                  }
+                 ],
+                 "type": "original",
+                 "sourcefile": "",
+                 "size": 1,
+                 "name": "perf_event_context_sched_in"
+                }
+               ],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "__perf_event_task_sched_in"
+              }
+             ],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "finish_task_switch"
+            },
+            {
+             "label": "_raw_spin_lock",
+             "children": [],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "_raw_spin_lock"
+            },
+            {
+             "label": "rcu_note_context_switch",
+             "children": [],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "rcu_note_context_switch"
+            },
+            {
+             "label": "___perf_sw_event",
+             "children": [
+              {
+               "label": "perf_exclude_event",
+               "children": [],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "perf_exclude_event"
+              },
+              {
+               "label": "perf_swevent_event",
+               "children": [],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "perf_swevent_event"
+              }
+             ],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "___perf_sw_event"
+            },
+            {
+             "label": "_raw_spin_lock_irq",
+             "children": [],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "_raw_spin_lock_irq"
+            },
+            {
+             "label": "update_rq_clock",
+             "children": [
+              {
+               "label": "sched_clock_cpu",
+               "children": [
+                {
+                 "label": "sched_clock",
+                 "children": [],
+                 "type": "original",
+                 "sourcefile": "",
+                 "size": 1,
+                 "name": "sched_clock"
+                }
+               ],
+               "type": "original",
+               "sourcefile": "",
+               "size": 1,
+               "name": "sched_clock_cpu"
+              }
+             ],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "update_rq_clock"
+            },
+            {
+             "label": "hrtimer_active",
+             "children": [],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "hrtimer_active"
+            }
+           ],
+           "type": "original",
+           "sourcefile": "",
+           "size": 1,
+           "name": "__schedule"
+          }
+         ],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "preempt_schedule_common"
+        }
+       ],
+       "type": "original",
+       "sourcefile": "",
+       "size": 1,
+       "name": "_cond_resched"
+      }
+     ],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "kmem_cache_alloc_trace"
+    },
+    {
+     "label": "__init_rwsem",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "__init_rwsem"
+    },
+    {
+     "label": "kfree",
+     "children": [],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "kfree"
+    },
+    {
+     "label": "sched_create_group",
+     "children": [
+      {
+       "label": "alloc_rt_sched_group",
+       "children": [],
+       "type": "original",
+       "sourcefile": "",
+       "size": 1,
+       "name": "alloc_rt_sched_group"
+      },
+      {
+       "label": "alloc_fair_sched_group",
+       "children": [
+        {
+         "label": "find_next_bit",
+         "children": [
+          {
+           "label": "_find_next_bit",
+           "children": [],
+           "type": "original",
+           "sourcefile": "",
+           "size": 1,
+           "name": "_find_next_bit"
+          }
+         ],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "find_next_bit"
+        },
+        {
+         "label": "init_tg_cfs_entry",
+         "children": [],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "init_tg_cfs_entry"
+        },
+        {
+         "label": "__kmalloc",
+         "children": [
+          {
+           "label": "kmalloc_slab",
+           "children": [],
+           "type": "original",
+           "sourcefile": "",
+           "size": 1,
+           "name": "kmalloc_slab"
+          }
+         ],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "__kmalloc"
+        },
+        {
+         "label": "kzalloc",
+         "children": [],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "kzalloc"
+        },
+        {
+         "label": "init_cfs_bandwidth",
+         "children": [
+          {
+           "label": "hrtimer_init",
+           "children": [
+            {
+             "label": "__hrtimer_init",
+             "children": [],
+             "type": "original",
+             "sourcefile": "",
+             "size": 1,
+             "name": "__hrtimer_init"
+            }
+           ],
+           "type": "original",
+           "sourcefile": "",
+           "size": 1,
+           "name": "hrtimer_init"
+          }
+         ],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "init_cfs_bandwidth"
+        },
+        {
+         "label": "kmem_cache_alloc_node_trace",
+         "children": [],
+         "type": "original",
+         "sourcefile": "",
+         "size": 1,
+         "name": "kmem_cache_alloc_node_trace"
+        }
+       ],
+       "type": "original",
+       "sourcefile": "",
+       "size": 1,
+       "name": "alloc_fair_sched_group"
+      }
+     ],
+     "type": "original",
+     "sourcefile": "",
+     "size": 1,
+     "name": "sched_create_group"
+    }
+   ],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "sched_autogroup_create_attach"
+  },
+  {
+   "label": "_raw_write_lock_irq",
+   "children": [],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "_raw_write_lock_irq"
+  },
+  {
+   "label": "pid_vnr",
+   "children": [],
+   "type": "original",
+   "sourcefile": "",
+   "size": 1,
+   "name": "pid_vnr"
+  }
+ ],
+ "type": "original",
+ "sourcefile": "",
+ "size": 1,
+ "name": "sys_setsid"
+}

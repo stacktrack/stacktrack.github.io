@@ -1,0 +1,39 @@
+{
+ "type": "original",
+ "label": "sys_getgroups16",
+ "name": "sys_getgroups16",
+ "size": 1,
+ "sourcefile": "",
+ "children": [
+  {
+   "type": "original",
+   "label": "__put_user_2",
+   "name": "__put_user_2",
+   "size": 1,
+   "sourcefile": "",
+   "children": []
+  },
+  {
+   "type": "original",
+   "label": "from_kgid_munged",
+   "name": "from_kgid_munged",
+   "size": 1,
+   "sourcefile": "",
+   "children": [
+    {
+     "type": "original",
+     "label": "__fentry__",
+     "name": "__fentry__",
+     "size": 1,
+     "sourcefile": "",
+     "children": []
+    }
+   ]
+  },
+  {
+   "type": "duplicate",
+   "label": "__fentry__",
+   "name": "__fentry__"
+  }
+ ]
+}

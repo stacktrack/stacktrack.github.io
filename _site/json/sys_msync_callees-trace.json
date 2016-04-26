@@ -1,0 +1,289 @@
+{
+ "sourcefile": "",
+ "size": 1,
+ "type": "original",
+ "name": "sys_msync",
+ "children": [
+  {
+   "sourcefile": "",
+   "size": 1,
+   "type": "original",
+   "name": "find_vma",
+   "children": [
+    {
+     "sourcefile": "",
+     "size": 1,
+     "type": "original",
+     "name": "vmacache_find",
+     "children": [],
+     "label": "vmacache_find"
+    },
+    {
+     "sourcefile": "",
+     "size": 1,
+     "type": "original",
+     "name": "vmacache_update",
+     "children": [],
+     "label": "vmacache_update"
+    }
+   ],
+   "label": "find_vma"
+  },
+  {
+   "sourcefile": "",
+   "size": 1,
+   "type": "original",
+   "name": "up_read",
+   "children": [],
+   "label": "up_read"
+  },
+  {
+   "sourcefile": "",
+   "size": 1,
+   "type": "original",
+   "name": "down_read",
+   "children": [
+    {
+     "sourcefile": "",
+     "size": 1,
+     "type": "original",
+     "name": "_cond_resched",
+     "children": [
+      {
+       "sourcefile": "",
+       "size": 1,
+       "type": "original",
+       "name": "preempt_schedule_common",
+       "children": [
+        {
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "name": "__schedule",
+         "children": [
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "_raw_spin_lock_irq",
+           "children": [],
+           "label": "_raw_spin_lock_irq"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "__switch_to",
+           "children": [],
+           "label": "__switch_to"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "hrtimer_active",
+           "children": [],
+           "label": "hrtimer_active"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "__perf_event_task_sched_out",
+           "children": [
+            {
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "name": "ctx_sched_out",
+             "children": [
+              {
+               "sourcefile": "",
+               "size": 1,
+               "type": "original",
+               "name": "perf_pmu_enable",
+               "children": [],
+               "label": "perf_pmu_enable"
+              },
+              {
+               "sourcefile": "",
+               "size": 1,
+               "type": "original",
+               "name": "perf_pmu_disable",
+               "children": [],
+               "label": "perf_pmu_disable"
+              },
+              {
+               "sourcefile": "",
+               "size": 1,
+               "type": "original",
+               "name": "group_sched_out",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "size": 1,
+                 "type": "original",
+                 "name": "event_sched_out",
+                 "children": [],
+                 "label": "event_sched_out"
+                }
+               ],
+               "label": "group_sched_out"
+              }
+             ],
+             "label": "ctx_sched_out"
+            },
+            {
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "name": "local_clock",
+             "children": [],
+             "label": "local_clock"
+            },
+            {
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "name": "perf_event_update_userpage",
+             "children": [],
+             "label": "perf_event_update_userpage"
+            }
+           ],
+           "label": "__perf_event_task_sched_out"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "_raw_spin_lock",
+           "children": [],
+           "label": "_raw_spin_lock"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "___perf_sw_event",
+           "children": [],
+           "label": "___perf_sw_event"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "update_rq_clock",
+           "children": [
+            {
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "name": "sched_clock_cpu",
+             "children": [
+              {
+               "sourcefile": "",
+               "size": 1,
+               "type": "original",
+               "name": "sched_clock",
+               "children": [],
+               "label": "sched_clock"
+              }
+             ],
+             "label": "sched_clock_cpu"
+            }
+           ],
+           "label": "update_rq_clock"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "finish_task_switch",
+           "children": [
+            {
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "name": "__perf_event_task_sched_in",
+             "children": [
+              {
+               "sourcefile": "",
+               "size": 1,
+               "type": "original",
+               "name": "perf_event_context_sched_in",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "size": 1,
+                 "type": "original",
+                 "name": "perf_event_sched_in",
+                 "children": [
+                  {
+                   "sourcefile": "",
+                   "size": 1,
+                   "type": "original",
+                   "name": "ctx_sched_in",
+                   "children": [
+                    {
+                     "sourcefile": "",
+                     "size": 1,
+                     "type": "original",
+                     "name": "group_sched_in",
+                     "children": [
+                      {
+                       "sourcefile": "",
+                       "size": 1,
+                       "type": "original",
+                       "name": "event_sched_in",
+                       "children": [],
+                       "label": "event_sched_in"
+                      }
+                     ],
+                     "label": "group_sched_in"
+                    }
+                   ],
+                   "label": "ctx_sched_in"
+                  }
+                 ],
+                 "label": "perf_event_sched_in"
+                },
+                {
+                 "sourcefile": "",
+                 "size": 1,
+                 "type": "original",
+                 "name": "perf_ctx_unlock",
+                 "children": [],
+                 "label": "perf_ctx_unlock"
+                }
+               ],
+               "label": "perf_event_context_sched_in"
+              }
+             ],
+             "label": "__perf_event_task_sched_in"
+            }
+           ],
+           "label": "finish_task_switch"
+          },
+          {
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "name": "rcu_note_context_switch",
+           "children": [],
+           "label": "rcu_note_context_switch"
+          }
+         ],
+         "label": "__schedule"
+        }
+       ],
+       "label": "preempt_schedule_common"
+      }
+     ],
+     "label": "_cond_resched"
+    }
+   ],
+   "label": "down_read"
+  }
+ ],
+ "label": "sys_msync"
+}

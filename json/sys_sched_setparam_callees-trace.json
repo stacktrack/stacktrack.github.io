@@ -1,0 +1,110 @@
+{
+ "type": "original",
+ "name": "sys_sched_setparam",
+ "label": "sys_sched_setparam",
+ "size": 1,
+ "children": [
+  {
+   "type": "original",
+   "name": "do_sched_setscheduler",
+   "label": "do_sched_setscheduler",
+   "size": 1,
+   "children": [
+    {
+     "type": "original",
+     "name": "_copy_from_user",
+     "label": "_copy_from_user",
+     "size": 1,
+     "children": [],
+     "sourcefile": ""
+    },
+    {
+     "type": "original",
+     "name": "_sched_setscheduler",
+     "label": "_sched_setscheduler",
+     "size": 1,
+     "children": [
+      {
+       "type": "original",
+       "name": "__sched_setscheduler",
+       "label": "__sched_setscheduler",
+       "size": 1,
+       "children": [
+        {
+         "type": "original",
+         "name": "_raw_spin_unlock_irqrestore",
+         "label": "_raw_spin_unlock_irqrestore",
+         "size": 1,
+         "children": [],
+         "sourcefile": ""
+        },
+        {
+         "type": "original",
+         "name": "security_task_setscheduler",
+         "label": "security_task_setscheduler",
+         "size": 1,
+         "children": [],
+         "sourcefile": ""
+        },
+        {
+         "type": "original",
+         "name": "_raw_spin_lock",
+         "label": "_raw_spin_lock",
+         "size": 1,
+         "children": [],
+         "sourcefile": ""
+        },
+        {
+         "type": "original",
+         "name": "_raw_spin_lock_irqsave",
+         "label": "_raw_spin_lock_irqsave",
+         "size": 1,
+         "children": [],
+         "sourcefile": ""
+        },
+        {
+         "type": "original",
+         "name": "capable",
+         "label": "capable",
+         "size": 1,
+         "children": [
+          {
+           "type": "original",
+           "name": "ns_capable",
+           "label": "ns_capable",
+           "size": 1,
+           "children": [
+            {
+             "type": "original",
+             "name": "security_capable",
+             "label": "security_capable",
+             "size": 1,
+             "children": [],
+             "sourcefile": ""
+            }
+           ],
+           "sourcefile": ""
+          }
+         ],
+         "sourcefile": ""
+        },
+        {
+         "type": "original",
+         "name": "task_rq_unlock",
+         "label": "task_rq_unlock",
+         "size": 1,
+         "children": [],
+         "sourcefile": ""
+        }
+       ],
+       "sourcefile": ""
+      }
+     ],
+     "sourcefile": ""
+    }
+   ],
+   "sourcefile": ""
+  }
+ ],
+ "sourcefile": ""
+}

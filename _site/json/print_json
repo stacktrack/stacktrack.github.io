@@ -1,0 +1,9 @@
+#sys_acct_callees-trace.json
+
+for json in *trace*json
+do
+    fn=$(echo $json | cut -f2- -d_ | cut -f1 -d- | sed -e 's/_callees//g')
+    #echo "   ['$fn'", "'$(ls *$fn* | grep -v trace)'],"
+    echo "   ['$fn', '$json'],"
+
+done

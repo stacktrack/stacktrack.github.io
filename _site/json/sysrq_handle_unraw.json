@@ -1,0 +1,59 @@
+{
+ "name": "sysrq_handle_unraw", 
+ "sourcefile": "", 
+ "label": "sysrq_handle_unraw", 
+ "type": "original", 
+ "children": [
+  {
+   "name": "vt_reset_unicode", 
+   "sourcefile": "", 
+   "label": "vt_reset_unicode", 
+   "type": "original", 
+   "children": [
+    {
+     "name": "_raw_spin_lock_irqsave", 
+     "sourcefile": "", 
+     "label": "_raw_spin_lock_irqsave", 
+     "type": "original", 
+     "children": [
+      {
+       "name": "__fentry__", 
+       "sourcefile": "", 
+       "label": "__fentry__", 
+       "type": "original", 
+       "children": [], 
+       "size": 1
+      }
+     ], 
+     "size": 1
+    }, 
+    {
+     "type": "duplicate", 
+     "name": "__fentry__", 
+     "label": "__fentry__"
+    }, 
+    {
+     "name": "_raw_spin_unlock_irqrestore", 
+     "sourcefile": "", 
+     "label": "_raw_spin_unlock_irqrestore", 
+     "type": "original", 
+     "children": [
+      {
+       "type": "duplicate", 
+       "name": "__fentry__", 
+       "label": "__fentry__"
+      }
+     ], 
+     "size": 1
+    }
+   ], 
+   "size": 1
+  }, 
+  {
+   "type": "duplicate", 
+   "name": "__fentry__", 
+   "label": "__fentry__"
+  }
+ ], 
+ "size": 1
+}

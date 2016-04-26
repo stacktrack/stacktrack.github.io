@@ -1,0 +1,558 @@
+{
+ "label": "sys_pipe2",
+ "children": [
+  {
+   "label": "_copy_to_user",
+   "children": [],
+   "name": "_copy_to_user",
+   "size": 1,
+   "type": "original",
+   "sourcefile": ""
+  },
+  {
+   "label": "__do_pipe_flags",
+   "children": [
+    {
+     "label": "create_pipe_files",
+     "children": [
+      {
+       "label": "d_instantiate",
+       "children": [
+        {
+         "label": "security_d_instantiate",
+         "children": [],
+         "name": "security_d_instantiate",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        },
+        {
+         "label": "__d_instantiate",
+         "children": [
+          {
+           "label": "d_flags_for_inode",
+           "children": [],
+           "name": "d_flags_for_inode",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          }
+         ],
+         "name": "__d_instantiate",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "d_instantiate",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "d_alloc_pseudo",
+       "children": [
+        {
+         "label": "__d_alloc",
+         "children": [
+          {
+           "label": "d_set_d_op",
+           "children": [],
+           "name": "d_set_d_op",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          },
+          {
+           "label": "memcpy",
+           "children": [],
+           "name": "memcpy",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          }
+         ],
+         "name": "__d_alloc",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "d_alloc_pseudo",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "alloc_pipe_info",
+       "children": [
+        {
+         "label": "kmem_cache_alloc_trace",
+         "children": [],
+         "name": "kmem_cache_alloc_trace",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        },
+        {
+         "label": "__init_waitqueue_head",
+         "children": [],
+         "name": "__init_waitqueue_head",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "alloc_pipe_info",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "new_inode_pseudo",
+       "children": [
+        {
+         "label": "alloc_inode",
+         "children": [
+          {
+           "label": "kmem_cache_alloc",
+           "children": [
+            {
+             "label": "_cond_resched",
+             "children": [
+              {
+               "label": "preempt_schedule_common",
+               "children": [
+                {
+                 "label": "__schedule",
+                 "children": [
+                  {
+                   "label": "_raw_spin_lock_irq",
+                   "children": [],
+                   "name": "_raw_spin_lock_irq",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "finish_task_switch",
+                   "children": [],
+                   "name": "finish_task_switch",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "hrtimer_active",
+                   "children": [],
+                   "name": "hrtimer_active",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "ttwu_do_wakeup",
+                   "children": [
+                    {
+                     "label": "check_preempt_curr",
+                     "children": [
+                      {
+                       "label": "resched_curr",
+                       "children": [],
+                       "name": "resched_curr",
+                       "size": 1,
+                       "type": "original",
+                       "sourcefile": ""
+                      }
+                     ],
+                     "name": "check_preempt_curr",
+                     "size": 1,
+                     "type": "original",
+                     "sourcefile": ""
+                    }
+                   ],
+                   "name": "ttwu_do_wakeup",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "wq_worker_waking_up",
+                   "children": [
+                    {
+                     "label": "kthread_data",
+                     "children": [],
+                     "name": "kthread_data",
+                     "size": 1,
+                     "type": "original",
+                     "sourcefile": ""
+                    }
+                   ],
+                   "name": "wq_worker_waking_up",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "update_rq_clock",
+                   "children": [
+                    {
+                     "label": "sched_clock_cpu",
+                     "children": [
+                      {
+                       "label": "sched_clock",
+                       "children": [],
+                       "name": "sched_clock",
+                       "size": 1,
+                       "type": "original",
+                       "sourcefile": ""
+                      }
+                     ],
+                     "name": "sched_clock_cpu",
+                     "size": 1,
+                     "type": "original",
+                     "sourcefile": ""
+                    }
+                   ],
+                   "name": "update_rq_clock",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "__switch_to",
+                   "children": [],
+                   "name": "__switch_to",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "ttwu_stat",
+                   "children": [],
+                   "name": "ttwu_stat",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "activate_task",
+                   "children": [
+                    {
+                     "label": "enqueue_task",
+                     "children": [],
+                     "name": "enqueue_task",
+                     "size": 1,
+                     "type": "original",
+                     "sourcefile": ""
+                    }
+                   ],
+                   "name": "activate_task",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  },
+                  {
+                   "label": "rcu_note_context_switch",
+                   "children": [],
+                   "name": "rcu_note_context_switch",
+                   "size": 1,
+                   "type": "original",
+                   "sourcefile": ""
+                  }
+                 ],
+                 "name": "__schedule",
+                 "size": 1,
+                 "type": "original",
+                 "sourcefile": ""
+                }
+               ],
+               "name": "preempt_schedule_common",
+               "size": 1,
+               "type": "original",
+               "sourcefile": ""
+              }
+             ],
+             "name": "_cond_resched",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            },
+            {
+             "label": "memset",
+             "children": [],
+             "name": "memset",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            }
+           ],
+           "name": "kmem_cache_alloc",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          },
+          {
+           "label": "inode_init_always",
+           "children": [
+            {
+             "label": "make_kgid",
+             "children": [],
+             "name": "make_kgid",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            },
+            {
+             "label": "security_inode_alloc",
+             "children": [],
+             "name": "security_inode_alloc",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            },
+            {
+             "label": "make_kuid",
+             "children": [],
+             "name": "make_kuid",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            },
+            {
+             "label": "__mutex_init",
+             "children": [],
+             "name": "__mutex_init",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            }
+           ],
+           "name": "inode_init_always",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          },
+          {
+           "label": "kmem_cache_free",
+           "children": [
+            {
+             "label": "__slab_free",
+             "children": [
+              {
+               "label": "_raw_spin_lock_irqsave",
+               "children": [],
+               "name": "_raw_spin_lock_irqsave",
+               "size": 1,
+               "type": "original",
+               "sourcefile": ""
+              },
+              {
+               "label": "_raw_spin_unlock_irqrestore",
+               "children": [],
+               "name": "_raw_spin_unlock_irqrestore",
+               "size": 1,
+               "type": "original",
+               "sourcefile": ""
+              },
+              {
+               "label": "put_cpu_partial",
+               "children": [],
+               "name": "put_cpu_partial",
+               "size": 1,
+               "type": "original",
+               "sourcefile": ""
+              },
+              {
+               "label": "cmpxchg_double_slab",
+               "children": [],
+               "name": "cmpxchg_double_slab",
+               "size": 1,
+               "type": "original",
+               "sourcefile": ""
+              }
+             ],
+             "name": "__slab_free",
+             "size": 1,
+             "type": "original",
+             "sourcefile": ""
+            }
+           ],
+           "name": "kmem_cache_free",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          }
+         ],
+         "name": "alloc_inode",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        },
+        {
+         "label": "_raw_spin_lock",
+         "children": [],
+         "name": "_raw_spin_lock",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "new_inode_pseudo",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "path_get",
+       "children": [
+        {
+         "label": "lockref_get",
+         "children": [],
+         "name": "lockref_get",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "path_get",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "get_next_ino",
+       "children": [],
+       "name": "get_next_ino",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "mntget",
+       "children": [],
+       "name": "mntget",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "current_kernel_time",
+       "children": [],
+       "name": "current_kernel_time",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      },
+      {
+       "label": "alloc_file",
+       "children": [
+        {
+         "label": "get_empty_filp",
+         "children": [
+          {
+           "label": "security_file_alloc",
+           "children": [],
+           "name": "security_file_alloc",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          },
+          {
+           "label": "__percpu_counter_add",
+           "children": [],
+           "name": "__percpu_counter_add",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          }
+         ],
+         "name": "get_empty_filp",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "alloc_file",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      }
+     ],
+     "name": "create_pipe_files",
+     "size": 1,
+     "type": "original",
+     "sourcefile": ""
+    },
+    {
+     "label": "get_unused_fd_flags",
+     "children": [
+      {
+       "label": "__alloc_fd",
+       "children": [
+        {
+         "label": "find_next_zero_bit",
+         "children": [
+          {
+           "label": "_find_next_bit",
+           "children": [],
+           "name": "_find_next_bit",
+           "size": 1,
+           "type": "original",
+           "sourcefile": ""
+          }
+         ],
+         "name": "find_next_zero_bit",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        },
+        {
+         "label": "expand_files",
+         "children": [],
+         "name": "expand_files",
+         "size": 1,
+         "type": "original",
+         "sourcefile": ""
+        }
+       ],
+       "name": "__alloc_fd",
+       "size": 1,
+       "type": "original",
+       "sourcefile": ""
+      }
+     ],
+     "name": "get_unused_fd_flags",
+     "size": 1,
+     "type": "original",
+     "sourcefile": ""
+    }
+   ],
+   "name": "__do_pipe_flags",
+   "size": 1,
+   "type": "original",
+   "sourcefile": ""
+  },
+  {
+   "label": "fd_install",
+   "children": [
+    {
+     "label": "__fd_install",
+     "children": [],
+     "name": "__fd_install",
+     "size": 1,
+     "type": "original",
+     "sourcefile": ""
+    }
+   ],
+   "name": "fd_install",
+   "size": 1,
+   "type": "original",
+   "sourcefile": ""
+  }
+ ],
+ "name": "sys_pipe2",
+ "size": 1,
+ "type": "original",
+ "sourcefile": ""
+}
