@@ -117,13 +117,13 @@ class Graph():
             for callee in callees:
                 self.add_edge(node.name,callee)
 
-    def dump_nodes(self, destdir = '.'):
+    def dump_nodes(self, destdir = '.', suffix = '' ):
         for node in self.get_nodes():
-            self.dump_node(node,destdir)
+            self.dump_node(node, destdir, suffix = suffix )
     
-    def dump_node(self, node, destdir, direction = 'callees', force = False):
+    def dump_node(self, node, destdir, direction = 'callees', force = False, suffix = '' ):
         node = self.get_node(node)
-        outfile = os.path.join(destdir,'{}_{}.json'.format(node.name, direction ) )
+        outfile = os.path.join(destdir,'{}_{}{}.json'.format(node.name, direction, suffix ) )
         if not getattr(node,direction):
             log.debug('{} has no {}'.format(node,direction))
             return

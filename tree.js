@@ -213,7 +213,7 @@ function node_color(node) {
 function is_traced(node){
     path   = get_path(node);
     traced = trace;
-    if( ! traced || ! traced.children){
+    if( ! traced || ! traced.children ){
         return false;
     }
     for (var i = 1 ; i <= path.length; i++ ){
