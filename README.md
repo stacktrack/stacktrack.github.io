@@ -1,6 +1,8 @@
 stacktrack.github.io
 =====================
 
+## Quick Start
+
 Clone repository
 
 ```
@@ -40,3 +42,12 @@ optional arguments:
                         Output directory
 
 ```
+
+## Content Description
+
++ The root folder contains all the files used to render the web interface on stacktrack.github.io
+
++ The src directory contains the source code used to create the json graphs
+
++ The database directory contains a dump of the xref database
+

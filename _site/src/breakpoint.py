@@ -1,27 +1,28 @@
-#
-
 '''
 
-set pagination off
-target remote u:8864
+# This file contains python code to be imported into gdb, this can be done
+# using the following gdb commands
+# "VM" is a virtual machine which is beig debugged
+
+
+set pagination off                  # Disable paging
+target remote VM:8864               # Connect to the vm, execution will be paused
 
 python
-breakpoint.del_bps()
+breakpoint.del_bps()                # Delete any breakpoints
 end
 
 python
+import breakpoint, importlib        # 
+importlib.reload(breakpoint)        # reload any changes to this file
+breakpoint.STBreakpoint('sys_chdir')# put a breakpoint on the sys_chdir syscall so we can trace it
+end                                 #
 
-import breakpoint, importlib
-importlib.reload(breakpoint)
-breakpoint.STBreakpoint('sys_chdir')
+continue                            # continue execution
 
-end
-
-c
-
-python
-STBreakpoint.graph.dump_nodes('/tmp')
-end
+python                              #
+STBreakpoint.graph.dump_nodes('.')  # dump the json trace to the current directory
+end                                 #
 
 '''
 
