@@ -15,9 +15,11 @@
 #
 set -x
 
-SYSCALL=$1
+SYSCALL=$1 # The syscall to be traced
 VM=192.168.122.10
-SHARE=/mnt/t
+SHARE=/mnt/t # Share mounted on same location on master and slave
+TIMEOUT=1500
+SNAPSHOT="tvm-0"
 
 if [[ -z $SYSCALL ]]
 then
@@ -25,25 +27,46 @@ then
     exit 1
 fi
 
+echo "Starting trace of $SYSCALL"
 echo "Reverting snapshot"
-virsh snapshot-revert tvm tvm-0
+virsh snapshot-revert tvm "$SNAPSHOT"
 
 GDBCMDS_MASTER=$(mktemp)
 GDBCMDS_SLAVE=$SHARE/gdbcmds-slave
 
+# Create master and slave gdb command files for the syscall being traced
 sed -e "s/_SYSCALL_/sys_$SYSCALL/g" gdbcmds > $GDBCMDS_MASTER
 sed -e "s/_SYSCALL_/$SYSCALL/g" gdbcmds-slave > $GDBCMDS_SLAVE
 
+#
+echo "Start the kernel gdb session"
 gdb -q -x $GDBCMDS_MASTER & 
 PID_GDB=$!
 
+#
+echo "Wait until kernel breakpoints are set and ssh to the slave to execute the slave test program"
 sleep 20
 ssh root@$VM $SHARE/trace-slave.sh &
 PID_SSH=$!
 
-# Kill trace if it takes too long
-(sleep 1800 ; kill -9 $PID_GDB $PID_SSH) &
+# Kill all subprocesses if the trace is killed
+trap "kill -9 -P $$" SIGINT SIGTERM SIGKILL
 
-wait $PID_SSH
+# Loop TIMEOUT seconds OR until gdb session is finished
+for i in $(seq $TIMEOUT)
+do
+    ps -p $PID_GDB > /dev/null 2>&1 || break 
+    ps -p $PID_SSH > /dev/null 2>&1 || break
+    sleep 1
+done
 
+# Wait to give gdb a chance to finish cleanly, then kill the trace
+# if it takes too long but first dump the graphs by sending signal nr. 64
+ps -p $PID_GDB && ( 
+    sleep 10 
+    kill -64 $PID_GDB
+    sleep 10 
+    kill -9 $PID_GDB $PID_SSH ) 2>/dev/null
+
+# Cleanup
 rm -f $GDBCMDS_MASTER $GDBCMDS_SLAVE

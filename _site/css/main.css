@@ -4,12 +4,12 @@ body {
 }
 
 a {
-  color : #999;
+  color : black;
   text-decoration: none;
   font-weight: bold;
 }
 a:visited {
-  color: black;
+  //color: #999;
 }
 a:hover {
   color: #900;
@@ -19,8 +19,8 @@ a:hover {
 /*p, ul { font-size: 1.5em; line-height: 1.4em; color: #333; }*/
 p, ul { font-size: 1em; color: #333; }
 
-h1, h2, h3, h4 {  }
-h1 { font-size: 3em;  }
+h1, h2, h3, h4 { }
+h1 { font-size: 3em;  font-variant: small-caps;  }
 h2 { font-size: 1.7em; }
 h3 { font-size: 1.3em; }
 h4 { font-size: 1.2em; }
@@ -29,6 +29,47 @@ nav ul, footer ul { font-size: 1em; padding: 0px; list-style: none; font-weight:
 nav ul li, footer ul li { display: inline; margin-right: 20px; }
 
 footer { border-top: 1px solid #d5d5d5; font-size: .8em; }
+
+#demo_frame { 
+    width  : 200%;
+    border : 0px solid white;
+    height : 240px;
+    overflow: visible;
+    position : relative;
+    top : -50px;
+    left: -20px;
+}
+
+#ToC li{
+    display: block;
+    font-size: 1.1em;
+    position: relative;
+    left: 20px;
+    padding-bottom: 2px;
+}
+#ToC li a{
+    border-left: 5px solid white;
+    padding-left: 10px;
+    color: black;
+    font-weight: normal;
+}
+#ToC li a:hover{
+    text-decoration: none;
+    border-left: 5px solid #ccc;
+}
+
+#ToC li a:visited{
+}
+
+#gdb_sample{
+    display: none;
+}
+
+.sc { display: inline-block; width: 20em;}
+.sc a {font-weight: normal;}
+.sc a:visited { color: black;}
+
+
 
 /* Blog */
 ul.posts { margin: 20px auto 40px; font-size: 1.5em; }
@@ -107,12 +148,4 @@ ul.posts li { list-style: none; }
 
 
 
-#demo_frame { 
-    width  : 200%;
-    border : 0px solid white;
-    height : 240px;
-    overflow: visible;
-    position : relative;
-    top : -80px;
-    left: -20px;
-}
+

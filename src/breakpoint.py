@@ -13,8 +13,9 @@ breakpoint.del_bps()                # Delete any breakpoints
 end
 
 python
-import breakpoint, importlib        # 
+import breakpoint, importlib        #
 importlib.reload(breakpoint)        # reload any changes to this file
+load('sys_chdir')                   # load the graph from the xref db 
 breakpoint.STBreakpoint('sys_chdir')# put a breakpoint on the sys_chdir syscall so we can trace it
 end                                 #
 
@@ -33,11 +34,17 @@ import MySQLdb as mdb
 import json
 from Graph import *
 
+graph = Graph()
+
+OUT_DIR='/var/u'
+
+def load(symbol):
+    node = graph.add_node(symbol)
+    print('loading {}'.format(node))
+    graph.load(load_callers = False, load_callees = True)
 
 def get_callees(symbol):
-    return  g.xrefdb.get_callees(symbol)
-    
-    
+    return  graph.xrefdb.get_callees(symbol)
 
 def del_bps(start=None,end=None):
     for bp in gdb.breakpoints():
@@ -48,13 +55,23 @@ def get_current():
     return lxc.invoke()
 
 def get_bt_start():
-    backtrace = gdb.execute('backtrace', to_string = True)
-    # 
-    # #4  0xffffffff817be132 in entry_SYSCALL_64_fastpath
-    f_end    = backtrace.split('\n')[-3].split(' ')[2]
-    print(backtrace)
-    print('fend: {}'.format(f_end))
-    EndBreakPoint(f_end)
+    fend = ''
+    try:
+        backtrace = gdb.execute('backtrace', to_string = True)
+        # 
+        # #4  0xffffffff817be132 in entry_SYSCALL_64_fastpath
+        f_end    = backtrace.split('\n')[-3].split(' ')[2]
+        print(backtrace)
+        print('fend: {}'.format(f_end))
+        EndBreakPoint(f_end)
+    except:
+        print("get_bt_start failed, backtrace:")
+        print(f_end)
+
+def dump_graphs():
+    print("Dumping Graphs")
+    graph.dump_nodes(OUT_DIR)
+    STBreakpoint.graph.dump_nodes(OUT_DIR,suffix='-trace')
 
 class EndBreakPoint(gdb.Breakpoint):
     
@@ -67,18 +84,18 @@ class EndBreakPoint(gdb.Breakpoint):
 
     def stop(self):
         comm = get_current()['comm'].string()
-        if not comm.startswith('trinity'):
+        if not comm.startswith('trinity-'):
             return
         print('Finalizing trace')
+        dump_graphs()
         for bp in gdb.breakpoints():
             if bp == self:
                 bp.enabled = False
             else:
                 bp.delete()
-        STBreakpoint.graph.dump_nodes('/tmp')
-        print('DONE')
-        print(dir(self))
-
+        print('Done -- detach & quit')
+        gdb.execute('detach')
+        gdb.execute('quit')
 
 
 class STBreakpoint(gdb.Breakpoint):
@@ -102,13 +119,13 @@ class STBreakpoint(gdb.Breakpoint):
  
     def _stop(self):
         comm = get_current()['comm'].string()
-        if not comm.startswith('trinity'):
+        if not comm.startswith('trinity-'):
             return
         print(self.func_name)
 
     def stop(self):
         comm = get_current()['comm'].string()
-        if not comm.startswith('trinity'):
+        if not comm.startswith('trinity-'):
             return
        
         if self.parent:
@@ -129,13 +146,5 @@ class STBreakpoint(gdb.Breakpoint):
                 STBreakpoint(callee,self.func_name)
 
         STBreakpoint.todelete += [self]
-        #self.delete()
         
-
-symbol = 'sys_chdir'
-g = Graph()
-node = g.add_node(symbol)
-print('loading {}'.format(node))
-g.load(load_callers = False, load_callees = True)
-
 

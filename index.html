@@ -8,13 +8,13 @@ title: StackTrack
             <div id="ToC_div"></div>
 
             <h2 id="Introduction">Introduction</h2>
-            <p>This site presents a code flow visualization and tracing tool called stacktrack. An example code flow graph for the kexec_file_load linux system call is shown below.
+            <p>This site presents a code flow visualization and tracing tool called StackTrack. An example code flow graph for the kexec_file_load linux system call is shown below.
             <!--script src="js/tree.js"></script-->
 
             <iframe id="demo_frame" src="/demo.html?json=sys_kexec_file_load_callees-trace.json&depth=4&y=8&x=200" scrolling="no" onclick="javascript:alert(1);"></iframe>
             More examples can be found <a href=#syscall_list>here</a></p>
             <p>
-            When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
+            When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. 
             An example interactive graph showing the codepath for the sys_chdir system call can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>. The graphs are represented as expandable trees.
             </p>
             <p>For the sake of brevity this page is lacking a lot of implementation details. Should you need more information regarding some of the details, please feel free to drop me an e-mail.
@@ -22,7 +22,7 @@ title: StackTrack
 
             <h2 id="Xrefs">Cross Reference Database, Graph Datastructure and Visualization</h2> 
             <p>
-            A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee.
+            A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded from the <a href="https://github.com/stacktrack/stacktrack.github.com/tree/master/database">github repository</a>. It consists of a single table with two columns: caller and callee.
             </p>
             <p>
             The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method. The script can be invoked from the cli to retrieve a callgraph from the xrefs database in json format.
@@ -42,7 +42,7 @@ optional arguments:
   -d DIRECTORY, --directory DIRECTORY
                         Output directory
             </pre>
-            For example:
+            The following command for example:
             <pre>
 # python Graph.py -e sys_kexec_file_load
 INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_load_callees.json
@@ -55,7 +55,9 @@ INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_loa
 
             <h2 id="Installation">Installation</h2>
             <p>
-            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-debugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
+            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-deb>ugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
+
+
 
 
             <ul>
@@ -65,16 +67,30 @@ INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_loa
             </ul>
 
             </p>
-            <h2 "Indirect Calls">Indirect Function Calls</h2>
+           <h2 id="Tracing">Tracing</h2>
             <p>
-            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.
-            
-            </p>
-            <h2 id="Tracing">Tracing</h2>
+            To trace execution we place breakpoints on the functions that are in the codepath of our interest. Every time a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next (the callees) and we place breakpoints on these functions as well. This process allows us to are able track the program flow.
             <p>
-            To trace execution we place breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
+            The tracing is implemented in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/breakpoint.py">breakpoint.py</a> python code which is called from within gdb.
+            This trace flow is also saved in a <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph datastructure</a>.
             </p>
 
+            <p>
+<script>
+function toggle_vis(id){
+    display = document.getElementById(id).style.display;
+    if(display == 'inline'){
+        document.getElementById(id).style.display = 'none';
+    }
+    else{
+        document.getElementById(id).style.display = 'inline';
+    }
+}
+</script>
+           <a href="javascript:toggle_vis('gdb_sample');"> Read more</a>
+            </p>
+
+            <div id="gdb_sample">
 {% highlight bash session linenos=table%}
 ubuntu pygdb # gdb -q vmlinux
 Reading symbols from vmlinux...done.
@@ -82,6 +98,8 @@ Reading symbols from vmlinux...done.
 (gdb) target remote u:8864
 Remote debugging using u:8864
 native_safe_halt () at ./arch/x86/include/asm/irqflags.h:50
+        self.func_name = func_name
+
 50      }
 (gdb) python
 >import breakpoint, importlib
@@ -89,36 +107,6 @@ native_safe_halt () at ./arch/x86/include/asm/irqflags.h:50
 >breakpoint.KxrBreakpoint('sys_chdir')
 >end
 loaded
-loaded
-Breakpoint 1 at 0xffffffff811f7dc0: file fs/open.c, line 422.
-(gdb) c
-Continuing.
-Breakpoint 2 at 0xffffffff817c0990: file arch/x86/kernel/mcount_64.S, line 151.
-Breakpoint 3 at 0xffffffff81209420: file fs/namei.c, line 2327.
-Breakpoint 4 at 0xffffffff81203fd0: file fs/namei.c, line 459.
-Breakpoint 5 at 0xffffffff81203560: path_put. (36 locations)
-Breakpoint 6 at 0xffffffff8122d310: file fs/fs_struct.c, line 33.
-Breakpoint 7 at 0xffffffff8107a090: file kernel/panic.c, line 493.
-DEBUG:root:Creating Node sys_chdir 0
-DEBUG:root:Creating Node user_path_at_empty 1
-Breakpoint 8 at 0xffffffff81208e60: file fs/namei.c, line 126.
-Breakpoint 9 at 0xffffffff81209200: file fs/namei.c, line 2151.
-DEBUG:root:Creating Node getname_flags 2
-Breakpoint 10 at 0xffffffff811dad30: file mm/slub.c, line 2519.
-Breakpoint 11 at 0xffffffff813ee620: file lib/strncpy_from_user.c, line 100.
-Breakpoint 12 at 0xffffffff8111e430: file kernel/auditsc.c, line 1701.
-Breakpoint 13 at 0xffffffff8111e490: file kernel/auditsc.c, line 1724.
-Breakpoint 14 at 0xffffffff811da560: file mm/slub.c, line 2744.
-Breakpoint 15 at 0xffffffff811da8e0: file mm/slub.c, line 2531.
-...
-{% endhighlight %}
-
-{% highlight bash session linenos=table%}
-(gdb) python
->breakpoint.KxrBreakpoint.graph.dump_nodes('/tmp')
->end
-DEBUG:root:dumping Node fsnotify to /tmp/fsnotify.json
-DEBUG:root:Ignoring Node fsnotify
 DEBUG:root:dumping Node hrtimer_cancel to /tmp/hrtimer_cancel.json
 DEBUG:root:Ignoring Node hrtimer_cancel
 DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
@@ -134,6 +122,107 @@ The node(s) dumped contain the trace.
 
 {% highlight python linenos=table %}
 class STBreakpoint(gdb.Breakpoint):
+>
+
+
+
+
+loaded
+Breakpoint 1 at 0xffffffff811f7dc0: file fs/open.c, line 422.
+(gdb) c
+Continuing.
+Breakpoint 2 at 0xffffffff817c0990: file arch/x86/kernel/mcount_64.S, line 151.
+Breakpoint 3 at 0xffffffff81209420: file fs/namei.c, line 2327.
+Breakpoint 4 at 0xffffffff81203fd0: file fs/namei.c, line 459.
+Breakpoint 5 at 0xffffffff81203560: path_put. (36 locations)
+Breakpoint 6 at 0xffffffff8122d310: file fs/fs_struct.c, line 33.
+Breakpoint 7 at 0xffffffff8107a090: file kernel/panic.c, line 493.
+DEBUG:root:Creating Node sys_chdir 0ncel.json
+DEBUG:root:Ignoring Node hrtimer_cancel
+DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
+DEBUG:root:Ignoring Node getname_flags
+DEBUG:root:dumping Node __wake_up to /tmp/__wake_up.json
+DEBUG:root:Ignoring Node __wake_up
+        # node = self.node      = self.graph.add_node(func_name)
+        # if not node in self.graph.nodes: self.graph.load_node(self.node)
+        self.parent    = parent
+        STBreakpoint.bplist.add(func_name)
+        #print('ini %s'%str(func_name))
+        super(STBreakpoint, self).__init__(
+            func_name, gdb.BP_BREAKPOINT, internal=False
+        )
+
+    def _stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+            return
+        print(self.func_name)We 
+
+    def stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+ 
+DEBUG:root:Creating Node user_path_at_empty 1
+Breakpoint 8 at 0xffffffff81208e60: file fs/namei.c, line 126.
+Breakpoint 9 at 0xffffffff81209200: file fs/namei.c, line 2151.
+DEBUG:root:Creating Node getname_flags 2
+Breakpoint 10 at 0xffffffff811dad30: file mm/slub.c, line 2519.
+Breakpoint 11 at 0xffffffff813ee620: file lib/strncpy_from_user.c, line 100.
+Breakpoint 12 at 0xffffffff8111e430: file kernel/auditsc.c, line 1701.
+Breakpoint 13 at 0xffffffff8111e490: file kernel/auditsc.c, line 1724.
+Breakpoint 14 at 0xffffffff811da560: file mm/slub.c, line 2744.
+Breakpoint 15 at 0xffffffff811da8e0: file mm/slub.c, line 2531.
+...
+{% endhighlight %}
+
+{% highlight bash session linenos=table%}
+(gdb) python
+        self.func_name = func_name
+
+>breakpoint.KxrBreakpoint.graph.dump_nodes('/tmp')
+>end
+DEBUG:root:dumping Node fsnotify to /tmp/fsnotify.json
+DEBUG:root:Ignoring Node fsnotify
+DEBUG:root:dumping Node hrtimer_cancel to /tmp/hrtimer_cancel.json
+DEBUG:root:Ignoring Node hrtimer_cancel
+DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
+DEBUG:root:Ignoring Node getname_flags
+DEBUG:root:dumping Node __wake_up to /tmp/__wake_up.json
+DEBUG:root:Ignoring Node __wake_up
+        # node = self.node      = self.graph.add_node(func_name)
+        # if not node in self.graph.nodes: self.graph.load_node(self.node)
+        self.parent    = parent
+        STBreakpoint.bplist.add(func_name)
+        #print('ini %s'%str(func_name))
+        super(STBreakpoint, self).__init__(
+            func_name, gdb.BP_BREAKPOINT, internal=False
+        )
+
+    def _stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+            return
+        print(self.func_name)We 
+
+    def stop(self):
+        comm = get_current()['comm'].string()
+        if not comm.startswith('trinity'):
+            return
+        </div>
+
+
+...
+
+{% endhighlight %}
+
+The node(s) dumped contain the trace. 
+
+
+{% highlight python linenos=table %}
+class STBreakpoint(gdb.Breakpoint):
+>
+
+
 
     bplist   = set()
     todelete = []
@@ -141,6 +230,7 @@ class STBreakpoint(gdb.Breakpoint):
     graph    = Graph()
 
     def __init__(self, func_name, parent=None):
+            get_bt_start()
 
         self.func_name = func_name
         # node = self.node      = self.graph.add_node(func_name)
@@ -156,12 +246,13 @@ class STBreakpoint(gdb.Breakpoint):
         comm = get_current()['comm'].string()
         if not comm.startswith('trinity'):
             return
-        print(self.func_name)
+        print(self.func_name)We 
 
     def stop(self):
         comm = get_current()['comm'].string()
         if not comm.startswith('trinity'):
             return
+        </div>
 
         if self.parent:
             STBreakpoint.graph.add_edge(self.parent,self.func_name)
@@ -184,20 +275,23 @@ class STBreakpoint(gdb.Breakpoint):
 
 {% endhighlight %}
 
-
             <p>
             <li>
             <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
             </li>
+        </div>
+
 
 <h2 id="traced_syscalls">Traced Syscalls</h2>
+
+
 <p>I used the <a>trinity syscall fuzzer</a> to call a number of syscalls to create some traces: 
 
 <div id="syscall_list"></div>
 
 <script>
 function print_syscall(syscall){
-    var link = "<a href=tree.html?json=sys_" + syscall[0] + "_callees.json&trace=" + syscall[1] + ">" + syscall[0] + "</a><br/>";
+    var link = " <span class=sc><a href=tree.html?json=sys_" + syscall[0] + "_callees.json&trace=" + syscall[1] + ">" + syscall[0] + "</a></span> ";
     document.getElementById("syscall_list").innerHTML += link;
 }
 
@@ -261,13 +355,21 @@ syscalls.forEach(print_syscall);
 </script>
 
 </p>
+            <h2 id="Future Work">Future Work</h2>
+            <h3 id="Indirect Calls">Indirect Function Calls</h3>
+            <p>
+            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.
+            </p>
 
+            <h3 id="Dynamic Instrumentation">Dynamic Instrumentation</h3>
+            In order to be able to provide maximum coverage, we will implement dynamic instrumentation to generate code to reach different parts of the code.
+            
 <script>
 // Generate ToC
 
 var newLine, el, title, link;
 var ToC = "<nav role='navigation' class='table-of-contents'>" +
-          "<h2>Index</h2>" +
+          "<h2>Contents</h2>" +
           "<ul id='ToC'>";
 
 $("h2").each(function(){
@@ -280,7 +382,7 @@ $("h2").each(function(){
           "<a href='" + link + "'>" +
             title +
           "</a>" +
-        "</li><br>";
+        "</li>";
 
       ToC += newLine;
 
