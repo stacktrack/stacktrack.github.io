@@ -18,12 +18,23 @@
     </nav>
 <div class="container">
 
-  		<div class="blurb">
+  <script src="//d3js.org/d3.v3.min.js"></script-->
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/spin.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
+
+		<div class="blurb">
 			<h1 style="display: inline">StackTrack</h1> &mdash; Call graph visualization and tracing
             <h2>Introduction</h2>
-            <p>This site presents a code flow visualization and tracing tool called stacktrack</p>
-            <img src="img/sys_chdir_trace.png">
-            <p>When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
+            <p>This site presents a code flow visualization and tracing tool called stacktrack. An example code flow graph is shown below. 
+            <!--script src="js/tree.js"></script-->
+
+            <iframe id="demo_frame" src="/demo.html?json=sys_kexec_file_load_callees-trace.json&depth=4&y=8&x=200" scrolling="no" onclick="javascript:alert(1);"></iframe>
+            More examples can be found <a href=#syscall_list>here</a></p>
+            <p>
+            When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. We then use dynamic instrumentation to generate code to reach different parts of the code.
             An example interactive graph showing the codepath for the sys_chdir system call can be found <a href="http://stacktrack.github.io/tree.html?json=sys_chdir.json&trace=chdir_trace.json">here</a>. The graphs are represented as expandable trees.
             </p>
             <p>For the sake of brevity this page is lacking a lot of implementation details. Should you need more information regarding some of the details, please feel free to drop me an e-mail.
@@ -38,11 +49,32 @@
             A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded <a href="database/stacktrack.sql">here</a>. It consists of a single table with two columns: caller and callee.
             </p>
             <p>
-            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method.
+            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method. The script can be invoked from the cli to retrieve a callgraph from the xrefs database in json format.
+The command line options of this script are
+            <pre>
+usage: Graph.py [-h] [-v VERBOSE] [-r] [-e] [-a] [-d DIRECTORY]
+                [nodes [nodes ...]]
+positional arguments:
+  nodes
+optional arguments:
+  -h, --help            show this help message and exit
+  -v VERBOSE, --verbose VERBOSE
+                        Logging level (10: debug, 20 : info, etc )
+  -r, --callers         Export caller tree
+  -e, --callees         Export caller tree
+  -a, --allnodes        Dump all nodes
+  -d DIRECTORY, --directory DIRECTORY
+                        Output directory
+            </pre>
+            For example:
+            <pre>
+# python Graph.py -e sys_kexec_file_load
+INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_load_callees.json
+            </pre>
+            Generates <a href="/tree.html?json=sys_kexec_file_load_callees.json&trace=sys_kexec_file_load_callees-trace.json">this graph</a>.
             </p>
-
             <p>
-            The json graph output is rendered using the <a>d3js</a> javascript library. 
+            The json graph output is rendered using the <a>d3js</a> javascript visualization library. 
             </p>
 
             <h2>Indirect Function Calls</h2>
@@ -52,7 +84,7 @@
             </p>
             <h2>Tracing</h2>
             <p>
-            To trace execution we put breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
+            To trace execution we place breakpoints on the functions that are in the codepath of our interest. Once a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next. 
             </p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
@@ -258,7 +290,8 @@ The node(s) dumped contain the trace.
             </li>
 
 <h2>Traced Syscalls</h2>
-<p>
+<p>I used the <a>trinity syscall fuzzer</a> to call a number of syscalls to create some traces: 
+
 <div id="syscall_list"></div>
 
 <script>

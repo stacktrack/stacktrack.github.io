@@ -13,6 +13,7 @@
 #
 # /mnt/t is a directory on the master which is mounted on the same location on the slave
 #
+set -x
 
 SYSCALL=$1
 VM=192.168.122.10
@@ -24,13 +25,14 @@ then
     exit 1
 fi
 
+echo "Reverting snapshot"
 virsh snapshot-revert tvm tvm-0
 
 GDBCMDS_MASTER=$(mktemp)
 GDBCMDS_SLAVE=$SHARE/gdbcmds-slave
 
 sed -e "s/_SYSCALL_/sys_$SYSCALL/g" gdbcmds > $GDBCMDS_MASTER
-sed -e "s/_SYSCALL_/$SYSCALL/g" gdbcmds-client > $GDBCMDS_SLAVE
+sed -e "s/_SYSCALL_/$SYSCALL/g" gdbcmds-slave > $GDBCMDS_SLAVE
 
 gdb -q -x $GDBCMDS_MASTER & 
 PID_GDB=$!
@@ -39,6 +41,7 @@ sleep 20
 ssh root@$VM $SHARE/trace-slave.sh &
 PID_SSH=$!
 
+# Kill trace if it takes too long
 (sleep 1800 ; kill -9 $PID_GDB $PID_SSH) &
 
 wait $PID_SSH

@@ -41,6 +41,7 @@ sleep 20
 ssh root@$VM $SHARE/trace-slave.sh &
 PID_SSH=$!
 
+# Kill trace if it takes too long
 (sleep 1800 ; kill -9 $PID_GDB $PID_SSH) &
 
 wait $PID_SSH

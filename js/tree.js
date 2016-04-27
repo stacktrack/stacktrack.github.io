@@ -10,8 +10,11 @@ var tree; // Holds the call tree
 var omit_list = ['__fentry__', '#','__stack_chk_fail'];
 
 var depth = 1;
-var node_depth = 100;
-var node_height = 20;
+var node_depth ;
+var node_height ;
+//e.g. tree.html?json=sys_kexec_file_load_callees-trace.json&depth=4&x=8&y=200
+console.log(node_height);
+console.log(node_depth);
 
 var m = [20, 120, 20, 120],
     w = 80000 - m[1] - m[3], // TODO: adjust h & w to svg size
@@ -34,6 +37,7 @@ var vis = d3.select("#tree").append("svg:svg")
 
 
 var gdict = [];
+var root;
 
 // Copy all node info into the 'gdict' lookup table
 // We use this table to expand "copied" and "duplicate" nodes
@@ -69,13 +73,13 @@ function node_to_dict(node) {
     gdict[node.name] = copy;
 }
 
-
-function init() {
-    
+function init(x,y) {
+    node_depth  = x;
+    node_height = y;
     // Show the spinner while the tree is drawn
     $("#loading").show();
     // Tree depth
-    depth = getParameterByName('depth');
+    depth = getParameterByName('depth') ? getParameterByName('depth') : 3;
     if(!depth){
         depth = $("input[name='depth']").val();
     }
@@ -83,9 +87,8 @@ function init() {
     $("input[name='depth']").val(depth + 1)
     tree = d3.layout.tree();
 
-    var trace_f = getParameterByName('trace');
-    trace_f = 'json/' + trace_f;
-    if (trace_f){
+    if (getParameterByName('trace')){
+        trace_f = 'json/' + getParameterByName('trace');
         d3.json(trace_f, function(error, tree) {
             if(tree){
                 trace = tree;
@@ -456,9 +459,9 @@ var spinner = new Spinner(opts).spin();
 $("#loading").append(spinner.el);
 ///////// End Spinner
 
-
-
-init(); // Draw the tree
+node_height = getParameterByName('y') ? getParameterByName('y') : 20;
+node_depth  = getParameterByName('x') ? getParameterByName('x') : 100;
+init(node_depth,node_height); // Draw the tree
 //$("#control").draggable();
 
 // Cause enter on the depth to expand
