@@ -1,212 +1,43 @@
 {
  "label": "sys_finit_module",
+ "size": 1,
+ "type": "original",
+ "name": "sys_finit_module",
  "children": [
   {
    "label": "capable",
+   "size": 1,
+   "type": "original",
+   "name": "capable",
    "children": [
     {
      "label": "ns_capable",
+     "size": 1,
+     "type": "original",
+     "name": "ns_capable",
      "children": [
       {
        "label": "security_capable",
-       "children": [],
        "size": 1,
        "type": "original",
-       "sourcefile": "",
-       "name": "security_capable"
+       "name": "security_capable",
+       "children": [],
+       "sourcefile": ""
       }
      ],
-     "size": 1,
-     "type": "original",
-     "sourcefile": "",
-     "name": "ns_capable"
+     "sourcefile": ""
     }
    ],
-   "size": 1,
-   "type": "original",
-   "sourcefile": "",
-   "name": "capable"
+   "sourcefile": ""
   },
   {
    "label": "copy_module_from_fd",
+   "size": 1,
+   "type": "original",
+   "name": "copy_module_from_fd",
    "children": [],
-   "size": 1,
-   "type": "original",
-   "sourcefile": "",
-   "name": "copy_module_from_fd"
-  },
-  {
-   "label": "load_module",
-   "children": [
-    {
-     "label": "__wake_up",
-     "children": [
-      {
-       "label": "_raw_spin_lock_irqsave",
-       "children": [],
-       "size": 1,
-       "type": "original",
-       "sourcefile": "",
-       "name": "_raw_spin_lock_irqsave"
-      },
-      {
-       "label": "__wake_up_common",
-       "children": [],
-       "size": 1,
-       "type": "original",
-       "sourcefile": "",
-       "name": "__wake_up_common"
-      },
-      {
-       "label": "_raw_spin_unlock_irqrestore",
-       "children": [],
-       "size": 1,
-       "type": "original",
-       "sourcefile": "",
-       "name": "_raw_spin_unlock_irqrestore"
-      }
-     ],
-     "size": 1,
-     "type": "original",
-     "sourcefile": "",
-     "name": "__wake_up"
-    },
-    {
-     "label": "vfree",
-     "children": [
-      {
-       "label": "__vunmap",
-       "children": [
-        {
-         "label": "__free_pages",
-         "children": [
-          {
-           "label": "free_hot_cold_page",
-           "children": [
-            {
-             "label": "free_pages_prepare",
-             "children": [],
-             "size": 1,
-             "type": "original",
-             "sourcefile": "",
-             "name": "free_pages_prepare"
-            },
-            {
-             "label": "get_pfnblock_flags_mask",
-             "children": [],
-             "size": 1,
-             "type": "original",
-             "sourcefile": "",
-             "name": "get_pfnblock_flags_mask"
-            }
-           ],
-           "size": 1,
-           "type": "original",
-           "sourcefile": "",
-           "name": "free_hot_cold_page"
-          }
-         ],
-         "size": 1,
-         "type": "original",
-         "sourcefile": "",
-         "name": "__free_pages"
-        },
-        {
-         "label": "remove_vm_area",
-         "children": [
-          {
-           "label": "_raw_spin_lock",
-           "children": [],
-           "size": 1,
-           "type": "original",
-           "sourcefile": "",
-           "name": "_raw_spin_lock"
-          },
-          {
-           "label": "vunmap_page_range",
-           "children": [
-            {
-             "label": "pud_clear_huge",
-             "children": [],
-             "size": 1,
-             "type": "original",
-             "sourcefile": "",
-             "name": "pud_clear_huge"
-            },
-            {
-             "label": "pmd_clear_huge",
-             "children": [],
-             "size": 1,
-             "type": "original",
-             "sourcefile": "",
-             "name": "pmd_clear_huge"
-            }
-           ],
-           "size": 1,
-           "type": "original",
-           "sourcefile": "",
-           "name": "vunmap_page_range"
-          },
-          {
-           "label": "find_vmap_area",
-           "children": [],
-           "size": 1,
-           "type": "original",
-           "sourcefile": "",
-           "name": "find_vmap_area"
-          },
-          {
-           "label": "free_vmap_area_noflush",
-           "children": [
-            {
-             "label": "__bitmap_weight",
-             "children": [],
-             "size": 1,
-             "type": "original",
-             "sourcefile": "",
-             "name": "__bitmap_weight"
-            }
-           ],
-           "size": 1,
-           "type": "original",
-           "sourcefile": "",
-           "name": "free_vmap_area_noflush"
-          }
-         ],
-         "size": 1,
-         "type": "original",
-         "sourcefile": "",
-         "name": "remove_vm_area"
-        }
-       ],
-       "size": 1,
-       "type": "original",
-       "sourcefile": "",
-       "name": "__vunmap"
-      }
-     ],
-     "size": 1,
-     "type": "original",
-     "sourcefile": "",
-     "name": "vfree"
-    },
-    {
-     "label": "kfree",
-     "children": [],
-     "size": 1,
-     "type": "original",
-     "sourcefile": "",
-     "name": "kfree"
-    }
-   ],
-   "size": 1,
-   "type": "original",
-   "sourcefile": "",
-   "name": "load_module"
+   "sourcefile": ""
   }
  ],
- "size": 1,
- "type": "original",
- "sourcefile": "",
- "name": "sys_finit_module"
+ "sourcefile": ""
 }
