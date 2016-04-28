@@ -1,0 +1,83 @@
+{
+ "size": 1,
+ "sourcefile": "",
+ "index": 0,
+ "type": "original",
+ "label": "sys_getpgid",
+ "name": "sys_getpgid",
+ "children": [
+  {
+   "size": 1,
+   "sourcefile": "",
+   "index": 1,
+   "type": "original",
+   "label": "find_task_by_vpid",
+   "name": "find_task_by_vpid",
+   "children": [
+    {
+     "size": 1,
+     "sourcefile": "",
+     "index": 3,
+     "type": "original",
+     "label": "__fentry__",
+     "name": "__fentry__",
+     "children": []
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "index": 5,
+     "type": "original",
+     "label": "find_pid_ns",
+     "name": "find_pid_ns",
+     "children": [
+      {
+       "label": "__fentry__",
+       "type": "duplicate",
+       "name": "__fentry__",
+       "index": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "size": 1,
+   "sourcefile": "",
+   "index": 2,
+   "type": "original",
+   "label": "pid_vnr",
+   "name": "pid_vnr",
+   "children": [
+    {
+     "label": "__fentry__",
+     "type": "duplicate",
+     "name": "__fentry__",
+     "index": 3
+    }
+   ]
+  },
+  {
+   "label": "__fentry__",
+   "type": "duplicate",
+   "name": "__fentry__",
+   "index": 3
+  },
+  {
+   "size": 1,
+   "sourcefile": "",
+   "index": 4,
+   "type": "original",
+   "label": "security_task_getpgid",
+   "name": "security_task_getpgid",
+   "children": [
+    {
+     "label": "__fentry__",
+     "type": "duplicate",
+     "name": "__fentry__",
+     "index": 3
+    }
+   ]
+  }
+ ]
+}
