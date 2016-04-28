@@ -1,3 +1,8 @@
+#
+# This file contains gdb commands for the master(kernel) gdb session
+# the trace.sh script replaces the _SYSCALL_ occurrences with the 
+# name of the syscall for which we are creating an execution trace.
+#
 file vmlinux
 set pagination off
 target remote u:8864

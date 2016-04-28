@@ -1,5 +1,14 @@
+#
+# This file contains gdb commands for the session on the slave.
+# The _SYSCALL_ occurrence will be replaced by the trace.sh script
+# on the master
+#
+# - We add trinity command line options and 
+# - We need to "continue" every time a SIGTRAP is sent from the kernel
+#
+
 set pagination off
-r  -c _SYSCALL_ --dangerous -N2 -l /tmp/tr_log
+run  -c _SYSCALL_ --dangerous -N2 -l /tmp/tr_log
 python
 try:
     while True:
