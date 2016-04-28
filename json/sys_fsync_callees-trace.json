@@ -1,0 +1,52 @@
+{
+ "name": "sys_fsync",
+ "size": 1,
+ "sourcefile": "",
+ "label": "sys_fsync",
+ "children": [
+  {
+   "name": "do_fsync",
+   "size": 1,
+   "sourcefile": "",
+   "label": "do_fsync",
+   "children": [
+    {
+     "name": "__fdget",
+     "size": 1,
+     "sourcefile": "",
+     "label": "__fdget",
+     "children": [
+      {
+       "name": "__fget_light",
+       "size": 1,
+       "sourcefile": "",
+       "label": "__fget_light",
+       "children": [],
+       "type": "original"
+      }
+     ],
+     "type": "original"
+    },
+    {
+     "name": "vfs_fsync_range",
+     "size": 1,
+     "sourcefile": "",
+     "label": "vfs_fsync_range",
+     "children": [
+      {
+       "name": "_raw_spin_lock",
+       "size": 1,
+       "sourcefile": "",
+       "label": "_raw_spin_lock",
+       "children": [],
+       "type": "original"
+      }
+     ],
+     "type": "original"
+    }
+   ],
+   "type": "original"
+  }
+ ],
+ "type": "original"
+}

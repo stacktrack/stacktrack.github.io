@@ -1,0 +1,72 @@
+{
+ "label": "sys_io_cancel",
+ "children": [
+  {
+   "label": "__get_user_4",
+   "children": [],
+   "size": 1,
+   "sourcefile": "",
+   "type": "original",
+   "name": "__get_user_4"
+  },
+  {
+   "label": "kiocb_cancel",
+   "children": [
+    {
+     "label": "__fentry__",
+     "children": [],
+     "size": 1,
+     "sourcefile": "",
+     "type": "original",
+     "name": "__fentry__"
+    }
+   ],
+   "size": 1,
+   "sourcefile": "",
+   "type": "original",
+   "name": "kiocb_cancel"
+  },
+  {
+   "label": "_raw_spin_lock_irq",
+   "children": [
+    {
+     "type": "duplicate",
+     "name": "__fentry__",
+     "label": "__fentry__"
+    }
+   ],
+   "size": 1,
+   "sourcefile": "",
+   "type": "original",
+   "name": "_raw_spin_lock_irq"
+  },
+  {
+   "type": "duplicate",
+   "name": "__fentry__",
+   "label": "__fentry__"
+  },
+  {
+   "label": "lookup_ioctx",
+   "children": [
+    {
+     "type": "duplicate",
+     "name": "__get_user_4",
+     "label": "__get_user_4"
+    },
+    {
+     "type": "duplicate",
+     "name": "__fentry__",
+     "label": "__fentry__"
+    }
+   ],
+   "size": 1,
+   "sourcefile": "",
+   "type": "original",
+   "name": "lookup_ioctx"
+  }
+ ],
+ "size": 1,
+ "sourcefile": "",
+ "type": "original",
+ "name": "sys_io_cancel"
+}
