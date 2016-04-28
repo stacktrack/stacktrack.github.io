@@ -8,7 +8,7 @@ title: StackTrack
             <div id="ToC_div"></div>
 
             <h2 id="Introduction">Introduction</h2>
-            <p>This site presents a code flow visualization and tracing tool called StackTrack. An example code flow graph for the kexec_file_load linux system call is shown below.
+            <p>This site presents a code flow visualization and execution tracking tool called StackTrack. An example code flow graph for the kexec_file_load linux system call is shown below.
             <!--script src="js/tree.js"></script-->
 
             <iframe id="demo_frame" src="html/demo.html?json=/json/sys_kexec_file_load_callees-trace.json&depth=4&y=8&x=200" scrolling="no" onclick="javascript:alert(1);"></iframe>
@@ -58,7 +58,7 @@ INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_loa
 
             <h2 id="Installation">Installation</h2>
             <p>
-            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the tracing you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-deb>ugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
+            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the execution tracking you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-deb>ugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
 
 
             Following items are explained in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/README.md">Readme</a> file in the src directory from the repository:
@@ -70,11 +70,11 @@ INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_loa
             </ul>
 
             </p>
-           <h2 id="Tracing">Tracing</h2>
+           <h2 id="Tracking">Tracking</h2>
             <p>
-            To trace execution we place breakpoints on the functions that are in the codepath of our interest. Every time a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next (the callees) and we place breakpoints on these functions as well. This process allows us to track the program flow.
+            To track execution we place breakpoints on the functions that are in the codepath of our interest. Every time a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next (the callees) and we place breakpoints on these functions as well. This process allows us to track the program flow.
             <p>
-            The tracing is implemented in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/breakpoint.py">breakpoint.py</a> python code which is called from within gdb.
+            The tracking is implemented in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/breakpoint.py">breakpoint.py</a> python code which is called from within gdb.
             This trace flow is also saved in a <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph datastructure</a>.
             </p>
 
@@ -280,12 +280,12 @@ class STBreakpoint(gdb.Breakpoint):
 
             <p>
             <li>
-            <ul>Example with dynamic tracing of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
+            <ul>Example with dynamic tracking of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
             </li>
         </div>
 
 
-<h2 id="traced_syscalls">Examples: Syscall Tracing</h2>
+<h2 id="traced_syscalls">Examples: Syscall Tracking</h2>
 
 
 <p>We used the <a>trinity syscall fuzzer</a> to call a number of syscalls and track the execution. The trace is shown as green lines in the following graphs. 
