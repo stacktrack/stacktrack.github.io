@@ -23,15 +23,16 @@ optional arguments:
 '''
 #
 #
+
 import sys, os
 import MySQLdb as mdb
 import json
 import logging
 import argparse
 
-
 #
-# Database settings
+# Database settings, Change these!
+#
 # The stacktrack database consists of an "xrefs" table 
 # +--------+---------------+------+-----+---------+-------+
 # | Field  | Type          | Null | Key | Default | Extra |
@@ -88,11 +89,17 @@ class Graph():
         return node
 
     def get_node(self,node):
+        '''
+            Return a node if a name ( or node ) is given
+        '''
         
         node_name = node.name if type(node) == Node else node
         return self.nodes.get(node_name,None)
 
     def get_nodes(self):
+        '''
+            Return all the node objects
+        '''
 
         return self.nodes.values()
 
@@ -141,11 +148,18 @@ class Graph():
             for callee in callees:
                 self.add_edge(node.name,callee)
 
+
     def dump_nodes(self, destdir = '.', suffix = '' ):
+        '''
+            Dump json of all nodes
+        '''
         for node in self.get_nodes():
             self.dump_node(node, destdir, suffix = suffix )
     
     def dump_node(self, node, destdir, direction = 'callees', force = False, suffix = '' ):
+        '''
+            Dump json of a single node
+        '''
         node = self.get_node(node)
         outfile = os.path.join(destdir,'{}_{}{}.json'.format(node.name, direction, suffix ) )
         if not getattr(node,direction):
@@ -286,7 +300,7 @@ class NodeEncoder(json.JSONEncoder):
 
 def get_all_funcs():
     '''
-        Retrieve all functionss from the xref databases
+        Retrieve all functions from the xref databases
     '''
     query = 'SELECT DISTINCT caller FROM xrefs'
     cursor  = con.cursor()
