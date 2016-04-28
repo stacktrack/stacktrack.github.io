@@ -35,9 +35,11 @@ import json
 import signal
 from Graph import *
 
+
 SLAVE_PROCESS_NAME = 'trinity-'
 graph = Graph()
 OUT_DIR = '/var/u'
+
 
 def load(symbol):
     '''
@@ -57,12 +59,14 @@ def load(symbol):
     # signal.SIGRTMAX = 64
     signal.signal(signal.SIGRTMAX, sig_handler)
 
+
 def get_callees(symbol):
     '''
         Return all callees for a given function
     '''
 
     return  graph.xrefdb.get_callees(symbol)
+
 
 def del_bps(start=None,end=None):
     '''
@@ -72,6 +76,7 @@ def del_bps(start=None,end=None):
     for bp in gdb.breakpoints():
         bp.delete()
 
+
 def get_current():
     '''
         Return the current process info
@@ -79,6 +84,7 @@ def get_current():
     '''
     lxc=linux.cpus.LxCurrentFunc()
     return lxc.invoke()
+
 
 def get_bt_start():
     '''
@@ -99,6 +105,7 @@ def get_bt_start():
         print("get_bt_start failed, backtrace:")
         print(f_end)
 
+
 def dump_graphs():
     '''
         Dump call- and execution graphs
@@ -107,12 +114,14 @@ def dump_graphs():
     graph.dump_nodes(OUT_DIR)
     STBreakpoint.graph.dump_nodes(OUT_DIR,suffix='-trace')
 
+
 class EndBreakPoint(gdb.Breakpoint):
     '''
         This class is used when the trace is finished. 
         It deletes all breakpoints and calls dump_graphs when hit.
     '''
-    def __init__(self,address):
+
+def __init__(self,address):
         func_name = '*' + address
         print('ENDBP at '+ func_name) 
         super(EndBreakPoint, self).__init__(

@@ -46,6 +46,7 @@ DBUSER = 'root'
 DBPASS = 'fucksec'
 DB     = 'stacktrack'
 
+
 class Graph():
 
     def __init__(self):
