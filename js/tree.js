@@ -88,7 +88,7 @@ function init(x,y) {
     tree = d3.layout.tree();
 
     if (getParameterByName('trace')){
-        trace_f = 'json/' + getParameterByName('trace');
+        trace_f = '/json/' + getParameterByName('trace');
         d3.json(trace_f, function(error, tree) {
             if(tree){
                 trace = tree;
@@ -97,7 +97,7 @@ function init(x,y) {
     }
 
     var json_f = getParameterByName('json') ? getParameterByName('json') : 'sys_chdir.json' ;
-    json_f = 'json/' + json_f;
+    json_f = '/json/' + json_f;
     d3.json(json_f, function(error, tree) {
 
         root = tree;
