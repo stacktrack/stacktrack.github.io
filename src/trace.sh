@@ -33,8 +33,8 @@ set -x
 SYSCALL=$1          # The syscall to be traced
 VM=192.168.122.10   # IP address of our slave
 SHARE=/mnt/t        # Share mounted on same location on master and slave
-TIMEOUT=1500
-SNAPSHOT="tvm-0"
+TIMEOUT=1500        # Timeout to kill execution trace (master gdb session)
+SNAPSHOT="tvm-0"    # Slave snapshot id
 
 if [[ -z $SYSCALL ]]
 then
@@ -50,7 +50,7 @@ GDBCMDS_MASTER=$(mktemp)
 GDBCMDS_SLAVE=$SHARE/gdbcmds-slave
 
 # Create master and slave gdb command files for the syscall being traced
-try sed -e "s/_SYSCALL_/sys_$SYSCALL/g" gdbcmds > $GDBCMDS_MASTER
+try sed -e "s/_SYSCALL_/sys_$SYSCALL/g" gdbcmds-master > $GDBCMDS_MASTER
 try sed -e "s/_SYSCALL_/$SYSCALL/g" gdbcmds-slave > $GDBCMDS_SLAVE
 
 #
