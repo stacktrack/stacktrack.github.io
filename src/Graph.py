@@ -66,7 +66,6 @@ class Graph():
            already exists in _instances, the corresponding node value
            is returned
         '''
-
         callees     = set()
         callers     = set()
         sourcefile  = ''
@@ -93,7 +92,6 @@ class Graph():
         '''
             Return a node if a name ( or node ) is given
         '''
-        
         node_name = node.name if type(node) == Node else node
         return self.nodes.get(node_name,None)
 
@@ -101,7 +99,6 @@ class Graph():
         '''
             Return all the node objects
         '''
-
         return self.nodes.values()
 
     def add_edge(self, caller, callee):
@@ -136,7 +133,6 @@ class Graph():
             Get the xrefs from the database and create an edge
             (edge creation causes not-yet-existing nodes to be created)
         '''
-        
         log.debug('Loading {}'.format(node))
 
         if load_callers:
