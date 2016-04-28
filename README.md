@@ -59,5 +59,5 @@ This repository contains following items:
 In order to create your own graphs you need the following setup:
 
 + Linux server with virsh, gdb, samba, mysql
-+ Guest vm with a kernel compiled with debug symbols
++ Guest vm with a kernel compiled with debug symbols (I used the "kernel-config" .config)
 + The database needs to be loaded and Graph.py must be able to create graphs
