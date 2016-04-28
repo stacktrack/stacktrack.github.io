@@ -35,9 +35,9 @@ import json
 import signal
 from Graph import *
 
-SLAVE_PROCESS_NAME='trinity-'
+SLAVE_PROCESS_NAME = 'trinity-'
 graph = Graph()
-OUT_DIR='/var/u'
+OUT_DIR = '/var/u'
 
 def load(symbol):
     '''
