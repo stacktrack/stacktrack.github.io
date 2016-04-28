@@ -293,7 +293,7 @@ class STBreakpoint(gdb.Breakpoint):
 
 <script>
 function print_syscall(syscall){
-    var link = " <span class=sc><a href=tree.html?json=sys_" + syscall[0] + "_callees.json&trace=" + syscall[1] + ">" + syscall[0] + "</a></span> ";
+    var link = " <span class=sc><a href=tree.html?json=/json/sys_" + syscall[0] + "_callees.json&trace=/json/" + syscall[1] + ">" + syscall[0] + "</a></span> ";
     document.getElementById("syscall_list").innerHTML += link;
 }
 
