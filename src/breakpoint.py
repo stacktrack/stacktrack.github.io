@@ -32,16 +32,26 @@ import linux
 import sys
 import MySQLdb as mdb
 import json
+import signal
 from Graph import *
 
+SLAVE_PROCESS_NAME='trinity-'
 graph = Graph()
-
 OUT_DIR='/var/u'
 
 def load(symbol):
+
+    def sig_handler(signum, frame):
+        # Handler to dump graphs in case tracer is stuck
+        print('received signal, dumping graphs')
+        dump_graphs()
+
     node = graph.add_node(symbol)
     print('loading {}'.format(node))
     graph.load(load_callers = False, load_callees = True)
+    print('register signal handler')
+    # signal.SIGRTMAX = 64
+    signal.signal(signal.SIGRTMAX, sig_handler)
 
 def get_callees(symbol):
     return  graph.xrefdb.get_callees(symbol)
@@ -84,7 +94,7 @@ class EndBreakPoint(gdb.Breakpoint):
 
     def stop(self):
         comm = get_current()['comm'].string()
-        if not comm.startswith('trinity-'):
+        if not comm.startswith(SLAVE_PROCESS_NAME):
             return
         print('Finalizing trace')
         dump_graphs()
@@ -119,13 +129,13 @@ class STBreakpoint(gdb.Breakpoint):
  
     def _stop(self):
         comm = get_current()['comm'].string()
-        if not comm.startswith('trinity-'):
+        if not comm.startswith(SLAVE_PROCESS_NAME):
             return
         print(self.func_name)
 
     def stop(self):
         comm = get_current()['comm'].string()
-        if not comm.startswith('trinity-'):
+        if not comm.startswith(SLAVE_PROCESS_NAME):
             return
        
         if self.parent:
