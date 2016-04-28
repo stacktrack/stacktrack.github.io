@@ -285,7 +285,7 @@ class STBreakpoint(gdb.Breakpoint):
 <h2 id="traced_syscalls">Examples: Syscall Tracing</h2>
 
 
-<p>I used the <a>trinity syscall fuzzer</a> to call a number of syscalls and I created a trace of the execution. The trace is shown as green lines in the following graphs. 
+<p>We used the <a>trinity syscall fuzzer</a> to call a number of syscalls and track the execution. The trace is shown as green lines in the following graphs. 
 
 <div id="syscall_list"></div>
 
@@ -356,14 +356,16 @@ syscalls.forEach(print_syscall);
 
 </p>
             <h2 id="Future Work">Future Work</h2>
-            <h3 id="Indirect Calls">Indirect Function Calls</h3>
-            <p>
-            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.
-            </p>
+            <ul>
+            <li>Source code integration</li>
+            <li>LKM Coverage</li>
+            <li>Indirect Function Calls: 
+            Resolving indirect function calls is halting equivalent. We will try to approximate this using both semantic and dynamic analysis.</li>
 
-            <h3 id="Dynamic Instrumentation">Dynamic Instrumentation</h3>
-            In order to be able to provide maximum coverage, we will implement dynamic instrumentation to generate code to reach different parts of the code.
-            
+            <li>Dynamic Instrumentation:
+            In order to be able to provide maximum coverage, we will implement dynamic instrumentation to generate code to reach different parts of the code.</li>
+
+            </ul>
 <script>
 // Generate ToC
 
