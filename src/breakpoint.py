@@ -121,7 +121,7 @@ class EndBreakPoint(gdb.Breakpoint):
         It deletes all breakpoints and calls dump_graphs when hit.
     '''
 
-def __init__(self,address):
+    def __init__(self,address):
         func_name = '*' + address
         print('ENDBP at '+ func_name) 
         super(EndBreakPoint, self).__init__(
@@ -160,11 +160,8 @@ class STBreakpoint(gdb.Breakpoint):
     def __init__(self, func_name, parent=None):
 
         self.func_name = func_name        
-        # node = self.node      = self.graph.add_node(func_name)
-        # if not node in self.graph.nodes: self.graph.load_node(self.node)
         self.parent    = parent
         STBreakpoint.bplist.add(func_name)
-        #print('ini %s'%str(func_name))
         super(STBreakpoint, self).__init__(
             func_name, gdb.BP_BREAKPOINT, internal=False
         )

@@ -285,25 +285,25 @@ class STBreakpoint(gdb.Breakpoint):
         </div>
 
 
-<h2 id="traced_syscalls">Examples: Syscall Tracking</h2>
+            <h2 id="traced_syscalls">Examples: Syscall Tracking</h2>
 
 
-<p>We used the <a>trinity syscall fuzzer</a> to call a number of syscalls and track the execution. The trace is shown as green lines in the following graphs. 
+            <p>Following syscall execution traces have been generated with the trinity syscall fuzzer:
 
-<div id="syscall_list"></div>
+            <div id="syscall_list"></div>
 
-<script src="js/traces.js"></script>
+            <script src="js/traces.js"></script>
 
-<script>
-function print_syscall(syscall){
-    var link = " <span class=sc><a href=tree.html?json=/json/sys_" + syscall[0] + "_callees.json&trace=/json/" + syscall[1] + ">" + syscall[0] + "</a></span> ";
-    document.getElementById("syscall_list").innerHTML += link;
-}
+            <script>
+            function print_syscall(syscall){
+                var link = " <span class=sc><a href=tree.html?json=/json/sys_" + syscall[0] + "_callees.json&trace=/json/" + syscall[1] + ">" + syscall[0] + "</a></span> ";
+                document.getElementById("syscall_list").innerHTML += link;
+            }
 
-syscalls.forEach(print_syscall);
-</script>
+            syscalls.forEach(print_syscall);
+            </script>
 
-</p>
+            </p>
             <h2 id="Future Work">Future Work</h2>
             There are a lot of improvements to be made, for example 
             <!-- Time however ... :o -->

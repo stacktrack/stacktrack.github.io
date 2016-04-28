@@ -83,7 +83,7 @@ class Graph():
         if name not in self.nodes:
 
             log.debug('Creating Node {} {}'.format(name,len(self.nodes)))
-            node =  Node(name, sourcefile, callees, callers )
+            node =  Node(name, sourcefile, callees, callers)
             self.nodes[name] =  node
 
         node = self.nodes[name]
@@ -178,6 +178,8 @@ class Graph():
 
 class Node(object):
 
+    count = 0
+
     def __init__(self, name, sourcefile, callees, callers ):
 
         self.name       = name
@@ -185,6 +187,9 @@ class Node(object):
         self.callers    = callers
         self.callees    = callees
         self.sourcefile = sourcefile
+        # Keep track of the node count during execution tracking
+        self.index      = Node.count
+        Node.count     += 1
 
     def __hash__(self):
         return hash(self.name)
@@ -280,6 +285,7 @@ class NodeEncoder(json.JSONEncoder):
             result ={ "name"     : node.name,
                       "label"    : node.name,
                       "type"     : "duplicate",
+                      "index"    : node.index,
                     }
 
         else:
@@ -293,7 +299,8 @@ class NodeEncoder(json.JSONEncoder):
                         "size"      : 1 ,
                         "sourcefile": node.sourcefile,
                         "type"      : "original",
-                        "children"  : children
+                        "children"  : children,
+                        "index"     : node.index,
                      }
 
         return result
