@@ -1,0 +1,27 @@
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/RedCloth-4.2.9/ext/redcloth_scan
+/usr/bin/ruby2.1 -r ./siteconf20160428-8967-19b00yp.rb extconf.rb
+checking for main() in -lc... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/extensions/x86_64-linux/2.1.0/RedCloth-4.2.9/mkmf.log
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/RedCloth-4.2.9/ext/redcloth_scan
+make "DESTDIR=" clean
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/RedCloth-4.2.9/ext/redcloth_scan
+make "DESTDIR="
+compiling redcloth_attributes.c
+ragel/redcloth_attributes.c.rl: In function ‘redcloth_attribute_parser’:
+ragel/redcloth_attributes.c.rl:27:11: warning: variable ‘act’ set but not used [-Wunused-but-set-variable]
+compiling redcloth_inline.c
+ragel/redcloth_inline.c.rl: In function ‘red_block’:
+ragel/redcloth_inline.c.rl:100:9: warning: variable ‘attr_regs’ set but not used [-Wunused-but-set-variable]
+compiling redcloth_scan.c
+linking shared-object redcloth_scan.so
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/RedCloth-4.2.9/ext/redcloth_scan
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 redcloth_scan.so ./.gem.20160428-8967-13s6dm
+installing default redcloth_scan libraries

@@ -1,0 +1,56 @@
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/rdiscount-2.1.8/ext
+/usr/bin/ruby2.1 -r ./siteconf20160428-8967-1e7j6zq.rb extconf.rb
+checking for random()... yes
+checking for srandom()... yes
+checking for rand()... yes
+checking for srand()... yes
+checking size of unsigned long... 8
+checking size of unsigned int... 4
+checking size of unsigned int... 4
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/extensions/x86_64-linux/2.1.0/rdiscount-2.1.8/mkmf.log
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/rdiscount-2.1.8/ext
+make "DESTDIR=" clean
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/rdiscount-2.1.8/ext
+make "DESTDIR="
+compiling github_flavoured.c
+compiling css.c
+compiling html5.c
+compiling amalloc.c
+compiling tags.c
+compiling version.c
+compiling mktags.c
+mktags.c:44:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ main()
+ ^
+compiling toc.c
+compiling generate.c
+compiling resource.c
+compiling mkdio.c
+compiling dumptree.c
+compiling xmlpage.c
+compiling setup.c
+compiling markdown.c
+compiling pgm_options.c
+compiling basename.c
+compiling emmatch.c
+compiling rdiscount.c
+rdiscount.c: In function ‘rb_rdiscount_to_html’:
+rdiscount.c:50:17: warning: implicit declaration of function ‘rb_rdiscount__get_flags’ [-Wimplicit-function-declaration]
+     int flags = rb_rdiscount__get_flags(self);
+                 ^
+compiling xml.c
+compiling docheader.c
+compiling flags.c
+compiling Csio.c
+linking shared-object rdiscount.so
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/rdiscount-2.1.8/ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 rdiscount.so ./.gem.20160428-8967-1ikgbht
+installing default rdiscount libraries

@@ -1,0 +1,173 @@
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c
+/usr/bin/ruby2.1 -r ./siteconf20160428-8967-1xawpas.rb extconf.rb
+checking for ffi.h... no
+checking for ffi.h in /usr/local/include,/usr/include/ffi... no
+checking for rb_thread_blocking_region()... yes
+checking for rb_thread_call_with_gvl()... yes
+checking for rb_thread_call_without_gvl()... yes
+checking for ffi_prep_cif_var()... no
+creating extconf.h
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/extensions/x86_64-linux/2.1.0/ffi-1.9.10/mkmf.log
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c
+make "DESTDIR=" clean
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c
+make "DESTDIR="
+Configuring libffi
+make -C "/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu"
+make[1]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make "AR_FLAGS=" "CC_FOR_BUILD=" "CFLAGS=-Wall -fexceptions" "CXXFLAGS=" "CFLAGS_FOR_BUILD=" "CFLAGS_FOR_TARGET=" "INSTALL=/usr/bin/install -c" "INSTALL_DATA=/usr/bin/install -c -m 644" "INSTALL_PROGRAM=/usr/bin/install -c" "INSTALL_SCRIPT=/usr/bin/install -c" "JC1FLAGS=" "LDFLAGS=" "LIBCFLAGS=" "LIBCFLAGS_FOR_TARGET=" "MAKE=make" "MAKEINFO=/bin/bash /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/missing --run makeinfo " "PICFLAG=" "PICFLAG_FOR_TARGET=" "RUNTESTFLAGS=" "SHELL=/bin/bash" "exec_prefix=/usr/local" "infodir=/usr/local/share/info" "libdir=/usr/local/lib" "mandir=/usr/local/share/man" "prefix=/usr/local" "AR=ar" "AS=as" "CC=gcc" "CXX=g++" "LD=/usr/bin/ld -m elf_x86_64" "NM=/usr/bin/nm -B" "RANLIB=ranlib" "DESTDIR=" all-recursive
+make[2]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+Making all in include
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/include'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/include'
+Making all in testsuite
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/testsuite'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/testsuite'
+Making all in man
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/man'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/man'
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/debug.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/debug.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/debug.c  -fPIC -DPIC -o src/.libs/debug.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/prep_cif.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/prep_cif.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/prep_cif.c  -fPIC -DPIC -o src/.libs/prep_cif.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/types.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/types.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/types.c  -fPIC -DPIC -o src/.libs/types.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/raw_api.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/raw_api.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/raw_api.c  -fPIC -DPIC -o src/.libs/raw_api.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/java_raw_api.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/java_raw_api.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/java_raw_api.c  -fPIC -DPIC -o src/.libs/java_raw_api.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/closures.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/closures.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/closures.c  -fPIC -DPIC -o src/.libs/closures.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/x86/ffi64.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/ffi64.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/ffi64.c  -fPIC -DPIC -o src/x86/.libs/ffi64.o
+/bin/bash ./libtool   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -c -o src/x86/unix64.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/unix64.S
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/unix64.S  -fPIC -DPIC -o src/x86/.libs/unix64.o
+/bin/bash ./libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -g  -Wall -fexceptions -c -o src/x86/ffi.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/ffi.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -g -Wall -fexceptions -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/ffi.c  -fPIC -DPIC -o src/x86/.libs/ffi.o
+/bin/bash ./libtool   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src  -c -o src/x86/sysv.lo /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/sysv.S
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -I. -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/include -Iinclude -I/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src -c /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/src/x86/sysv.S  -fPIC -DPIC -o src/x86/.libs/sysv.o
+/bin/bash ./libtool --tag=CC   --mode=link gcc -g  -Wall -fexceptions -version-info `grep -v '^#' /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/libtool-version`    -o libffi.la -rpath /usr/local/lib src/debug.lo src/prep_cif.lo src/types.lo src/raw_api.lo src/java_raw_api.lo src/closures.lo                      src/x86/ffi64.lo src/x86/unix64.lo src/x86/ffi.lo src/x86/sysv.lo      
+libtool: link: gcc -shared  -fPIC -DPIC  src/.libs/debug.o src/.libs/prep_cif.o src/.libs/types.o src/.libs/raw_api.o src/.libs/java_raw_api.o src/.libs/closures.o src/x86/.libs/ffi64.o src/x86/.libs/unix64.o src/x86/.libs/ffi.o src/x86/.libs/sysv.o      -Wl,-soname -Wl,libffi.so.5 -o .libs/libffi.so.5.0.10
+libtool: link: (cd ".libs" && rm -f "libffi.so.5" && ln -s "libffi.so.5.0.10" "libffi.so.5")
+libtool: link: (cd ".libs" && rm -f "libffi.so" && ln -s "libffi.so.5.0.10" "libffi.so")
+libtool: link: ( cd ".libs" && rm -f "libffi.la" && ln -s "../libffi.la" "libffi.la" )
+/bin/bash ./libtool --tag=CC   --mode=link gcc -g  -Wall -fexceptions   -o libffi_convenience.la  src/debug.lo src/prep_cif.lo src/types.lo src/raw_api.lo src/java_raw_api.lo src/closures.lo                      src/x86/ffi64.lo src/x86/unix64.lo src/x86/ffi.lo src/x86/sysv.lo      
+libtool: link: rm -fr  .libs/libffi_convenience.a(D)
+libtool: link: ar cru .libs/libffi_convenience.a src/.libs/debug.o src/.libs/prep_cif.o src/.libs/types.o src/.libs/raw_api.o src/.libs/java_raw_api.o src/.libs/closures.o src/x86/.libs/ffi64.o src/x86/.libs/unix64.o src/x86/.libs/ffi.o src/x86/.libs/sysv.o 
+ar: `u' modifier ignored since `D' is the default (see `U')
+libtool: link: ranlib .libs/libffi_convenience.a
+libtool: link: ( cd ".libs" && rm -f "libffi_convenience.la" && ln -s "../libffi_convenience.la" "libffi_convenience.la" )
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make[2]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make[1]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+compiling Function.c
+Function.c: In function ‘async_cb_event’:
+Function.c:563:9: warning: implicit declaration of function ‘rb_thread_call_without_gvl’ [-Wimplicit-function-declaration]
+         rb_thread_call_without_gvl(async_cb_wait, &w, async_cb_stop, &w);
+         ^
+compiling Thread.c
+compiling MappedType.c
+compiling FunctionInfo.c
+compiling MethodHandle.c
+compiling Platform.c
+compiling Type.c
+compiling StructByReference.c
+compiling LongDouble.c
+compiling Variadic.c
+compiling MemoryPointer.c
+compiling DataConverter.c
+compiling LastError.c
+compiling Buffer.c
+compiling ffi.c
+compiling ClosurePool.c
+compiling Pointer.c
+compiling Call.c
+In file included from Call.c:62:0:
+Call.c: In function ‘do_blocking_call’:
+Thread.h:78:39: warning: implicit declaration of function ‘rb_thread_call_without_gvl’ [-Wimplicit-function-declaration]
+ # define rbffi_thread_blocking_region rb_thread_call_without_gvl
+                                       ^
+Call.c:368:5: note: in expansion of macro ‘rbffi_thread_blocking_region’
+     rbffi_thread_blocking_region(call_blocking_function, data, (void *) -1, NULL);
+     ^
+compiling StructLayout.c
+compiling DynamicLibrary.c
+compiling StructByValue.c
+compiling Struct.c
+compiling AbstractMemory.c
+compiling Types.c
+compiling ArrayType.c
+linking shared-object ffi_c.so
+
+current directory: /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c
+make "DESTDIR=" install
+make -C "/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu"
+make[1]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make "AR_FLAGS=" "CC_FOR_BUILD=" "CFLAGS=-Wall -fexceptions" "CXXFLAGS=" "CFLAGS_FOR_BUILD=" "CFLAGS_FOR_TARGET=" "INSTALL=/usr/bin/install -c" "INSTALL_DATA=/usr/bin/install -c -m 644" "INSTALL_PROGRAM=/usr/bin/install -c" "INSTALL_SCRIPT=/usr/bin/install -c" "JC1FLAGS=" "LDFLAGS=" "LIBCFLAGS=" "LIBCFLAGS_FOR_TARGET=" "MAKE=make" "MAKEINFO=/bin/bash /var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi/missing --run makeinfo " "PICFLAG=" "PICFLAG_FOR_TARGET=" "RUNTESTFLAGS=" "SHELL=/bin/bash" "exec_prefix=/usr/local" "infodir=/usr/local/share/info" "libdir=/usr/local/lib" "mandir=/usr/local/share/man" "prefix=/usr/local" "AR=ar" "AS=as" "CC=gcc" "CXX=g++" "LD=/usr/bin/ld -m elf_x86_64" "NM=/usr/bin/nm -B" "RANLIB=ranlib" "DESTDIR=" all-recursive
+make[2]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+Making all in include
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/include'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/include'
+Making all in testsuite
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/testsuite'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/testsuite'
+Making all in man
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/man'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu/man'
+make[3]: Entering directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make[3]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make[2]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+make[1]: Leaving directory '/var/www/html/stacktrack.github.com/vendor/bundle/ruby/2.1.0/gems/ffi-1.9.10/ext/ffi_c/libffi-x86_64-linux-gnu'
+compiling Function.c
+Function.c: In function ‘async_cb_event’:
+Function.c:563:9: warning: implicit declaration of function ‘rb_thread_call_without_gvl’ [-Wimplicit-function-declaration]
+         rb_thread_call_without_gvl(async_cb_wait, &w, async_cb_stop, &w);
+         ^
+compiling Thread.c
+compiling MappedType.c
+compiling FunctionInfo.c
+compiling MethodHandle.c
+compiling Platform.c
+compiling Type.c
+compiling StructByReference.c
+compiling LongDouble.c
+compiling Variadic.c
+compiling MemoryPointer.c
+compiling DataConverter.c
+compiling LastError.c
+compiling Buffer.c
+compiling ffi.c
+compiling ClosurePool.c
+compiling Pointer.c
+compiling Call.c
+In file included from Call.c:62:0:
+Call.c: In function ‘do_blocking_call’:
+Thread.h:78:39: warning: implicit declaration of function ‘rb_thread_call_without_gvl’ [-Wimplicit-function-declaration]
+ # define rbffi_thread_blocking_region rb_thread_call_without_gvl
+                                       ^
+Call.c:368:5: note: in expansion of macro ‘rbffi_thread_blocking_region’
+     rbffi_thread_blocking_region(call_blocking_function, data, (void *) -1, NULL);
+     ^
+compiling StructLayout.c
+compiling DynamicLibrary.c
+compiling StructByValue.c
+compiling Struct.c
+compiling AbstractMemory.c
+compiling Types.c
+compiling ArrayType.c
+linking shared-object ffi_c.so
+/usr/bin/install -c -m 0755 ffi_c.so ./.gem.20160428-8967-1sbm9zk
+installing default ffi_c libraries
