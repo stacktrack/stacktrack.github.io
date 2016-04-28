@@ -1,9 +1,0 @@
-set pagination off
-r  -c _SYSCALL_ --dangerous -N2 -l /tmp/tr_log
-python
-try:
-    while True:
-        gdb.execute('continue')
-except:
-    gdb.execute('quit')
-end
