@@ -40,6 +40,10 @@ graph = Graph()
 OUT_DIR='/var/u'
 
 def load(symbol):
+    '''
+        - Load the callgraph for the given symbol into the global graph variable
+        - Register a signal handler to dump call- and execution graphs 
+    '''
 
     def sig_handler(signum, frame):
         # Handler to dump graphs in case tracer is stuck
@@ -54,17 +58,34 @@ def load(symbol):
     signal.signal(signal.SIGRTMAX, sig_handler)
 
 def get_callees(symbol):
+    '''
+        Return all callees for a given function
+    '''
+
     return  graph.xrefdb.get_callees(symbol)
 
 def del_bps(start=None,end=None):
+    '''
+        Delete all gdb breakpoints
+    '''
+
     for bp in gdb.breakpoints():
         bp.delete()
 
 def get_current():
+    '''
+        Return the current process info
+    A
+    '''
     lxc=linux.cpus.LxCurrentFunc()
     return lxc.invoke()
 
 def get_bt_start():
+    '''
+        Get the start of the backtrace. We put an "EndBreakPoint" here 
+        because if it it is hit we are done with the execution tracing
+    '''
+
     fend = ''
     try:
         backtrace = gdb.execute('backtrace', to_string = True)
@@ -79,12 +100,18 @@ def get_bt_start():
         print(f_end)
 
 def dump_graphs():
+    '''
+        Dump call- and execution graphs
+    '''
     print("Dumping Graphs")
     graph.dump_nodes(OUT_DIR)
     STBreakpoint.graph.dump_nodes(OUT_DIR,suffix='-trace')
 
 class EndBreakPoint(gdb.Breakpoint):
-    
+    '''
+        This class is used when the trace is finished. 
+        It deletes all breakpoints and calls dump_graphs when hit.
+    '''
     def __init__(self,address):
         func_name = '*' + address
         print('ENDBP at '+ func_name) 
@@ -93,6 +120,9 @@ class EndBreakPoint(gdb.Breakpoint):
         )
 
     def stop(self):
+        '''
+            bp is hit: finalize execution trace and exit
+        '''
         comm = get_current()['comm'].string()
         if not comm.startswith(SLAVE_PROCESS_NAME):
             return
@@ -100,6 +130,7 @@ class EndBreakPoint(gdb.Breakpoint):
         dump_graphs()
         for bp in gdb.breakpoints():
             if bp == self:
+                # We can't delete ourselve, so disable
                 bp.enabled = False
             else:
                 bp.delete()
@@ -109,11 +140,13 @@ class EndBreakPoint(gdb.Breakpoint):
 
 
 class STBreakpoint(gdb.Breakpoint):
+    '''
+        This class is used to trace the execution.
+    '''
 
-    bplist   = set()
-    todelete = []
-    edges    = []
-    graph    = Graph()
+    bplist   = set()    # List of execution trace breakpoints
+    todelete = []       # List of breakpoints to delete, we use this because we can't delete self
+    graph    = Graph()  # Execution graph
 
     def __init__(self, func_name, parent=None):
 
@@ -134,8 +167,13 @@ class STBreakpoint(gdb.Breakpoint):
         print(self.func_name)
 
     def stop(self):
+        '''
+            bp is hit
+        '''
         comm = get_current()['comm'].string()
         if not comm.startswith(SLAVE_PROCESS_NAME):
+            # The bp is hit but not from the process we use to trace.
+            # Ignore it.
             return
        
         if self.parent:
