@@ -1,4 +1,6 @@
 #!/bin/bash
+(
+cd json
 echo 'var syscalls = ['
 ls | grep race | while read line
 do
@@ -6,4 +8,4 @@ do
     echo "['$syscall','$line'],"
 done
 
-echo '];' 
+echo '];') > /var/www/html/stacktrack.github.com/js/traces.js
