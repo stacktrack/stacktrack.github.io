@@ -22,11 +22,17 @@ try(){
     fi
 }
 
+cleanup(){
+    # Cleanup: remove files and kill child processes
+    rm -f $GDBCMDS_MASTER $GDBCMDS_SLAVE
+    kill -9 -P $$
+}
+
 set -x
 
-SYSCALL=$1 # The syscall to be traced
-VM=192.168.122.10
-SHARE=/mnt/t # Share mounted on same location on master and slave
+SYSCALL=$1          # The syscall to be traced
+VM=192.168.122.10   # IP address of our slave
+SHARE=/mnt/t        # Share mounted on same location on master and slave
 TIMEOUT=1500
 SNAPSHOT="tvm-0"
 
@@ -59,7 +65,7 @@ ssh root@$VM $SHARE/trace-slave.sh &
 PID_SSH=$!
 
 # Kill all subprocesses if the trace is killed
-trap "kill -9 -P $$" SIGINT SIGTERM SIGKILL
+trap cleanup SIGINT SIGTERM SIGKILL
 
 # Loop TIMEOUT seconds OR until gdb session is finished
 for i in $(seq $TIMEOUT)
@@ -77,5 +83,3 @@ ps -p $PID_GDB && (
     sleep 10 
     kill -9 $PID_GDB $PID_SSH ) 2>/dev/null
 
-# Cleanup
-rm -f $GDBCMDS_MASTER $GDBCMDS_SLAVE
