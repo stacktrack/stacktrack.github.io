@@ -80,6 +80,7 @@ done
 ps -p $PID_GDB && ( 
     sleep 10 
     kill -64 $PID_GDB
-    sleep 10 
-    kill -9 $PID_GDB $PID_SSH ) 2>/dev/null
+    sleep 10 ) 2>/dev/null
+
+cleanup
 

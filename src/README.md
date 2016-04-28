@@ -6,7 +6,7 @@ This directory contains the code to create the json files:
 
 ## Installation
 
-To query the xref database and generate call graphs in json format, run the following code:
+To install the xref database and query it to generate call graphs in json format, execute the following commands:
 
 ```
 git clone https://github.com/stacktrack/stacktrack.github.com
@@ -28,3 +28,6 @@ INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_loa
 The json graphs can be rendered with the tree.html html code in the repository by adding adding a 'json=' url parameter. For example
 
 http://stacktrack.github.io/tree.html?json=sys_kexec_file_load_callees.json
+
+The javascript graph rendering is done in javascript so it can run locally.
+
