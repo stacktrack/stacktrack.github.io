@@ -13,6 +13,15 @@
 #
 # /mnt/t is a directory on the master which is mounted on the same location on the slave
 #
+
+try(){
+    "$@"
+    if [[ $? != 0 ]]; then
+        echo "Command failure: $@"
+        exit 1
+    fi
+}
+
 set -x
 
 SYSCALL=$1 # The syscall to be traced
@@ -29,14 +38,14 @@ fi
 
 echo "Starting trace of $SYSCALL"
 echo "Reverting snapshot"
-virsh snapshot-revert tvm "$SNAPSHOT"
+try virsh snapshot-revert tvm "$SNAPSHOT"
 
 GDBCMDS_MASTER=$(mktemp)
 GDBCMDS_SLAVE=$SHARE/gdbcmds-slave
 
 # Create master and slave gdb command files for the syscall being traced
-sed -e "s/_SYSCALL_/sys_$SYSCALL/g" gdbcmds > $GDBCMDS_MASTER
-sed -e "s/_SYSCALL_/$SYSCALL/g" gdbcmds-slave > $GDBCMDS_SLAVE
+try sed -e "s/_SYSCALL_/sys_$SYSCALL/g" gdbcmds > $GDBCMDS_MASTER
+try sed -e "s/_SYSCALL_/$SYSCALL/g" gdbcmds-slave > $GDBCMDS_SLAVE
 
 #
 echo "Start the kernel gdb session"
