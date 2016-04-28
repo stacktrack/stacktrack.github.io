@@ -69,7 +69,7 @@ INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_loa
             </p>
            <h2 id="Tracing">Tracing</h2>
             <p>
-            To trace execution we place breakpoints on the functions that are in the codepath of our interest. Every time a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next (the callees) and we place breakpoints on these functions as well. This process allows us to are able track the program flow.
+            To trace execution we place breakpoints on the functions that are in the codepath of our interest. Every time a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next (the callees) and we place breakpoints on these functions as well. This process allows us to track the program flow.
             <p>
             The tracing is implemented in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/breakpoint.py">breakpoint.py</a> python code which is called from within gdb.
             This trace flow is also saved in a <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph datastructure</a>.
@@ -289,67 +289,13 @@ class STBreakpoint(gdb.Breakpoint):
 
 <div id="syscall_list"></div>
 
+<script src="js/traces.js"></script>
+
 <script>
 function print_syscall(syscall){
     var link = " <span class=sc><a href=tree.html?json=sys_" + syscall[0] + "_callees.json&trace=" + syscall[1] + ">" + syscall[0] + "</a></span> ";
     document.getElementById("syscall_list").innerHTML += link;
 }
-
-var syscalls =[['chdir','chdir_trace.json'],  
-
-   ['acct', 'sys_acct_callees-trace.json'],
-   ['bpf', 'sys_bpf_callees-trace.json'],
-   ['chown', 'sys_chown_callees-trace.json'],
-   ['clone', 'sys_clone_callees-trace.json'],
-   ['delete_module', 'sys_delete_module_callees-trace.json'],
-   ['fchdir', 'sys_fchdir_callees-trace.json'],
-   ['flock', 'sys_flock_callees-trace.json'],
-   ['getgroups16', 'sys_getgroups16_callees-trace.json'],
-   ['getitimer', 'sys_getitimer_callees-trace.json'],
-   ['getpgrp', 'sys_getpgrp_callees-trace.json'],
-   ['getppid', 'sys_getppid_callees-trace.json'],
-   ['getpriority', 'sys_getpriority_callees-trace.json'],
-   ['getresgid16', 'sys_getresgid16_callees-trace.json'],
-   ['getuid16', 'sys_getuid16_callees-trace.json'],
-   ['init_module', 'sys_init_module_callees-trace.json'],
-   ['kcmp', 'sys_kcmp_callees-trace.json'],
-   ['kexec_file_load', 'sys_kexec_file_load_callees-trace.json'],
-   ['memfd_create', 'sys_memfd_create_callees-trace.json'],
-   ['mkdir', 'sys_mkdir_callees-trace.json'],
-   ['msync', 'sys_msync_callees-trace.json'],
-   ['munlockall', 'sys_munlockall_callees-trace.json'],
-   ['munmap', 'sys_munmap_callees-trace.json'],
-   ['olduname', 'sys_olduname_callees-trace.json'],
-   ['open', 'sys_open_callees-trace.json'],
-   ['pipe2', 'sys_pipe2_callees-trace.json'],
-   ['pipe', 'sys_pipe_callees-trace.json'],
-   ['poll', 'sys_poll_callees-trace.json'],
-   ['prlimit64', 'sys_prlimit64_callees-trace.json'],
-   ['process_vm_writev', 'sys_process_vm_writev_callees-trace.json'],
-   ['pwrite64', 'sys_pwrite64_callees-trace.json'],
-   ['readv', 'sys_readv_callees-trace.json'],
-   ['rt_sigaction', 'sys_rt_sigaction_callees-trace.json'],
-   ['rt_sigpending', 'sys_rt_sigpending_callees-trace.json'],
-   ['rt_sigprocmask', 'sys_rt_sigprocmask_callees-trace.json'],
-   ['rt_sigtimedwait', 'sys_rt_sigtimedwait_callees-trace.json'],
-   ['sched_setparam', 'sys_sched_setparam_callees-trace.json'],
-   ['sched_setscheduler', 'sys_sched_setscheduler_callees-trace.json'],
-   ['select', 'sys_select_callees-trace.json'],
-   ['setfsgid16', 'sys_setfsgid16_callees-trace.json'],
-   ['setgroups16', 'sys_setgroups16_callees-trace.json'],
-   ['setrlimit', 'sys_setrlimit_callees-trace.json'],
-   ['setsid', 'sys_setsid_callees-trace.json'],
-   ['ssetmask', 'sys_ssetmask_callees-trace.json'],
-   ['swapoff', 'sys_swapoff_callees-trace.json'],
-   ['symlink', 'sys_symlink_callees-trace.json'],
-   ['sysfs', 'sys_sysfs_callees-trace.json'],
-   ['sysinfo', 'sys_sysinfo_callees-trace.json'],
-   ['syslog', 'sys_syslog_callees-trace.json'],
-   ['times', 'sys_times_callees-trace.json'],
-   ['umount', 'sys_umount_callees-trace.json'],
-   ['wait4', 'sys_wait4_callees-trace.json'],
-   ['writev', 'sys_writev_callees-trace.json']];
-
 
 syscalls.forEach(print_syscall);
 </script>
