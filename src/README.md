@@ -2,7 +2,7 @@
 
 This directory contains the code to create the json files: 
 + call graphs are created with the Graph.py which queries the xref database
-+ traces are created with the trace.sh script 
++ traces are created with the trace.sh script. The tracing sets kernel breakpoints on the master. It then ssh's to the slave to execute the test program on the slave. 
 
 ## Installation
 
