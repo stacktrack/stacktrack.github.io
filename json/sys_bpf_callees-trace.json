@@ -1,118 +1,1374 @@
 {
+ "index": 2736,
+ "size": 1,
+ "name": "sys_bpf",
+ "label": "sys_bpf",
  "sourcefile": "",
+ "type": "original",
  "children": [
   {
-   "sourcefile": "",
-   "children": [
-    {
-     "sourcefile": "",
-     "children": [
-      {
-       "sourcefile": "",
-       "children": [],
-       "type": "original",
-       "label": "put_cpu_partial",
-       "name": "put_cpu_partial",
-       "size": 1
-      },
-      {
-       "sourcefile": "",
-       "children": [],
-       "type": "original",
-       "label": "cmpxchg_double_slab",
-       "name": "cmpxchg_double_slab",
-       "size": 1
-      },
-      {
-       "sourcefile": "",
-       "children": [],
-       "type": "original",
-       "label": "_raw_spin_lock_irqsave",
-       "name": "_raw_spin_lock_irqsave",
-       "size": 1
-      },
-      {
-       "sourcefile": "",
-       "children": [],
-       "type": "original",
-       "label": "_raw_spin_unlock_irqrestore",
-       "name": "_raw_spin_unlock_irqrestore",
-       "size": 1
-      }
-     ],
-     "type": "original",
-     "label": "__slab_free",
-     "name": "__slab_free",
-     "size": 1
-    }
-   ],
-   "type": "original",
-   "label": "kfree",
-   "name": "kfree",
-   "size": 1
-  },
-  {
-   "sourcefile": "",
-   "children": [],
-   "type": "original",
-   "label": "_copy_from_user",
-   "name": "_copy_from_user",
-   "size": 1
-  },
-  {
-   "sourcefile": "",
-   "children": [
-    {
-     "sourcefile": "",
-     "children": [
-      {
-       "sourcefile": "",
-       "children": [],
-       "type": "original",
-       "label": "security_capable",
-       "name": "security_capable",
-       "size": 1
-      }
-     ],
-     "type": "original",
-     "label": "ns_capable",
-     "name": "ns_capable",
-     "size": 1
-    }
-   ],
-   "type": "original",
-   "label": "capable",
+   "index": 2737,
+   "size": 1,
    "name": "capable",
-   "size": 1
-  },
-  {
+   "label": "capable",
    "sourcefile": "",
+   "type": "original",
    "children": [
     {
+     "index": 2738,
+     "size": 1,
+     "name": "ns_capable",
+     "label": "ns_capable",
      "sourcefile": "",
-     "children": [],
      "type": "original",
-     "label": "__fget_light",
-     "name": "__fget_light",
-     "size": 1
+     "children": [
+      {
+       "index": 2739,
+       "size": 1,
+       "name": "security_capable",
+       "label": "security_capable",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      }
+     ]
     }
-   ],
-   "type": "original",
-   "label": "__fdget",
-   "name": "__fdget",
-   "size": 1
+   ]
   },
   {
+   "index": 2740,
+   "size": 1,
+   "name": "__fdget",
+   "label": "__fdget",
    "sourcefile": "",
-   "children": [],
    "type": "original",
-   "label": "memchr_inv",
-   "name": "memchr_inv",
-   "size": 1
+   "children": [
+    {
+     "index": 2741,
+     "size": 1,
+     "name": "__fget_light",
+     "label": "__fget_light",
+     "sourcefile": "",
+     "type": "original",
+     "children": []
+    }
+   ]
+  },
+  {
+   "index": 2742,
+   "size": 1,
+   "name": "__kmalloc",
+   "label": "__kmalloc",
+   "sourcefile": "",
+   "type": "original",
+   "children": [
+    {
+     "index": 2809,
+     "size": 1,
+     "name": "memset",
+     "label": "memset",
+     "sourcefile": "",
+     "type": "original",
+     "children": []
+    },
+    {
+     "index": 2876,
+     "size": 1,
+     "name": "__slab_alloc",
+     "label": "__slab_alloc",
+     "sourcefile": "",
+     "type": "original",
+     "children": [
+      {
+       "index": 2879,
+       "size": 1,
+       "name": "__cpuset_node_allowed",
+       "label": "__cpuset_node_allowed",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      },
+      {
+       "index": 2878,
+       "size": 1,
+       "name": "next_zones_zonelist",
+       "label": "next_zones_zonelist",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      },
+      {
+       "index": 2877,
+       "size": 1,
+       "name": "__cmpxchg_double_slab",
+       "label": "__cmpxchg_double_slab",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      }
+     ]
+    },
+    {
+     "index": 2743,
+     "size": 1,
+     "name": "kmalloc_slab",
+     "label": "kmalloc_slab",
+     "sourcefile": "",
+     "type": "original",
+     "children": []
+    },
+    {
+     "index": 2744,
+     "size": 1,
+     "name": "_cond_resched",
+     "label": "_cond_resched",
+     "sourcefile": "",
+     "type": "original",
+     "children": [
+      {
+       "index": 2745,
+       "size": 1,
+       "name": "preempt_schedule_common",
+       "label": "preempt_schedule_common",
+       "sourcefile": "",
+       "type": "original",
+       "children": [
+        {
+         "index": 2746,
+         "size": 1,
+         "name": "__schedule",
+         "label": "__schedule",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2778,
+           "size": 1,
+           "name": "ttwu_do_wakeup",
+           "label": "ttwu_do_wakeup",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2779,
+             "size": 1,
+             "name": "check_preempt_curr",
+             "label": "check_preempt_curr",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2781,
+               "size": 1,
+               "name": "resched_curr",
+               "label": "resched_curr",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "index": 2757,
+           "size": 1,
+           "name": "__perf_event_task_sched_out",
+           "label": "__perf_event_task_sched_out",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2814,
+             "size": 1,
+             "name": "perf_cgroup_switch",
+             "label": "perf_cgroup_switch",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2772,
+             "size": 1,
+             "name": "perf_event_update_userpage",
+             "label": "perf_event_update_userpage",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2758,
+             "size": 1,
+             "name": "ctx_sched_out",
+             "label": "ctx_sched_out",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2763,
+               "size": 1,
+               "name": "perf_pmu_enable",
+               "label": "perf_pmu_enable",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              },
+              {
+               "index": 2760,
+               "size": 1,
+               "name": "perf_pmu_disable",
+               "label": "perf_pmu_disable",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              },
+              {
+               "index": 2761,
+               "size": 1,
+               "name": "group_sched_out",
+               "label": "group_sched_out",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2762,
+                 "size": 1,
+                 "name": "event_sched_out",
+                 "label": "event_sched_out",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "index": 2813,
+             "size": 1,
+             "name": "update_event_times",
+             "label": "update_event_times",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2759,
+             "size": 1,
+             "name": "local_clock",
+             "label": "local_clock",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            }
+           ]
+          },
+          {
+           "index": 2810,
+           "size": 1,
+           "name": "deactivate_task",
+           "label": "deactivate_task",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2811,
+             "size": 1,
+             "name": "dequeue_task",
+             "label": "dequeue_task",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            }
+           ]
+          },
+          {
+           "index": 2765,
+           "size": 1,
+           "name": "finish_task_switch",
+           "label": "finish_task_switch",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2766,
+             "size": 1,
+             "name": "__perf_event_task_sched_in",
+             "label": "__perf_event_task_sched_in",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2767,
+               "size": 1,
+               "name": "perf_event_context_sched_in",
+               "label": "perf_event_context_sched_in",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2773,
+                 "size": 1,
+                 "name": "perf_ctx_unlock",
+                 "label": "perf_ctx_unlock",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                },
+                {
+                 "index": 2768,
+                 "size": 1,
+                 "name": "perf_event_sched_in",
+                 "label": "perf_event_sched_in",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2769,
+                   "size": 1,
+                   "name": "ctx_sched_in",
+                   "label": "ctx_sched_in",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": [
+                    {
+                     "index": 2812,
+                     "size": 1,
+                     "name": "update_group_times",
+                     "label": "update_group_times",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": []
+                    },
+                    {
+                     "index": 2770,
+                     "size": 1,
+                     "name": "group_sched_in",
+                     "label": "group_sched_in",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": [
+                      {
+                       "index": 2771,
+                       "size": 1,
+                       "name": "event_sched_in",
+                       "label": "event_sched_in",
+                       "sourcefile": "",
+                       "type": "original",
+                       "children": []
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "index": 2799,
+             "size": 1,
+             "name": "__mmdrop",
+             "label": "__mmdrop",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2800,
+               "size": 1,
+               "name": "pgd_free",
+               "label": "pgd_free",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2801,
+                 "size": 1,
+                 "name": "free_pages",
+                 "label": "free_pages",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2802,
+                   "size": 1,
+                   "name": "__free_pages",
+                   "label": "__free_pages",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": [
+                    {
+                     "index": 2803,
+                     "size": 1,
+                     "name": "free_hot_cold_page",
+                     "label": "free_hot_cold_page",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": [
+                      {
+                       "index": 2805,
+                       "size": 1,
+                       "name": "get_pfnblock_flags_mask",
+                       "label": "get_pfnblock_flags_mask",
+                       "sourcefile": "",
+                       "type": "original",
+                       "children": []
+                      },
+                      {
+                       "index": 2804,
+                       "size": 1,
+                       "name": "free_pages_prepare",
+                       "label": "free_pages_prepare",
+                       "sourcefile": "",
+                       "type": "original",
+                       "children": []
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "index": 2808,
+               "size": 1,
+               "name": "kmem_cache_free",
+               "label": "kmem_cache_free",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              },
+              {
+               "index": 2806,
+               "size": 1,
+               "name": "destroy_context",
+               "label": "destroy_context",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2807,
+                 "size": 1,
+                 "name": "free_ldt_struct",
+                 "label": "free_ldt_struct",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "index": 2774,
+           "size": 1,
+           "name": "activate_task",
+           "label": "activate_task",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2775,
+             "size": 1,
+             "name": "enqueue_task",
+             "label": "enqueue_task",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            }
+           ]
+          },
+          {
+           "index": 2747,
+           "size": 1,
+           "name": "_raw_spin_lock",
+           "label": "_raw_spin_lock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2753,
+           "size": 1,
+           "name": "rcu_note_context_switch",
+           "label": "rcu_note_context_switch",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2776,
+           "size": 1,
+           "name": "wq_worker_waking_up",
+           "label": "wq_worker_waking_up",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2777,
+             "size": 1,
+             "name": "kthread_data",
+             "label": "kthread_data",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            }
+           ]
+          },
+          {
+           "index": 2780,
+           "size": 1,
+           "name": "ttwu_stat",
+           "label": "ttwu_stat",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2748,
+           "size": 1,
+           "name": "update_rq_clock",
+           "label": "update_rq_clock",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2749,
+             "size": 1,
+             "name": "sched_clock_cpu",
+             "label": "sched_clock_cpu",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2750,
+               "size": 1,
+               "name": "sched_clock",
+               "label": "sched_clock",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "index": 2754,
+           "size": 1,
+           "name": "___perf_sw_event",
+           "label": "___perf_sw_event",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2756,
+             "size": 1,
+             "name": "perf_swevent_event",
+             "label": "perf_swevent_event",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2755,
+             "size": 1,
+             "name": "perf_exclude_event",
+             "label": "perf_exclude_event",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            }
+           ]
+          },
+          {
+           "index": 2751,
+           "size": 1,
+           "name": "hrtimer_active",
+           "label": "hrtimer_active",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2764,
+           "size": 1,
+           "name": "__switch_to",
+           "label": "__switch_to",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2783,
+           "size": 1,
+           "name": "hrtimer_cancel",
+           "label": "hrtimer_cancel",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2784,
+             "size": 1,
+             "name": "hrtimer_try_to_cancel",
+             "label": "hrtimer_try_to_cancel",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2789,
+               "size": 1,
+               "name": "_raw_spin_unlock_irqrestore",
+               "label": "_raw_spin_unlock_irqrestore",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              },
+              {
+               "index": 2785,
+               "size": 1,
+               "name": "__remove_hrtimer",
+               "label": "__remove_hrtimer",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2786,
+                 "size": 1,
+                 "name": "timerqueue_del",
+                 "label": "timerqueue_del",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2787,
+                   "size": 1,
+                   "name": "rb_next",
+                   "label": "rb_next",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": []
+                  },
+                  {
+                   "index": 2788,
+                   "size": 1,
+                   "name": "rb_erase",
+                   "label": "rb_erase",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": []
+                  }
+                 ]
+                },
+                {
+                 "index": 2791,
+                 "size": 1,
+                 "name": "tick_program_event",
+                 "label": "tick_program_event",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2792,
+                   "size": 1,
+                   "name": "clockevents_program_event",
+                   "label": "clockevents_program_event",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": [
+                    {
+                     "index": 2793,
+                     "size": 1,
+                     "name": "ktime_get",
+                     "label": "ktime_get",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": []
+                    }
+                   ]
+                  }
+                 ]
+                },
+                {
+                 "index": 2790,
+                 "size": 1,
+                 "name": "__hrtimer_get_next_event",
+                 "label": "__hrtimer_get_next_event",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                }
+               ]
+              },
+              {
+               "index": 2873,
+               "size": 1,
+               "name": "lock_hrtimer_base",
+               "label": "lock_hrtimer_base",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "index": 2752,
+           "size": 1,
+           "name": "_raw_spin_lock_irq",
+           "label": "_raw_spin_lock_irq",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2815,
+           "size": 1,
+           "name": "_raw_spin_trylock",
+           "label": "_raw_spin_trylock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 2798,
+   "size": 1,
+   "name": "fput",
+   "label": "fput",
+   "sourcefile": "",
+   "type": "original",
+   "children": [
+    {
+     "index": 2816,
+     "size": 1,
+     "name": "task_work_add",
+     "label": "task_work_add",
+     "sourcefile": "",
+     "type": "original",
+     "children": [
+      {
+       "index": 2817,
+       "size": 1,
+       "name": "kick_process",
+       "label": "kick_process",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      }
+     ]
+    },
+    {
+     "index": 2818,
+     "size": 1,
+     "name": "____fput",
+     "label": "____fput",
+     "sourcefile": "",
+     "type": "original",
+     "children": [
+      {
+       "index": 2819,
+       "size": 1,
+       "name": "__fput",
+       "label": "__fput",
+       "sourcefile": "",
+       "type": "original",
+       "children": [
+        {
+         "index": 2825,
+         "size": 1,
+         "name": "module_put",
+         "label": "module_put",
+         "sourcefile": "",
+         "type": "original",
+         "children": []
+        },
+        {
+         "index": 2832,
+         "size": 1,
+         "name": "dput",
+         "label": "dput",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2834,
+           "size": 1,
+           "name": "__dentry_kill",
+           "label": "__dentry_kill",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2864,
+             "size": 1,
+             "name": "dentry_free",
+             "label": "dentry_free",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2836,
+             "size": 1,
+             "name": "__d_drop",
+             "label": "__d_drop",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2837,
+             "size": 1,
+             "name": "iput",
+             "label": "iput",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2839,
+               "size": 1,
+               "name": "evict",
+               "label": "evict",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2843,
+                 "size": 1,
+                 "name": "truncate_inode_pages_final",
+                 "label": "truncate_inode_pages_final",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                },
+                {
+                 "index": 2854,
+                 "size": 1,
+                 "name": "destroy_inode",
+                 "label": "destroy_inode",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2855,
+                   "size": 1,
+                   "name": "__destroy_inode",
+                   "label": "__destroy_inode",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": [
+                    {
+                     "index": 2856,
+                     "size": 1,
+                     "name": "inode_has_buffers",
+                     "label": "inode_has_buffers",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": []
+                    },
+                    {
+                     "index": 2862,
+                     "size": 1,
+                     "name": "locks_free_lock_context",
+                     "label": "locks_free_lock_context",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": []
+                    },
+                    {
+                     "index": 2857,
+                     "size": 1,
+                     "name": "security_inode_free",
+                     "label": "security_inode_free",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": [
+                      {
+                       "index": 2858,
+                       "size": 1,
+                       "name": "integrity_inode_free",
+                       "label": "integrity_inode_free",
+                       "sourcefile": "",
+                       "type": "original",
+                       "children": []
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                },
+                {
+                 "index": 2840,
+                 "size": 1,
+                 "name": "inode_wait_for_writeback",
+                 "label": "inode_wait_for_writeback",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2841,
+                   "size": 1,
+                   "name": "__inode_wait_for_writeback",
+                   "label": "__inode_wait_for_writeback",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": [
+                    {
+                     "index": 2842,
+                     "size": 1,
+                     "name": "bit_waitqueue",
+                     "label": "bit_waitqueue",
+                     "sourcefile": "",
+                     "type": "original",
+                     "children": []
+                    }
+                   ]
+                  }
+                 ]
+                },
+                {
+                 "index": 2844,
+                 "size": 1,
+                 "name": "clear_inode",
+                 "label": "clear_inode",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                },
+                {
+                 "index": 2845,
+                 "size": 1,
+                 "name": "wake_up_bit",
+                 "label": "wake_up_bit",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2853,
+                   "size": 1,
+                   "name": "__wake_up_bit",
+                   "label": "__wake_up_bit",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": []
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "index": 2838,
+               "size": 1,
+               "name": "_atomic_dec_and_lock",
+               "label": "_atomic_dec_and_lock",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              }
+             ]
+            },
+            {
+             "index": 2859,
+             "size": 1,
+             "name": "__fsnotify_inode_delete",
+             "label": "__fsnotify_inode_delete",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2860,
+               "size": 1,
+               "name": "fsnotify_clear_marks_by_inode",
+               "label": "fsnotify_clear_marks_by_inode",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2861,
+                 "size": 1,
+                 "name": "fsnotify_destroy_marks",
+                 "label": "fsnotify_destroy_marks",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "index": 2835,
+             "size": 1,
+             "name": "lockref_mark_dead",
+             "label": "lockref_mark_dead",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            }
+           ]
+          },
+          {
+           "index": 2833,
+           "size": 1,
+           "name": "lockref_put_or_lock",
+           "label": "lockref_put_or_lock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2866,
+           "size": 1,
+           "name": "lockref_put_return",
+           "label": "lockref_put_return",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        },
+        {
+         "index": 2826,
+         "size": 1,
+         "name": "put_pid",
+         "label": "put_pid",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2865,
+           "size": 1,
+           "name": "put_pid_ns",
+           "label": "put_pid_ns",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        },
+        {
+         "index": 2821,
+         "size": 1,
+         "name": "fsnotify",
+         "label": "fsnotify",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2872,
+           "size": 1,
+           "name": "__srcu_read_lock",
+           "label": "__srcu_read_lock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2875,
+           "size": 1,
+           "name": "__srcu_read_unlock",
+           "label": "__srcu_read_unlock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        },
+        {
+         "index": 2820,
+         "size": 1,
+         "name": "__fsnotify_parent",
+         "label": "__fsnotify_parent",
+         "sourcefile": "",
+         "type": "original",
+         "children": []
+        },
+        {
+         "index": 2828,
+         "size": 1,
+         "name": "call_rcu_sched",
+         "label": "call_rcu_sched",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2829,
+           "size": 1,
+           "name": "__call_rcu",
+           "label": "__call_rcu",
+           "sourcefile": "",
+           "type": "original",
+           "children": [
+            {
+             "index": 2850,
+             "size": 1,
+             "name": "rcu_gp_kthread_wake",
+             "label": "rcu_gp_kthread_wake",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2851,
+               "size": 1,
+               "name": "__wake_up",
+               "label": "__wake_up",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2852,
+                 "size": 1,
+                 "name": "__wake_up_common",
+                 "label": "__wake_up_common",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": []
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "index": 2849,
+             "size": 1,
+             "name": "note_gp_changes",
+             "label": "note_gp_changes",
+             "sourcefile": "",
+             "type": "original",
+             "children": []
+            },
+            {
+             "index": 2831,
+             "size": 1,
+             "name": "__call_rcu_nocb_enqueue",
+             "label": "__call_rcu_nocb_enqueue",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2863,
+               "size": 1,
+               "name": "wake_nocb_leader",
+               "label": "wake_nocb_leader",
+               "sourcefile": "",
+               "type": "original",
+               "children": []
+              }
+             ]
+            },
+            {
+             "index": 2830,
+             "size": 1,
+             "name": "raise_softirq",
+             "label": "raise_softirq",
+             "sourcefile": "",
+             "type": "original",
+             "children": [
+              {
+               "index": 2846,
+               "size": 1,
+               "name": "wake_up_process",
+               "label": "wake_up_process",
+               "sourcefile": "",
+               "type": "original",
+               "children": [
+                {
+                 "index": 2847,
+                 "size": 1,
+                 "name": "try_to_wake_up",
+                 "label": "try_to_wake_up",
+                 "sourcefile": "",
+                 "type": "original",
+                 "children": [
+                  {
+                   "index": 2870,
+                   "size": 1,
+                   "name": "set_task_cpu",
+                   "label": "set_task_cpu",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": []
+                  },
+                  {
+                   "index": 2848,
+                   "size": 1,
+                   "name": "ttwu_do_activate",
+                   "label": "ttwu_do_activate",
+                   "sourcefile": "",
+                   "type": "original",
+                   "children": []
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "index": 2823,
+         "size": 1,
+         "name": "ima_file_free",
+         "label": "ima_file_free",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2871,
+           "size": 1,
+           "name": "mutex_lock",
+           "label": "mutex_lock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          },
+          {
+           "index": 2874,
+           "size": 1,
+           "name": "mutex_unlock",
+           "label": "mutex_unlock",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        },
+        {
+         "index": 2824,
+         "size": 1,
+         "name": "security_file_free",
+         "label": "security_file_free",
+         "sourcefile": "",
+         "type": "original",
+         "children": []
+        },
+        {
+         "index": 2827,
+         "size": 1,
+         "name": "__percpu_counter_add",
+         "label": "__percpu_counter_add",
+         "sourcefile": "",
+         "type": "original",
+         "children": []
+        },
+        {
+         "index": 2867,
+         "size": 1,
+         "name": "mntput",
+         "label": "mntput",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2868,
+           "size": 1,
+           "name": "mntput_no_expire",
+           "label": "mntput_no_expire",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        },
+        {
+         "index": 2822,
+         "size": 1,
+         "name": "locks_remove_file",
+         "label": "locks_remove_file",
+         "sourcefile": "",
+         "type": "original",
+         "children": [
+          {
+           "index": 2880,
+           "size": 1,
+           "name": "locks_remove_posix",
+           "label": "locks_remove_posix",
+           "sourcefile": "",
+           "type": "original",
+           "children": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "index": 2869,
+   "size": 1,
+   "name": "memcpy",
+   "label": "memcpy",
+   "sourcefile": "",
+   "type": "original",
+   "children": []
+  },
+  {
+   "index": 2782,
+   "size": 1,
+   "name": "kfree",
+   "label": "kfree",
+   "sourcefile": "",
+   "type": "original",
+   "children": [
+    {
+     "index": 2794,
+     "size": 1,
+     "name": "__slab_free",
+     "label": "__slab_free",
+     "sourcefile": "",
+     "type": "original",
+     "children": [
+      {
+       "index": 2795,
+       "size": 1,
+       "name": "_raw_spin_lock_irqsave",
+       "label": "_raw_spin_lock_irqsave",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      },
+      {
+       "index": 2796,
+       "size": 1,
+       "name": "cmpxchg_double_slab",
+       "label": "cmpxchg_double_slab",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      },
+      {
+       "index": 2797,
+       "size": 1,
+       "name": "put_cpu_partial",
+       "label": "put_cpu_partial",
+       "sourcefile": "",
+       "type": "original",
+       "children": []
+      }
+     ]
+    }
+   ]
   }
- ],
- "type": "original",
- "label": "sys_bpf",
- "name": "sys_bpf",
- "size": 1
+ ]
 }
