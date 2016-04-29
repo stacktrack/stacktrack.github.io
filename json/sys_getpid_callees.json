@@ -1,31 +1,35 @@
 {
  "sourcefile": "",
- "type": "original",
- "size": 1,
  "name": "sys_getpid",
- "label": "sys_getpid",
+ "size": 1,
+ "index": 0,
+ "type": "original",
  "children": [
   {
    "sourcefile": "",
-   "type": "original",
-   "size": 1,
-   "name": "__fentry__",
-   "label": "__fentry__",
-   "children": []
-  },
-  {
-   "sourcefile": "",
-   "type": "original",
-   "size": 1,
    "name": "pid_vnr",
-   "label": "pid_vnr",
+   "size": 1,
+   "index": 1,
+   "type": "original",
    "children": [
     {
+     "sourcefile": "",
      "name": "__fentry__",
-     "type": "duplicate",
+     "size": 1,
+     "index": 2,
+     "type": "original",
+     "children": [],
      "label": "__fentry__"
     }
-   ]
+   ],
+   "label": "pid_vnr"
+  },
+  {
+   "name": "__fentry__",
+   "index": 2,
+   "type": "duplicate",
+   "label": "__fentry__"
   }
- ]
+ ],
+ "label": "sys_getpid"
 }

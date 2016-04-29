@@ -1,39 +1,44 @@
 {
- "size": 1,
+ "label": "sys_getresgid16",
  "sourcefile": "",
+ "type": "original",
+ "index": 0,
+ "size": 1,
  "children": [
   {
-   "size": 1,
-   "sourcefile": "",
-   "children": [],
-   "type": "original",
-   "label": "__fentry__",
-   "name": "__fentry__"
-  },
-  {
-   "size": 1,
-   "sourcefile": "",
-   "children": [],
-   "type": "original",
    "label": "__put_user_2",
+   "sourcefile": "",
+   "type": "original",
+   "index": 1,
+   "size": 1,
+   "children": [],
    "name": "__put_user_2"
   },
   {
-   "size": 1,
+   "label": "from_kgid_munged",
    "sourcefile": "",
+   "type": "original",
+   "index": 2,
+   "size": 1,
    "children": [
     {
-     "name": "__fentry__",
      "label": "__fentry__",
-     "type": "duplicate"
+     "sourcefile": "",
+     "type": "original",
+     "index": 3,
+     "size": 1,
+     "children": [],
+     "name": "__fentry__"
     }
    ],
-   "type": "original",
-   "label": "from_kgid_munged",
    "name": "from_kgid_munged"
+  },
+  {
+   "index": 3,
+   "label": "__fentry__",
+   "name": "__fentry__",
+   "type": "duplicate"
   }
  ],
- "type": "original",
- "label": "sys_getresgid16",
  "name": "sys_getresgid16"
 }

@@ -1,39 +1,44 @@
 {
- "name": "sys_getresuid",
- "label": "sys_getresuid",
- "size": 1,
  "type": "original",
- "sourcefile": "",
  "children": [
   {
-   "name": "from_kuid_munged",
-   "label": "from_kuid_munged",
-   "size": 1,
    "type": "original",
+   "children": [],
+   "size": 1,
+   "index": 1,
    "sourcefile": "",
-   "children": [
-    {
-     "name": "__fentry__",
-     "label": "__fentry__",
-     "size": 1,
-     "type": "original",
-     "sourcefile": "",
-     "children": []
-    }
-   ]
+   "name": "__put_user_4",
+   "label": "__put_user_4"
   },
   {
+   "type": "original",
+   "children": [],
+   "size": 1,
+   "index": 2,
+   "sourcefile": "",
    "name": "__fentry__",
-   "type": "duplicate",
    "label": "__fentry__"
   },
   {
-   "name": "__put_user_4",
-   "label": "__put_user_4",
-   "size": 1,
    "type": "original",
+   "children": [
+    {
+     "type": "duplicate",
+     "index": 2,
+     "name": "__fentry__",
+     "label": "__fentry__"
+    }
+   ],
+   "size": 1,
+   "index": 3,
    "sourcefile": "",
-   "children": []
+   "name": "from_kuid_munged",
+   "label": "from_kuid_munged"
   }
- ]
+ ],
+ "size": 1,
+ "index": 0,
+ "sourcefile": "",
+ "name": "sys_getresuid",
+ "label": "sys_getresuid"
 }

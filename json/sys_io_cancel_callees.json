@@ -1,72 +1,82 @@
 {
+ "size": 1,
  "label": "sys_io_cancel",
+ "name": "sys_io_cancel",
  "children": [
   {
-   "label": "__get_user_4",
-   "children": [],
    "size": 1,
-   "sourcefile": "",
-   "type": "original",
-   "name": "__get_user_4"
-  },
-  {
    "label": "kiocb_cancel",
+   "name": "kiocb_cancel",
    "children": [
     {
-     "label": "__fentry__",
-     "children": [],
      "size": 1,
-     "sourcefile": "",
+     "label": "__fentry__",
+     "name": "__fentry__",
+     "children": [],
+     "index": 3,
      "type": "original",
-     "name": "__fentry__"
+     "sourcefile": ""
     }
    ],
-   "size": 1,
-   "sourcefile": "",
+   "index": 1,
    "type": "original",
-   "name": "kiocb_cancel"
+   "sourcefile": ""
   },
   {
-   "label": "_raw_spin_lock_irq",
-   "children": [
-    {
-     "type": "duplicate",
-     "name": "__fentry__",
-     "label": "__fentry__"
-    }
-   ],
    "size": 1,
-   "sourcefile": "",
+   "label": "__get_user_4",
+   "name": "__get_user_4",
+   "children": [],
+   "index": 2,
    "type": "original",
-   "name": "_raw_spin_lock_irq"
+   "sourcefile": ""
   },
   {
    "type": "duplicate",
+   "label": "__fentry__",
    "name": "__fentry__",
-   "label": "__fentry__"
+   "index": 3
   },
   {
+   "size": 1,
    "label": "lookup_ioctx",
+   "name": "lookup_ioctx",
    "children": [
     {
      "type": "duplicate",
+     "label": "__get_user_4",
      "name": "__get_user_4",
-     "label": "__get_user_4"
+     "index": 2
     },
     {
      "type": "duplicate",
+     "label": "__fentry__",
      "name": "__fentry__",
-     "label": "__fentry__"
+     "index": 3
     }
    ],
-   "size": 1,
-   "sourcefile": "",
+   "index": 4,
    "type": "original",
-   "name": "lookup_ioctx"
+   "sourcefile": ""
+  },
+  {
+   "size": 1,
+   "label": "_raw_spin_lock_irq",
+   "name": "_raw_spin_lock_irq",
+   "children": [
+    {
+     "type": "duplicate",
+     "label": "__fentry__",
+     "name": "__fentry__",
+     "index": 3
+    }
+   ],
+   "index": 5,
+   "type": "original",
+   "sourcefile": ""
   }
  ],
- "size": 1,
- "sourcefile": "",
+ "index": 0,
  "type": "original",
- "name": "sys_io_cancel"
+ "sourcefile": ""
 }

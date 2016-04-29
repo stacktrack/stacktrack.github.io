@@ -1,39 +1,44 @@
 {
- "type": "original",
- "label": "sys_getgroups16",
- "name": "sys_getgroups16",
+ "index": 0,
  "size": 1,
+ "name": "sys_getgroups16",
  "sourcefile": "",
+ "label": "sys_getgroups16",
  "children": [
   {
-   "type": "original",
-   "label": "__put_user_2",
-   "name": "__put_user_2",
+   "index": 1,
    "size": 1,
+   "name": "__put_user_2",
    "sourcefile": "",
-   "children": []
+   "label": "__put_user_2",
+   "children": [],
+   "type": "original"
   },
   {
-   "type": "original",
-   "label": "from_kgid_munged",
-   "name": "from_kgid_munged",
+   "index": 2,
    "size": 1,
+   "name": "__fentry__",
    "sourcefile": "",
+   "label": "__fentry__",
+   "children": [],
+   "type": "original"
+  },
+  {
+   "index": 3,
+   "size": 1,
+   "name": "from_kgid_munged",
+   "sourcefile": "",
+   "label": "from_kgid_munged",
    "children": [
     {
-     "type": "original",
-     "label": "__fentry__",
      "name": "__fentry__",
-     "size": 1,
-     "sourcefile": "",
-     "children": []
+     "index": 2,
+     "label": "__fentry__",
+     "type": "duplicate"
     }
-   ]
-  },
-  {
-   "type": "duplicate",
-   "label": "__fentry__",
-   "name": "__fentry__"
+   ],
+   "type": "original"
   }
- ]
+ ],
+ "type": "original"
 }
