@@ -1,58 +1,113 @@
 {
+ "size": 1,
+ "sourcefile": "",
+ "label": "sys_nice",
+ "index": 2683,
  "type": "original",
  "name": "sys_nice",
- "label": "sys_nice",
- "sourcefile": "",
- "size": 1,
  "children": [
   {
-   "type": "original",
-   "name": "security_task_setnice",
-   "label": "security_task_setnice",
-   "sourcefile": "",
    "size": 1,
-   "children": []
-  },
-  {
+   "sourcefile": "",
+   "label": "set_user_nice",
+   "index": 2685,
    "type": "original",
    "name": "set_user_nice",
-   "label": "set_user_nice",
-   "sourcefile": "",
-   "size": 1,
    "children": [
     {
-     "type": "original",
-     "name": "_raw_spin_lock_irqsave",
-     "label": "_raw_spin_lock_irqsave",
-     "sourcefile": "",
      "size": 1,
-     "children": []
-    },
-    {
+     "sourcefile": "",
+     "label": "_raw_spin_unlock_irqrestore",
+     "index": 2688,
      "type": "original",
      "name": "_raw_spin_unlock_irqrestore",
-     "label": "_raw_spin_unlock_irqrestore",
-     "sourcefile": "",
-     "size": 1,
      "children": []
     },
     {
+     "size": 1,
+     "sourcefile": "",
+     "label": "dequeue_task",
+     "index": 2694,
+     "type": "original",
+     "name": "dequeue_task",
+     "children": []
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "label": "_raw_spin_lock_irqsave",
+     "index": 2687,
+     "type": "original",
+     "name": "_raw_spin_lock_irqsave",
+     "children": []
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "label": "_raw_spin_lock",
+     "index": 2686,
      "type": "original",
      "name": "_raw_spin_lock",
-     "label": "_raw_spin_lock",
-     "sourcefile": "",
-     "size": 1,
      "children": []
     },
     {
+     "size": 1,
+     "sourcefile": "",
+     "label": "enqueue_task",
+     "index": 2690,
+     "type": "original",
+     "name": "enqueue_task",
+     "children": [
+      {
+       "size": 1,
+       "sourcefile": "",
+       "label": "update_rq_clock",
+       "index": 2691,
+       "type": "original",
+       "name": "update_rq_clock",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "label": "sched_clock_cpu",
+         "index": 2692,
+         "type": "original",
+         "name": "sched_clock_cpu",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "label": "sched_clock",
+           "index": 2693,
+           "type": "original",
+           "name": "sched_clock",
+           "children": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "label": "resched_curr",
+     "index": 2689,
      "type": "original",
      "name": "resched_curr",
-     "label": "resched_curr",
-     "sourcefile": "",
-     "size": 1,
      "children": []
     }
    ]
+  },
+  {
+   "size": 1,
+   "sourcefile": "",
+   "label": "security_task_setnice",
+   "index": 2684,
+   "type": "original",
+   "name": "security_task_setnice",
+   "children": []
   }
  ]
 }
