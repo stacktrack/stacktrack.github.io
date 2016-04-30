@@ -1,17 +1,49 @@
 {
+ "size": 1,
  "label": "sys_keyctl",
  "type": "original",
+ "name": "sys_keyctl",
  "children": [
   {
-   "label": "keyctl_setperm_key",
+   "size": 1,
+   "label": "keyctl_keyring_unlink",
    "type": "original",
-   "children": [],
-   "name": "keyctl_setperm_key",
+   "name": "keyctl_keyring_unlink",
+   "children": [
+    {
+     "size": 1,
+     "label": "lookup_user_key",
+     "type": "original",
+     "name": "lookup_user_key",
+     "children": [
+      {
+       "size": 1,
+       "label": "key_lookup",
+       "type": "original",
+       "name": "key_lookup",
+       "children": [
+        {
+         "size": 1,
+         "label": "_raw_spin_lock",
+         "type": "original",
+         "name": "_raw_spin_lock",
+         "children": [],
+         "sourcefile": "",
+         "index": 2788
+        }
+       ],
+       "sourcefile": "",
+       "index": 2787
+      }
+     ],
+     "sourcefile": "",
+     "index": 2786
+    }
+   ],
    "sourcefile": "",
-   "size": 1
+   "index": 2785
   }
  ],
- "name": "sys_keyctl",
  "sourcefile": "",
- "size": 1
+ "index": 2784
 }
