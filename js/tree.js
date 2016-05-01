@@ -73,6 +73,7 @@ function node_to_dict(node) {
     gdict[node.name] = copy;
 }
 
+
 function init(x,y) {
     node_depth  = x;
     node_height = y;
@@ -125,6 +126,7 @@ function init(x,y) {
     });
 }
 
+
 function toggle_to(node,depth){
     if (depth <= 0 ){ 
         return;
@@ -140,11 +142,13 @@ function toggle_to(node,depth){
     });
 }
 
+
 function goto_node(node){
     w = window.innerWidth ;
     h = window.innerHeight / 2;
     window.scrollTo(node.y , node.x - h);
 }
+
 
 function resize(direction, pm) {
     size = tree.size();
@@ -159,6 +163,7 @@ function resize(direction, pm) {
     update(tree);
     goto_node(root);
 }
+
 
 // return path from root of tree to node
 function get_path(node){
@@ -178,6 +183,8 @@ function getParameterByName(name) {
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+
 function has_children(node) {
     original = gdict[node.label];
     if (original && original._children && original._children.length > 0) {
@@ -185,6 +192,7 @@ function has_children(node) {
     }
     return false;
 }
+
 
 function is_collapsed(node){
     if ( ! has_children(node) ){
@@ -194,6 +202,7 @@ function is_collapsed(node){
     return original.children ? false : true ;
 }
         
+
 // TODO : use css classes instead of hardcoded colors
 function node_color(node) {
     if (node.type == "duplicate" || node.type == "copy") {
@@ -211,6 +220,7 @@ function node_color(node) {
     }
     return "white";
 }
+
 
 // Check if a node is in the trace tree
 // TODO: optimize
@@ -237,6 +247,7 @@ function is_traced(node){
     return false;
 }
 
+
 // CSS class of traced links
 function get_link_class(link){
     pclass = "link";
@@ -245,6 +256,7 @@ function get_link_class(link){
     }
     return pclass;
 }
+
 
 // D3 update function
 function update(source) {
@@ -456,6 +468,8 @@ var opts = {
     top: 'auto', // Top position relative to parent in px
     left: 'auto' // Left position relative to parent in px
 };
+
+
 var spinner = new Spinner(opts).spin();
 $("#loading").append(spinner.el);
 ///////// End Spinner
