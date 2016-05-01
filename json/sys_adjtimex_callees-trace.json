@@ -1,0 +1,387 @@
+{
+ "name": "sys_adjtimex",
+ "sourcefile": "",
+ "label": "sys_adjtimex",
+ "size": 1,
+ "children": [
+  {
+   "name": "SYSC_adjtimex",
+   "sourcefile": "",
+   "label": "SYSC_adjtimex",
+   "size": 1,
+   "children": [
+    {
+     "name": "_copy_to_user",
+     "sourcefile": "",
+     "label": "_copy_to_user",
+     "size": 1,
+     "children": [],
+     "type": "original",
+     "index": 2720
+    },
+    {
+     "name": "_copy_from_user",
+     "sourcefile": "",
+     "label": "_copy_from_user",
+     "size": 1,
+     "children": [],
+     "type": "original",
+     "index": 2705
+    },
+    {
+     "name": "do_adjtimex",
+     "sourcefile": "",
+     "label": "do_adjtimex",
+     "size": 1,
+     "children": [
+      {
+       "name": "ntp_get_next_leap",
+       "sourcefile": "",
+       "label": "ntp_get_next_leap",
+       "size": 1,
+       "children": [],
+       "type": "original",
+       "index": 2710
+      },
+      {
+       "name": "_raw_spin_unlock_irqrestore",
+       "sourcefile": "",
+       "label": "_raw_spin_unlock_irqrestore",
+       "size": 1,
+       "children": [],
+       "type": "original",
+       "index": 2715
+      },
+      {
+       "name": "__do_adjtimex",
+       "sourcefile": "",
+       "label": "__do_adjtimex",
+       "size": 1,
+       "children": [
+        {
+         "name": "get_seconds",
+         "sourcefile": "",
+         "label": "get_seconds",
+         "size": 1,
+         "children": [],
+         "type": "original",
+         "index": 2721
+        }
+       ],
+       "type": "original",
+       "index": 2717
+      },
+      {
+       "name": "_raw_spin_lock_irqsave",
+       "sourcefile": "",
+       "label": "_raw_spin_lock_irqsave",
+       "size": 1,
+       "children": [],
+       "type": "original",
+       "index": 2708
+      },
+      {
+       "name": "timekeeping_update",
+       "sourcefile": "",
+       "label": "timekeeping_update",
+       "size": 1,
+       "children": [
+        {
+         "name": "raw_notifier_call_chain",
+         "sourcefile": "",
+         "label": "raw_notifier_call_chain",
+         "size": 1,
+         "children": [
+          {
+           "name": "notifier_call_chain",
+           "sourcefile": "",
+           "label": "notifier_call_chain",
+           "size": 1,
+           "children": [],
+           "type": "original",
+           "index": 2713
+          }
+         ],
+         "type": "original",
+         "index": 2712
+        },
+        {
+         "name": "update_vsyscall",
+         "sourcefile": "",
+         "label": "update_vsyscall",
+         "size": 1,
+         "children": [],
+         "type": "original",
+         "index": 2711
+        },
+        {
+         "name": "update_fast_timekeeper",
+         "sourcefile": "",
+         "label": "update_fast_timekeeper",
+         "size": 1,
+         "children": [],
+         "type": "original",
+         "index": 2714
+        }
+       ],
+       "type": "original",
+       "index": 2709
+      },
+      {
+       "name": "ntp_notify_cmos_timer",
+       "sourcefile": "",
+       "label": "ntp_notify_cmos_timer",
+       "size": 1,
+       "children": [
+        {
+         "name": "queue_delayed_work_on",
+         "sourcefile": "",
+         "label": "queue_delayed_work_on",
+         "size": 1,
+         "children": [
+          {
+           "name": "__queue_delayed_work",
+           "sourcefile": "",
+           "label": "__queue_delayed_work",
+           "size": 1,
+           "children": [
+            {
+             "name": "__queue_work",
+             "sourcefile": "",
+             "label": "__queue_work",
+             "size": 1,
+             "children": [
+              {
+               "name": "insert_work",
+               "sourcefile": "",
+               "label": "insert_work",
+               "size": 1,
+               "children": [
+                {
+                 "name": "get_pwq",
+                 "sourcefile": "",
+                 "label": "get_pwq",
+                 "size": 1,
+                 "children": [],
+                 "type": "original",
+                 "index": 2732
+                },
+                {
+                 "name": "wake_up_process",
+                 "sourcefile": "",
+                 "label": "wake_up_process",
+                 "size": 1,
+                 "children": [
+                  {
+                   "name": "try_to_wake_up",
+                   "sourcefile": "",
+                   "label": "try_to_wake_up",
+                   "size": 1,
+                   "children": [
+                    {
+                     "name": "sched_clock_cpu",
+                     "sourcefile": "",
+                     "label": "sched_clock_cpu",
+                     "size": 1,
+                     "children": [
+                      {
+                       "name": "sched_clock",
+                       "sourcefile": "",
+                       "label": "sched_clock",
+                       "size": 1,
+                       "children": [],
+                       "type": "original",
+                       "index": 2738
+                      }
+                     ],
+                     "type": "original",
+                     "index": 2737
+                    },
+                    {
+                     "name": "update_rq_clock",
+                     "sourcefile": "",
+                     "label": "update_rq_clock",
+                     "size": 1,
+                     "children": [],
+                     "type": "original",
+                     "index": 2736
+                    },
+                    {
+                     "name": "ttwu_stat",
+                     "sourcefile": "",
+                     "label": "ttwu_stat",
+                     "size": 1,
+                     "children": [],
+                     "type": "original",
+                     "index": 2742
+                    },
+                    {
+                     "name": "ttwu_do_wakeup",
+                     "sourcefile": "",
+                     "label": "ttwu_do_wakeup",
+                     "size": 1,
+                     "children": [
+                      {
+                       "name": "check_preempt_curr",
+                       "sourcefile": "",
+                       "label": "check_preempt_curr",
+                       "size": 1,
+                       "children": [
+                        {
+                         "name": "resched_curr",
+                         "sourcefile": "",
+                         "label": "resched_curr",
+                         "size": 1,
+                         "children": [],
+                         "type": "original",
+                         "index": 2743
+                        }
+                       ],
+                       "type": "original",
+                       "index": 2741
+                      }
+                     ],
+                     "type": "original",
+                     "index": 2740
+                    },
+                    {
+                     "name": "ttwu_do_activate",
+                     "sourcefile": "",
+                     "label": "ttwu_do_activate",
+                     "size": 1,
+                     "children": [],
+                     "type": "original",
+                     "index": 2735
+                    }
+                   ],
+                   "type": "original",
+                   "index": 2734
+                  }
+                 ],
+                 "type": "original",
+                 "index": 2733
+                }
+               ],
+               "type": "original",
+               "index": 2731
+              },
+              {
+               "name": "_raw_spin_lock",
+               "sourcefile": "",
+               "label": "_raw_spin_lock",
+               "size": 1,
+               "children": [],
+               "type": "original",
+               "index": 2730
+              },
+              {
+               "name": "get_work_pool",
+               "sourcefile": "",
+               "label": "get_work_pool",
+               "size": 1,
+               "children": [],
+               "type": "original",
+               "index": 2729
+              },
+              {
+               "name": "kthread_data",
+               "sourcefile": "",
+               "label": "kthread_data",
+               "size": 1,
+               "children": [],
+               "type": "original",
+               "index": 2739
+              }
+             ],
+             "type": "original",
+             "index": 2728
+            },
+            {
+             "name": "add_timer_on",
+             "sourcefile": "",
+             "label": "add_timer_on",
+             "size": 1,
+             "children": [
+              {
+               "name": "internal_add_timer",
+               "sourcefile": "",
+               "label": "internal_add_timer",
+               "size": 1,
+               "children": [
+                {
+                 "name": "wake_up_nohz_cpu",
+                 "sourcefile": "",
+                 "label": "wake_up_nohz_cpu",
+                 "size": 1,
+                 "children": [],
+                 "type": "original",
+                 "index": 2726
+                },
+                {
+                 "name": "__internal_add_timer",
+                 "sourcefile": "",
+                 "label": "__internal_add_timer",
+                 "size": 1,
+                 "children": [],
+                 "type": "original",
+                 "index": 2725
+                }
+               ],
+               "type": "original",
+               "index": 2724
+              }
+             ],
+             "type": "original",
+             "index": 2723
+            },
+            {
+             "name": "delayed_work_timer_fn",
+             "sourcefile": "",
+             "label": "delayed_work_timer_fn",
+             "size": 1,
+             "children": [],
+             "type": "original",
+             "index": 2727
+            }
+           ],
+           "type": "original",
+           "index": 2722
+          }
+         ],
+         "type": "original",
+         "index": 2719
+        }
+       ],
+       "type": "original",
+       "index": 2718
+      },
+      {
+       "name": "__getnstimeofday64",
+       "sourcefile": "",
+       "label": "__getnstimeofday64",
+       "size": 1,
+       "children": [],
+       "type": "original",
+       "index": 2716
+      },
+      {
+       "name": "ntp_validate_timex",
+       "sourcefile": "",
+       "label": "ntp_validate_timex",
+       "size": 1,
+       "children": [],
+       "type": "original",
+       "index": 2707
+      }
+     ],
+     "type": "original",
+     "index": 2706
+    }
+   ],
+   "type": "original",
+   "index": 2704
+  }
+ ],
+ "type": "original",
+ "index": 2703
+}

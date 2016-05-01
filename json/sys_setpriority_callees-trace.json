@@ -1,0 +1,257 @@
+{
+ "index": 2686,
+ "children": [
+  {
+   "index": 2694,
+   "children": [],
+   "sourcefile": "",
+   "type": "original",
+   "label": "_raw_read_lock",
+   "name": "_raw_read_lock",
+   "size": 1
+  },
+  {
+   "index": 2687,
+   "children": [
+    {
+     "index": 2688,
+     "children": [
+      {
+       "index": 2690,
+       "children": [],
+       "sourcefile": "",
+       "type": "original",
+       "label": "_raw_spin_lock",
+       "name": "_raw_spin_lock",
+       "size": 1
+      }
+     ],
+     "sourcefile": "",
+     "type": "original",
+     "label": "_atomic_dec_and_lock",
+     "name": "_atomic_dec_and_lock",
+     "size": 1
+    },
+    {
+     "index": 2691,
+     "children": [],
+     "sourcefile": "",
+     "type": "original",
+     "label": "_raw_spin_unlock_irqrestore",
+     "name": "_raw_spin_unlock_irqrestore",
+     "size": 1
+    },
+    {
+     "index": 2689,
+     "children": [
+      {
+       "index": 2695,
+       "children": [
+        {
+         "index": 2698,
+         "children": [],
+         "sourcefile": "",
+         "type": "original",
+         "label": "put_cpu_partial",
+         "name": "put_cpu_partial",
+         "size": 1
+        },
+        {
+         "index": 2697,
+         "children": [],
+         "sourcefile": "",
+         "type": "original",
+         "label": "_raw_spin_lock_irqsave",
+         "name": "_raw_spin_lock_irqsave",
+         "size": 1
+        },
+        {
+         "index": 2696,
+         "children": [],
+         "sourcefile": "",
+         "type": "original",
+         "label": "cmpxchg_double_slab",
+         "name": "cmpxchg_double_slab",
+         "size": 1
+        },
+        {
+         "index": 2699,
+         "children": [
+          {
+           "index": 2700,
+           "children": [
+            {
+             "index": 2701,
+             "children": [],
+             "sourcefile": "",
+             "type": "original",
+             "label": "mod_zone_page_state",
+             "name": "mod_zone_page_state",
+             "size": 1
+            },
+            {
+             "index": 2702,
+             "children": [
+              {
+               "index": 2703,
+               "children": [
+                {
+                 "index": 2704,
+                 "children": [],
+                 "sourcefile": "",
+                 "type": "original",
+                 "label": "free_pages_prepare",
+                 "name": "free_pages_prepare",
+                 "size": 1
+                },
+                {
+                 "index": 2705,
+                 "children": [],
+                 "sourcefile": "",
+                 "type": "original",
+                 "label": "get_pfnblock_flags_mask",
+                 "name": "get_pfnblock_flags_mask",
+                 "size": 1
+                },
+                {
+                 "index": 2706,
+                 "children": [
+                  {
+                   "index": 2707,
+                   "children": [],
+                   "sourcefile": "",
+                   "type": "original",
+                   "label": "__mod_zone_page_state",
+                   "name": "__mod_zone_page_state",
+                   "size": 1
+                  }
+                 ],
+                 "sourcefile": "",
+                 "type": "original",
+                 "label": "free_one_page",
+                 "name": "free_one_page",
+                 "size": 1
+                }
+               ],
+               "sourcefile": "",
+               "type": "original",
+               "label": "__free_pages_ok",
+               "name": "__free_pages_ok",
+               "size": 1
+              }
+             ],
+             "sourcefile": "",
+             "type": "original",
+             "label": "__free_pages",
+             "name": "__free_pages",
+             "size": 1
+            }
+           ],
+           "sourcefile": "",
+           "type": "original",
+           "label": "__free_slab",
+           "name": "__free_slab",
+           "size": 1
+          },
+          {
+           "index": 2708,
+           "children": [
+            {
+             "index": 2709,
+             "children": [
+              {
+               "index": 2710,
+               "children": [],
+               "sourcefile": "",
+               "type": "original",
+               "label": "raise_softirq",
+               "name": "raise_softirq",
+               "size": 1
+              },
+              {
+               "index": 2711,
+               "children": [
+                {
+                 "index": 2712,
+                 "children": [],
+                 "sourcefile": "",
+                 "type": "original",
+                 "label": "wake_nocb_leader",
+                 "name": "wake_nocb_leader",
+                 "size": 1
+                }
+               ],
+               "sourcefile": "",
+               "type": "original",
+               "label": "__call_rcu_nocb_enqueue",
+               "name": "__call_rcu_nocb_enqueue",
+               "size": 1
+              }
+             ],
+             "sourcefile": "",
+             "type": "original",
+             "label": "__call_rcu",
+             "name": "__call_rcu",
+             "size": 1
+            }
+           ],
+           "sourcefile": "",
+           "type": "original",
+           "label": "call_rcu_sched",
+           "name": "call_rcu_sched",
+           "size": 1
+          }
+         ],
+         "sourcefile": "",
+         "type": "original",
+         "label": "discard_slab",
+         "name": "discard_slab",
+         "size": 1
+        }
+       ],
+       "sourcefile": "",
+       "type": "original",
+       "label": "__slab_free",
+       "name": "__slab_free",
+       "size": 1
+      }
+     ],
+     "sourcefile": "",
+     "type": "original",
+     "label": "kmem_cache_free",
+     "name": "kmem_cache_free",
+     "size": 1
+    }
+   ],
+   "sourcefile": "",
+   "type": "original",
+   "label": "free_uid",
+   "name": "free_uid",
+   "size": 1
+  },
+  {
+   "index": 2692,
+   "children": [
+    {
+     "index": 2693,
+     "children": [],
+     "sourcefile": "",
+     "type": "original",
+     "label": "find_pid_ns",
+     "name": "find_pid_ns",
+     "size": 1
+    }
+   ],
+   "sourcefile": "",
+   "type": "original",
+   "label": "find_vpid",
+   "name": "find_vpid",
+   "size": 1
+  }
+ ],
+ "sourcefile": "",
+ "type": "original",
+ "label": "sys_setpriority",
+ "name": "sys_setpriority",
+ "size": 1
+}

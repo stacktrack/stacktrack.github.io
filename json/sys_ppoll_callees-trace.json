@@ -1,0 +1,47 @@
+{
+ "type": "original",
+ "sourcefile": "",
+ "index": 2699,
+ "label": "sys_ppoll",
+ "children": [
+  {
+   "type": "original",
+   "sourcefile": "",
+   "index": 2700,
+   "label": "_copy_from_user",
+   "children": [],
+   "name": "_copy_from_user",
+   "size": 1
+  },
+  {
+   "type": "original",
+   "sourcefile": "",
+   "index": 2701,
+   "label": "poll_select_set_timeout",
+   "children": [
+    {
+     "type": "original",
+     "sourcefile": "",
+     "index": 2702,
+     "label": "ktime_get_ts64",
+     "children": [],
+     "name": "ktime_get_ts64",
+     "size": 1
+    },
+    {
+     "type": "original",
+     "sourcefile": "",
+     "index": 2703,
+     "label": "timespec_add_safe",
+     "children": [],
+     "name": "timespec_add_safe",
+     "size": 1
+    }
+   ],
+   "name": "poll_select_set_timeout",
+   "size": 1
+  }
+ ],
+ "name": "sys_ppoll",
+ "size": 1
+}
