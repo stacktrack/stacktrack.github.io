@@ -1,0 +1,96 @@
+{
+ "name": "sys_sendto",
+ "label": "sys_sendto",
+ "type": "original",
+ "size": 1,
+ "children": [
+  {
+   "name": "SYSC_sendto",
+   "label": "SYSC_sendto",
+   "type": "original",
+   "size": 1,
+   "children": [
+    {
+     "name": "import_single_range",
+     "label": "import_single_range",
+     "type": "original",
+     "size": 1,
+     "children": [],
+     "sourcefile": "",
+     "index": 2693
+    },
+    {
+     "name": "sockfd_lookup_light",
+     "label": "sockfd_lookup_light",
+     "type": "original",
+     "size": 1,
+     "children": [
+      {
+       "name": "__fdget",
+       "label": "__fdget",
+       "type": "original",
+       "size": 1,
+       "children": [
+        {
+         "name": "__fget_light",
+         "label": "__fget_light",
+         "type": "original",
+         "size": 1,
+         "children": [],
+         "sourcefile": "",
+         "index": 2696
+        }
+       ],
+       "sourcefile": "",
+       "index": 2695
+      }
+     ],
+     "sourcefile": "",
+     "index": 2694
+    },
+    {
+     "name": "sock_sendmsg",
+     "label": "sock_sendmsg",
+     "type": "original",
+     "size": 1,
+     "children": [
+      {
+       "name": "security_socket_sendmsg",
+       "label": "security_socket_sendmsg",
+       "type": "original",
+       "size": 1,
+       "children": [],
+       "sourcefile": "",
+       "index": 2700
+      }
+     ],
+     "sourcefile": "",
+     "index": 2699
+    },
+    {
+     "name": "move_addr_to_kernel",
+     "label": "move_addr_to_kernel",
+     "type": "original",
+     "size": 1,
+     "children": [
+      {
+       "name": "_copy_from_user",
+       "label": "_copy_from_user",
+       "type": "original",
+       "size": 1,
+       "children": [],
+       "sourcefile": "",
+       "index": 2698
+      }
+     ],
+     "sourcefile": "",
+     "index": 2697
+    }
+   ],
+   "sourcefile": "",
+   "index": 2692
+  }
+ ],
+ "sourcefile": "",
+ "index": 2691
+}

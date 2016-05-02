@@ -1,0 +1,1535 @@
+{
+ "size": 1,
+ "sourcefile": "",
+ "name": "sys_fchown16",
+ "children": [
+  {
+   "size": 1,
+   "sourcefile": "",
+   "name": "SyS_fchown",
+   "children": [
+    {
+     "size": 1,
+     "sourcefile": "",
+     "name": "mnt_drop_write_file",
+     "children": [],
+     "type": "original",
+     "label": "mnt_drop_write_file"
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "name": "__fdget",
+     "children": [
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "__fget_light",
+       "children": [],
+       "type": "original",
+       "label": "__fget_light"
+      }
+     ],
+     "type": "original",
+     "label": "__fdget"
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "name": "mnt_want_write_file",
+     "children": [
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "__mnt_want_write_file",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__mnt_is_readonly",
+         "children": [],
+         "type": "original",
+         "label": "__mnt_is_readonly"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__mnt_want_write",
+         "children": [],
+         "type": "original",
+         "label": "__mnt_want_write"
+        }
+       ],
+       "type": "original",
+       "label": "__mnt_want_write_file"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "__sb_start_write",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "finish_wait",
+         "children": [],
+         "type": "original",
+         "label": "finish_wait"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "prepare_to_wait_event",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "autoremove_wake_function",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "default_wake_function",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "try_to_wake_up",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "ttwu_do_activate",
+                 "children": [],
+                 "type": "original",
+                 "label": "ttwu_do_activate"
+                }
+               ],
+               "type": "original",
+               "label": "try_to_wake_up"
+              }
+             ],
+             "type": "original",
+             "label": "default_wake_function"
+            }
+           ],
+           "type": "original",
+           "label": "autoremove_wake_function"
+          }
+         ],
+         "type": "original",
+         "label": "prepare_to_wait_event"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__percpu_counter_add",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "_raw_spin_lock_irqsave",
+           "children": [],
+           "type": "original",
+           "label": "_raw_spin_lock_irqsave"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "_raw_spin_unlock_irqrestore",
+           "children": [],
+           "type": "original",
+           "label": "_raw_spin_unlock_irqrestore"
+          }
+         ],
+         "type": "original",
+         "label": "__percpu_counter_add"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "_cond_resched",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "preempt_schedule_common",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "__schedule",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "finish_task_switch",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "kprobe_flush_task",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "kfree",
+                   "children": [],
+                   "type": "original",
+                   "label": "kfree"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "kprobe_flush_task"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "__mmdrop",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "kmem_cache_free",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "__slab_free",
+                     "children": [
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "put_cpu_partial",
+                       "children": [
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "unfreeze_partials",
+                         "children": [],
+                         "type": "original",
+                         "label": "unfreeze_partials"
+                        }
+                       ],
+                       "type": "original",
+                       "label": "put_cpu_partial"
+                      },
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "cmpxchg_double_slab",
+                       "children": [],
+                       "type": "original",
+                       "label": "cmpxchg_double_slab"
+                      },
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "discard_slab",
+                       "children": [
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "__free_slab",
+                         "children": [
+                          {
+                           "size": 1,
+                           "sourcefile": "",
+                           "name": "mod_zone_page_state",
+                           "children": [],
+                           "type": "original",
+                           "label": "mod_zone_page_state"
+                          }
+                         ],
+                         "type": "original",
+                         "label": "__free_slab"
+                        }
+                       ],
+                       "type": "original",
+                       "label": "discard_slab"
+                      }
+                     ],
+                     "type": "original",
+                     "label": "__slab_free"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "kmem_cache_free"
+                  },
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "destroy_context",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "free_ldt_struct",
+                     "children": [],
+                     "type": "original",
+                     "label": "free_ldt_struct"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "destroy_context"
+                  },
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "pgd_free",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "free_pages",
+                     "children": [
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "__free_pages",
+                       "children": [
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "free_hot_cold_page",
+                         "children": [
+                          {
+                           "size": 1,
+                           "sourcefile": "",
+                           "name": "free_pages_prepare",
+                           "children": [],
+                           "type": "original",
+                           "label": "free_pages_prepare"
+                          },
+                          {
+                           "size": 1,
+                           "sourcefile": "",
+                           "name": "get_pfnblock_flags_mask",
+                           "children": [],
+                           "type": "original",
+                           "label": "get_pfnblock_flags_mask"
+                          },
+                          {
+                           "size": 1,
+                           "sourcefile": "",
+                           "name": "free_one_page",
+                           "children": [],
+                           "type": "original",
+                           "label": "free_one_page"
+                          },
+                          {
+                           "size": 1,
+                           "sourcefile": "",
+                           "name": "free_pcppages_bulk",
+                           "children": [
+                            {
+                             "size": 1,
+                             "sourcefile": "",
+                             "name": "__mod_zone_page_state",
+                             "children": [],
+                             "type": "original",
+                             "label": "__mod_zone_page_state"
+                            }
+                           ],
+                           "type": "original",
+                           "label": "free_pcppages_bulk"
+                          }
+                         ],
+                         "type": "original",
+                         "label": "free_hot_cold_page"
+                        },
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "__free_pages_ok",
+                         "children": [],
+                         "type": "original",
+                         "label": "__free_pages_ok"
+                        }
+                       ],
+                       "type": "original",
+                       "label": "__free_pages"
+                      }
+                     ],
+                     "type": "original",
+                     "label": "free_pages"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "pgd_free"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "__mmdrop"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "__perf_event_task_sched_in",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "perf_event_context_sched_in",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "perf_event_sched_in",
+                     "children": [
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "ctx_sched_in",
+                       "children": [
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "group_sched_in",
+                         "children": [
+                          {
+                           "size": 1,
+                           "sourcefile": "",
+                           "name": "event_sched_in",
+                           "children": [],
+                           "type": "original",
+                           "label": "event_sched_in"
+                          }
+                         ],
+                         "type": "original",
+                         "label": "group_sched_in"
+                        },
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "update_group_times",
+                         "children": [],
+                         "type": "original",
+                         "label": "update_group_times"
+                        }
+                       ],
+                       "type": "original",
+                       "label": "ctx_sched_in"
+                      }
+                     ],
+                     "type": "original",
+                     "label": "perf_event_sched_in"
+                    },
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "perf_ctx_unlock",
+                     "children": [],
+                     "type": "original",
+                     "label": "perf_ctx_unlock"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "perf_event_context_sched_in"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "__perf_event_task_sched_in"
+                }
+               ],
+               "type": "original",
+               "label": "finish_task_switch"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "hrtimer_cancel",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "hrtimer_try_to_cancel",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "__remove_hrtimer",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "tick_program_event",
+                     "children": [
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "clockevents_program_event",
+                       "children": [
+                        {
+                         "size": 1,
+                         "sourcefile": "",
+                         "name": "ktime_get",
+                         "children": [],
+                         "type": "original",
+                         "label": "ktime_get"
+                        }
+                       ],
+                       "type": "original",
+                       "label": "clockevents_program_event"
+                      }
+                     ],
+                     "type": "original",
+                     "label": "tick_program_event"
+                    },
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "__hrtimer_get_next_event",
+                     "children": [],
+                     "type": "original",
+                     "label": "__hrtimer_get_next_event"
+                    },
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "timerqueue_del",
+                     "children": [
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "rb_erase",
+                       "children": [],
+                       "type": "original",
+                       "label": "rb_erase"
+                      },
+                      {
+                       "size": 1,
+                       "sourcefile": "",
+                       "name": "rb_next",
+                       "children": [],
+                       "type": "original",
+                       "label": "rb_next"
+                      }
+                     ],
+                     "type": "original",
+                     "label": "timerqueue_del"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "__remove_hrtimer"
+                  },
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "lock_hrtimer_base",
+                   "children": [],
+                   "type": "original",
+                   "label": "lock_hrtimer_base"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "hrtimer_try_to_cancel"
+                }
+               ],
+               "type": "original",
+               "label": "hrtimer_cancel"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "ttwu_stat",
+               "children": [],
+               "type": "original",
+               "label": "ttwu_stat"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "deactivate_task",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "dequeue_task",
+                 "children": [],
+                 "type": "original",
+                 "label": "dequeue_task"
+                }
+               ],
+               "type": "original",
+               "label": "deactivate_task"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "rcu_note_context_switch",
+               "children": [],
+               "type": "original",
+               "label": "rcu_note_context_switch"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "ttwu_do_wakeup",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "check_preempt_curr",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "resched_curr",
+                   "children": [],
+                   "type": "original",
+                   "label": "resched_curr"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "check_preempt_curr"
+                }
+               ],
+               "type": "original",
+               "label": "ttwu_do_wakeup"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "__perf_event_task_sched_out",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "perf_cgroup_switch",
+                 "children": [],
+                 "type": "original",
+                 "label": "perf_cgroup_switch"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "update_event_times",
+                 "children": [],
+                 "type": "original",
+                 "label": "update_event_times"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "perf_event_update_userpage",
+                 "children": [],
+                 "type": "original",
+                 "label": "perf_event_update_userpage"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "local_clock",
+                 "children": [],
+                 "type": "original",
+                 "label": "local_clock"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "ctx_sched_out",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "perf_pmu_enable",
+                   "children": [],
+                   "type": "original",
+                   "label": "perf_pmu_enable"
+                  },
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "perf_pmu_disable",
+                   "children": [],
+                   "type": "original",
+                   "label": "perf_pmu_disable"
+                  },
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "group_sched_out",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "event_sched_out",
+                     "children": [],
+                     "type": "original",
+                     "label": "event_sched_out"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "group_sched_out"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "ctx_sched_out"
+                }
+               ],
+               "type": "original",
+               "label": "__perf_event_task_sched_out"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "_raw_spin_lock_irq",
+               "children": [],
+               "type": "original",
+               "label": "_raw_spin_lock_irq"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "_raw_spin_trylock",
+               "children": [],
+               "type": "original",
+               "label": "_raw_spin_trylock"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "update_rq_clock",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "sched_clock_cpu",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "sched_clock",
+                   "children": [],
+                   "type": "original",
+                   "label": "sched_clock"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "sched_clock_cpu"
+                }
+               ],
+               "type": "original",
+               "label": "update_rq_clock"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "hrtimer_active",
+               "children": [],
+               "type": "original",
+               "label": "hrtimer_active"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "___perf_sw_event",
+               "children": [],
+               "type": "original",
+               "label": "___perf_sw_event"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "activate_task",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "enqueue_task",
+                 "children": [],
+                 "type": "original",
+                 "label": "enqueue_task"
+                }
+               ],
+               "type": "original",
+               "label": "activate_task"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "_raw_spin_lock",
+               "children": [],
+               "type": "original",
+               "label": "_raw_spin_lock"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "__switch_to",
+               "children": [],
+               "type": "original",
+               "label": "__switch_to"
+              }
+             ],
+             "type": "original",
+             "label": "__schedule"
+            }
+           ],
+           "type": "original",
+           "label": "preempt_schedule_common"
+          }
+         ],
+         "type": "original",
+         "label": "_cond_resched"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "schedule",
+         "children": [],
+         "type": "original",
+         "label": "schedule"
+        }
+       ],
+       "type": "original",
+       "label": "__sb_start_write"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "__sb_end_write",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__wake_up",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "__wake_up_common",
+           "children": [],
+           "type": "original",
+           "label": "__wake_up_common"
+          }
+         ],
+         "type": "original",
+         "label": "__wake_up"
+        }
+       ],
+       "type": "original",
+       "label": "__sb_end_write"
+      }
+     ],
+     "type": "original",
+     "label": "mnt_want_write_file"
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "name": "chown_common",
+     "children": [
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "security_path_chown",
+       "children": [],
+       "type": "original",
+       "label": "security_path_chown"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "notify_change",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "security_inode_setattr",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "evm_inode_setattr",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "evm_verify_current_integrity",
+             "children": [],
+             "type": "original",
+             "label": "evm_verify_current_integrity"
+            }
+           ],
+           "type": "original",
+           "label": "evm_inode_setattr"
+          }
+         ],
+         "type": "original",
+         "label": "security_inode_setattr"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "ima_inode_post_setattr",
+         "children": [],
+         "type": "original",
+         "label": "ima_inode_post_setattr"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "current_fs_time",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "current_kernel_time",
+           "children": [],
+           "type": "original",
+           "label": "current_kernel_time"
+          }
+         ],
+         "type": "original",
+         "label": "current_fs_time"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "evm_inode_post_setattr",
+         "children": [],
+         "type": "original",
+         "label": "evm_inode_post_setattr"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "fsnotify",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "__srcu_read_unlock",
+           "children": [],
+           "type": "original",
+           "label": "__srcu_read_unlock"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "__srcu_read_lock",
+           "children": [],
+           "type": "original",
+           "label": "__srcu_read_lock"
+          }
+         ],
+         "type": "original",
+         "label": "fsnotify"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__fsnotify_parent",
+         "children": [],
+         "type": "original",
+         "label": "__fsnotify_parent"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "security_inode_need_killpriv",
+         "children": [],
+         "type": "original",
+         "label": "security_inode_need_killpriv"
+        }
+       ],
+       "type": "original",
+       "label": "notify_change"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "mutex_lock",
+       "children": [],
+       "type": "original",
+       "label": "mutex_lock"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "make_kuid",
+       "children": [],
+       "type": "original",
+       "label": "make_kuid"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "make_kgid",
+       "children": [],
+       "type": "original",
+       "label": "make_kgid"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "mutex_unlock",
+       "children": [],
+       "type": "original",
+       "label": "mutex_unlock"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "iput",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "evict",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "truncate_inode_pages_final",
+           "children": [],
+           "type": "original",
+           "label": "truncate_inode_pages_final"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "wake_up_bit",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "__wake_up_bit",
+             "children": [],
+             "type": "original",
+             "label": "__wake_up_bit"
+            }
+           ],
+           "type": "original",
+           "label": "wake_up_bit"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "clear_inode",
+           "children": [],
+           "type": "original",
+           "label": "clear_inode"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "inode_wait_for_writeback",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "__inode_wait_for_writeback",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "bit_waitqueue",
+               "children": [],
+               "type": "original",
+               "label": "bit_waitqueue"
+              }
+             ],
+             "type": "original",
+             "label": "__inode_wait_for_writeback"
+            }
+           ],
+           "type": "original",
+           "label": "inode_wait_for_writeback"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "destroy_inode",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "__destroy_inode",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "__fsnotify_inode_delete",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "fsnotify_clear_marks_by_inode",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "fsnotify_destroy_marks",
+                   "children": [
+                    {
+                     "size": 1,
+                     "sourcefile": "",
+                     "name": "fsnotify_put_group",
+                     "children": [],
+                     "type": "original",
+                     "label": "fsnotify_put_group"
+                    }
+                   ],
+                   "type": "original",
+                   "label": "fsnotify_destroy_marks"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "fsnotify_clear_marks_by_inode"
+                }
+               ],
+               "type": "original",
+               "label": "__fsnotify_inode_delete"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "inode_has_buffers",
+               "children": [],
+               "type": "original",
+               "label": "inode_has_buffers"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "locks_free_lock_context",
+               "children": [],
+               "type": "original",
+               "label": "locks_free_lock_context"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "kfree_call_rcu",
+               "children": [],
+               "type": "original",
+               "label": "kfree_call_rcu"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "security_inode_free",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "integrity_inode_free",
+                 "children": [],
+                 "type": "original",
+                 "label": "integrity_inode_free"
+                }
+               ],
+               "type": "original",
+               "label": "security_inode_free"
+              }
+             ],
+             "type": "original",
+             "label": "__destroy_inode"
+            },
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "call_rcu_sched",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "__call_rcu",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "raise_softirq",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "wake_up_process",
+                   "children": [],
+                   "type": "original",
+                   "label": "wake_up_process"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "raise_softirq"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "note_gp_changes",
+                 "children": [],
+                 "type": "original",
+                 "label": "note_gp_changes"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "__call_rcu_nocb_enqueue",
+                 "children": [
+                  {
+                   "size": 1,
+                   "sourcefile": "",
+                   "name": "wake_nocb_leader",
+                   "children": [],
+                   "type": "original",
+                   "label": "wake_nocb_leader"
+                  }
+                 ],
+                 "type": "original",
+                 "label": "__call_rcu_nocb_enqueue"
+                },
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "rcu_gp_kthread_wake",
+                 "children": [],
+                 "type": "original",
+                 "label": "rcu_gp_kthread_wake"
+                }
+               ],
+               "type": "original",
+               "label": "__call_rcu"
+              }
+             ],
+             "type": "original",
+             "label": "call_rcu_sched"
+            }
+           ],
+           "type": "original",
+           "label": "destroy_inode"
+          }
+         ],
+         "type": "original",
+         "label": "evict"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "list_lru_del",
+         "children": [],
+         "type": "original",
+         "label": "list_lru_del"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "_atomic_dec_and_lock",
+         "children": [],
+         "type": "original",
+         "label": "_atomic_dec_and_lock"
+        },
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__mark_inode_dirty",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "__inode_attach_wb",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "I_BDEV",
+             "children": [],
+             "type": "original",
+             "label": "I_BDEV"
+            }
+           ],
+           "type": "original",
+           "label": "__inode_attach_wb"
+          }
+         ],
+         "type": "original",
+         "label": "__mark_inode_dirty"
+        }
+       ],
+       "type": "original",
+       "label": "iput"
+      }
+     ],
+     "type": "original",
+     "label": "chown_common"
+    },
+    {
+     "size": 1,
+     "sourcefile": "",
+     "name": "fput",
+     "children": [
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "queue_delayed_work_on",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__queue_delayed_work",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "add_timer_on",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "internal_add_timer",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "wake_up_nohz_cpu",
+               "children": [],
+               "type": "original",
+               "label": "wake_up_nohz_cpu"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "__internal_add_timer",
+               "children": [],
+               "type": "original",
+               "label": "__internal_add_timer"
+              }
+             ],
+             "type": "original",
+             "label": "internal_add_timer"
+            }
+           ],
+           "type": "original",
+           "label": "add_timer_on"
+          }
+         ],
+         "type": "original",
+         "label": "__queue_delayed_work"
+        }
+       ],
+       "type": "original",
+       "label": "queue_delayed_work_on"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "____fput",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "__fput",
+         "children": [
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "locks_remove_file",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "locks_remove_flock",
+             "children": [],
+             "type": "original",
+             "label": "locks_remove_flock"
+            },
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "locks_remove_posix",
+             "children": [],
+             "type": "original",
+             "label": "locks_remove_posix"
+            }
+           ],
+           "type": "original",
+           "label": "locks_remove_file"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "__mnt_drop_write",
+           "children": [],
+           "type": "original",
+           "label": "__mnt_drop_write"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "ima_file_free",
+           "children": [],
+           "type": "original",
+           "label": "ima_file_free"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "mntput",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "mntput_no_expire",
+             "children": [],
+             "type": "original",
+             "label": "mntput_no_expire"
+            }
+           ],
+           "type": "original",
+           "label": "mntput"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "dput",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "lockref_put_or_lock",
+             "children": [],
+             "type": "original",
+             "label": "lockref_put_or_lock"
+            },
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "list_lru_add",
+             "children": [],
+             "type": "original",
+             "label": "list_lru_add"
+            },
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "__dentry_kill",
+             "children": [
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "lockref_mark_dead",
+               "children": [],
+               "type": "original",
+               "label": "lockref_mark_dead"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "d_lru_del",
+               "children": [],
+               "type": "original",
+               "label": "d_lru_del"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "dentry_free",
+               "children": [
+                {
+                 "size": 1,
+                 "sourcefile": "",
+                 "name": "__d_free",
+                 "children": [],
+                 "type": "original",
+                 "label": "__d_free"
+                }
+               ],
+               "type": "original",
+               "label": "dentry_free"
+              },
+              {
+               "size": 1,
+               "sourcefile": "",
+               "name": "__d_drop",
+               "children": [],
+               "type": "original",
+               "label": "__d_drop"
+              }
+             ],
+             "type": "original",
+             "label": "__dentry_kill"
+            },
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "lockref_put_return",
+             "children": [],
+             "type": "original",
+             "label": "lockref_put_return"
+            }
+           ],
+           "type": "original",
+           "label": "dput"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "put_pid",
+           "children": [
+            {
+             "size": 1,
+             "sourcefile": "",
+             "name": "put_pid_ns",
+             "children": [],
+             "type": "original",
+             "label": "put_pid_ns"
+            }
+           ],
+           "type": "original",
+           "label": "put_pid"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "security_file_free",
+           "children": [],
+           "type": "original",
+           "label": "security_file_free"
+          },
+          {
+           "size": 1,
+           "sourcefile": "",
+           "name": "module_put",
+           "children": [],
+           "type": "original",
+           "label": "module_put"
+          }
+         ],
+         "type": "original",
+         "label": "__fput"
+        }
+       ],
+       "type": "original",
+       "label": "____fput"
+      },
+      {
+       "size": 1,
+       "sourcefile": "",
+       "name": "task_work_add",
+       "children": [
+        {
+         "size": 1,
+         "sourcefile": "",
+         "name": "kick_process",
+         "children": [],
+         "type": "original",
+         "label": "kick_process"
+        }
+       ],
+       "type": "original",
+       "label": "task_work_add"
+      }
+     ],
+     "type": "original",
+     "label": "fput"
+    }
+   ],
+   "type": "original",
+   "label": "SyS_fchown"
+  }
+ ],
+ "type": "original",
+ "label": "sys_fchown16"
+}

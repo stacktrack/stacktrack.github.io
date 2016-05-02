@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StackTrack</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="//d3js.org/d3.v3.min.js"></script-->
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/spin.min.js"></script>
+    <script src="js/d3.v3.min.js"></script>
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/stacktrack/stacktrack.github.com/">Github</a></li>
+<li><a href="/about">About</a></li>
+</ul>
+    </nav>
+<div class="container">
+
+  		<div class="blurb">
+			<h1 style="display: inline">StackTrack</h1> &mdash; Call graph visualization and execution tracking
+            <div id="ToC_div"></div>
+
+            <h2 id="Introduction">Introduction</h2>
+            <p>This site presents a code flow visualization and execution tracking tool called StackTrack. An example code flow graph for an execution of the kexec_file_load linux system call is shown below.
+
+            <iframe id="demo_frame" src="html/demo.html?json=/json/sys_kexec_file_load_callees-trace.json&depth=4&y=8&x=200" scrolling="no" onclick="javascript:alert(1);"></iframe>
+            <p>
+            When browsing large codebases, it is often unclear how a certain function can be reached. StackTrack tries to solve this problem for the linux kernel by generating call graphs. 
+            The graphs are represented as expandable trees.
+            Examples can be found <a href=#traced_syscalls>here</a></p>
+            </p>
+            <p>For the sake of brevity this page is lacking a lot of implementation details. Should you need more information regarding some of the details, please feel free to drop me an email.
+            </p>
+
+            <h2 id="Xrefs">Cross Reference Database, Graph Datastructure and Visualization</h2> 
+            <p>
+            A function call cross reference database table was built by parsing the output of the <a href=http://www.gson.org/egypt/egypt.html>egypt</a> tool. This mysql database dump can be downloaded from the <a href="https://github.com/stacktrack/stacktrack.github.com/tree/master/database">github repository</a>. It consists of a single table with two columns: caller and callee.
+            </p>
+            <p>
+            The <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph.py</a> python script creates a "Graph" datastructure based on this table. This graph consists of nodes and edges. The graph information can be exported in json format with the dump_node(s) method. The script can be invoked from the cli to retrieve a callgraph from the xrefs database in json format.
+The command line options of this script are
+            <pre>
+usage: Graph.py [-h] [-v VERBOSE] [-r] [-e] [-a] [-d DIRECTORY]
+                [nodes [nodes ...]]
+positional arguments:
+  nodes
+optional arguments:
+  -h, --help            show this help message and exit
+  -v VERBOSE, --verbose VERBOSE
+                        Logging level (10: debug, 20 : info, etc )
+  -r, --callers         Export caller tree
+  -e, --callees         Export caller tree
+  -a, --allnodes        Dump all nodes
+  -d DIRECTORY, --directory DIRECTORY
+                        Output directory
+            </pre>
+            The "nodes" cli arguments are function names. 
+            The script is able to lookup codepaths in both caller and callee directions.
+            The following command for example generates a graph of all callees for the sys_kexec_file_load system call:
+            <pre>
+$ python Graph.py -e sys_kexec_file_load
+INFO:root:dumping callees of Node sys_kexec_file_load to /tmp/sys_kexec_file_load_callees.json
+            </pre>
+            The javascript renders <a href="/tree.html?json=/json/sys_kexec_file_load_callees.json&trace=/json/sys_kexec_file_load_callees-trace.json">this graph</a> using <a href="json/sys_kexec_file_load_callees.json">this json file</a> for the static call graph and <a href=json/sys_kexec_file_load_callees-trace.json>this file</a>for the dynamic call graph (execution trace) coloring</a> .
+            </p>
+
+            <p>
+            The json graph output is rendered using the <a>d3js</a> javascript visualization library. 
+            </p>
+
+            <h2 id="Installation">Installation</h2>
+            <p>
+            The source code for this project is available in the <a href=https://github.com/stacktrack/stacktrack.github.com>github repository</a> . To test the execution tracking you will need a linux kernel with debug symbols and a <a href="https://www.kernel.org/doc/Documentation/gdb-kernel-deb>ugging.txt">gdb session</a>. gdb must by  The graph generating code is written in python and uses a mysql server.
+
+
+            Following items are explained in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/README.md">Readme</a> file in the src directory from the repository:
+
+            <ul>
+                <li>Installing the database and running the Graph.py script to generate json call graphs.</li>
+                <li>Rendering the json graphs with javascript.</li>
+                <li>Generating Call traces.</li>
+            </ul>
+
+            </p>
+           <h2 id="Tracking">Tracking</h2>
+            <p>
+            To track execution we place breakpoints on the functions that are in the codepath of our interest. Every time a breakpoint is hit, we query the cross-reference database to retrieve all functions that can be called next (the callees) and we place breakpoints on these functions as well. This process allows us to track the program flow.
+            <p>
+            The tracking is implemented in the <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/breakpoint.py">breakpoint.py</a> python code which is called from within gdb.
+            This trace flow is also saved in a <a href="https://github.com/stacktrack/stacktrack.github.com/blob/master/src/Graph.py">Graph datastructure</a>.
+            </p>
+
+            <p>
+<script>
+function toggle_vis(id){
+    display = document.getElementById(id).style.display;
+    if(display == 'inline'){
+        document.getElementById(id).style.display = 'none';
+    }
+    else{
+        document.getElementById(id).style.display = 'inline';
+    }
+}
+</script>
+           <a href="javascript:toggle_vis('gdb_sample');"> Read more</a>
+            </p>
+
+            <div id="gdb_sample">
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td><td class="code"><pre>ubuntu pygdb <span class="c"># gdb -q vmlinux</span>
+Reading symbols from vmlinux...done.
+<span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set </span>pagination off
+<span class="o">(</span>gdb<span class="o">)</span> target remote u:8864
+Remote debugging using u:8864
+native_safe_halt <span class="o">()</span> at ./arch/x86/include/asm/irqflags.h:50
+        self.func_name <span class="o">=</span> func_name
+
+50      <span class="o">}</span>
+<span class="o">(</span>gdb<span class="o">)</span> python
+&gt;import breakpoint, importlib
+&gt;importlib.reload<span class="o">(</span>breakpoint<span class="o">)</span>
+&gt;breakpoint.KxrBreakpoint<span class="o">(</span><span class="s1">'sys_chdir'</span><span class="o">)</span>
+&gt;end
+loaded
+DEBUG:root:dumping Node hrtimer_cancel to /tmp/hrtimer_cancel.json
+DEBUG:root:Ignoring Node hrtimer_cancel
+DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
+DEBUG:root:Ignoring Node getname_flags
+DEBUG:root:dumping Node __wake_up to /tmp/__wake_up.json
+DEBUG:root:Ignoring Node __wake_up
+...<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+The node(s) dumped contain the trace. 
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">STBreakpoint</span><span class="p">(</span><span class="n">gdb</span><span class="o">.</span><span class="n">Breakpoint</span><span class="p">):</span>
+<span class="o">&gt;</span>
+
+
+
+
+<span class="n">loaded</span>
+<span class="n">Breakpoint</span> <span class="mi">1</span> <span class="n">at</span> <span class="mh">0xffffffff811f7dc0</span><span class="p">:</span> <span class="nb">file</span> <span class="n">fs</span><span class="o">/</span><span class="nb">open</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">422.</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">c</span>
+<span class="n">Continuing</span><span class="o">.</span>
+<span class="n">Breakpoint</span> <span class="mi">2</span> <span class="n">at</span> <span class="mh">0xffffffff817c0990</span><span class="p">:</span> <span class="nb">file</span> <span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">mcount_64</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="n">line</span> <span class="mf">151.</span>
+<span class="n">Breakpoint</span> <span class="mi">3</span> <span class="n">at</span> <span class="mh">0xffffffff81209420</span><span class="p">:</span> <span class="nb">file</span> <span class="n">fs</span><span class="o">/</span><span class="n">namei</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">2327.</span>
+<span class="n">Breakpoint</span> <span class="mi">4</span> <span class="n">at</span> <span class="mh">0xffffffff81203fd0</span><span class="p">:</span> <span class="nb">file</span> <span class="n">fs</span><span class="o">/</span><span class="n">namei</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">459.</span>
+<span class="n">Breakpoint</span> <span class="mi">5</span> <span class="n">at</span> <span class="mh">0xffffffff81203560</span><span class="p">:</span> <span class="n">path_put</span><span class="o">.</span> <span class="p">(</span><span class="mi">36</span> <span class="n">locations</span><span class="p">)</span>
+<span class="n">Breakpoint</span> <span class="mi">6</span> <span class="n">at</span> <span class="mh">0xffffffff8122d310</span><span class="p">:</span> <span class="nb">file</span> <span class="n">fs</span><span class="o">/</span><span class="n">fs_struct</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">33.</span>
+<span class="n">Breakpoint</span> <span class="mi">7</span> <span class="n">at</span> <span class="mh">0xffffffff8107a090</span><span class="p">:</span> <span class="nb">file</span> <span class="n">kernel</span><span class="o">/</span><span class="n">panic</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">493.</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Creating</span> <span class="n">Node</span> <span class="n">sys_chdir</span> <span class="mi">0</span><span class="n">ncel</span><span class="o">.</span><span class="n">json</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Ignoring</span> <span class="n">Node</span> <span class="n">hrtimer_cancel</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">dumping</span> <span class="n">Node</span> <span class="n">getname_flags</span> <span class="n">to</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">getname_flags</span><span class="o">.</span><span class="n">json</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Ignoring</span> <span class="n">Node</span> <span class="n">getname_flags</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">dumping</span> <span class="n">Node</span> <span class="n">__wake_up</span> <span class="n">to</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">__wake_up</span><span class="o">.</span><span class="n">json</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Ignoring</span> <span class="n">Node</span> <span class="n">__wake_up</span>
+        <span class="c"># node = self.node      = self.graph.add_node(func_name)</span>
+        <span class="c"># if not node in self.graph.nodes: self.graph.load_node(self.node)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>    <span class="o">=</span> <span class="n">parent</span>
+        <span class="n">STBreakpoint</span><span class="o">.</span><span class="n">bplist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">func_name</span><span class="p">)</span>
+        <span class="c">#print('ini %s'%str(func_name))</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">STBreakpoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">func_name</span><span class="p">,</span> <span class="n">gdb</span><span class="o">.</span><span class="n">BP_BREAKPOINT</span><span class="p">,</span> <span class="n">internal</span><span class="o">=</span><span class="bp">False</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">comm</span> <span class="o">=</span> <span class="n">get_current</span><span class="p">()[</span><span class="s">'comm'</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">comm</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'trinity'</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span><span class="n">We</span> 
+
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">comm</span> <span class="o">=</span> <span class="n">get_current</span><span class="p">()[</span><span class="s">'comm'</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">comm</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'trinity'</span><span class="p">):</span>
+ 
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Creating</span> <span class="n">Node</span> <span class="n">user_path_at_empty</span> <span class="mi">1</span>
+<span class="n">Breakpoint</span> <span class="mi">8</span> <span class="n">at</span> <span class="mh">0xffffffff81208e60</span><span class="p">:</span> <span class="nb">file</span> <span class="n">fs</span><span class="o">/</span><span class="n">namei</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">126.</span>
+<span class="n">Breakpoint</span> <span class="mi">9</span> <span class="n">at</span> <span class="mh">0xffffffff81209200</span><span class="p">:</span> <span class="nb">file</span> <span class="n">fs</span><span class="o">/</span><span class="n">namei</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">2151.</span>
+<span class="n">DEBUG</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Creating</span> <span class="n">Node</span> <span class="n">getname_flags</span> <span class="mi">2</span>
+<span class="n">Breakpoint</span> <span class="mi">10</span> <span class="n">at</span> <span class="mh">0xffffffff811dad30</span><span class="p">:</span> <span class="nb">file</span> <span class="n">mm</span><span class="o">/</span><span class="n">slub</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">2519.</span>
+<span class="n">Breakpoint</span> <span class="mi">11</span> <span class="n">at</span> <span class="mh">0xffffffff813ee620</span><span class="p">:</span> <span class="nb">file</span> <span class="n">lib</span><span class="o">/</span><span class="n">strncpy_from_user</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">100.</span>
+<span class="n">Breakpoint</span> <span class="mi">12</span> <span class="n">at</span> <span class="mh">0xffffffff8111e430</span><span class="p">:</span> <span class="nb">file</span> <span class="n">kernel</span><span class="o">/</span><span class="n">auditsc</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">1701.</span>
+<span class="n">Breakpoint</span> <span class="mi">13</span> <span class="n">at</span> <span class="mh">0xffffffff8111e490</span><span class="p">:</span> <span class="nb">file</span> <span class="n">kernel</span><span class="o">/</span><span class="n">auditsc</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">1724.</span>
+<span class="n">Breakpoint</span> <span class="mi">14</span> <span class="n">at</span> <span class="mh">0xffffffff811da560</span><span class="p">:</span> <span class="nb">file</span> <span class="n">mm</span><span class="o">/</span><span class="n">slub</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">2744.</span>
+<span class="n">Breakpoint</span> <span class="mi">15</span> <span class="n">at</span> <span class="mh">0xffffffff811da8e0</span><span class="p">:</span> <span class="nb">file</span> <span class="n">mm</span><span class="o">/</span><span class="n">slub</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">2531.</span>
+<span class="o">...</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></td><td class="code"><pre><span class="o">(</span>gdb<span class="o">)</span> python
+        self.func_name <span class="o">=</span> func_name
+
+&gt;breakpoint.KxrBreakpoint.graph.dump_nodes<span class="o">(</span><span class="s1">'/tmp'</span><span class="o">)</span>
+&gt;end
+DEBUG:root:dumping Node fsnotify to /tmp/fsnotify.json
+DEBUG:root:Ignoring Node fsnotify
+DEBUG:root:dumping Node hrtimer_cancel to /tmp/hrtimer_cancel.json
+DEBUG:root:Ignoring Node hrtimer_cancel
+DEBUG:root:dumping Node getname_flags to /tmp/getname_flags.json
+DEBUG:root:Ignoring Node getname_flags
+DEBUG:root:dumping Node __wake_up to /tmp/__wake_up.json
+DEBUG:root:Ignoring Node __wake_up
+        <span class="c"># node = self.node      = self.graph.add_node(func_name)</span>
+        <span class="c"># if not node in self.graph.nodes: self.graph.load_node(self.node)</span>
+        self.parent    <span class="o">=</span> parent
+        STBreakpoint.bplist.add<span class="o">(</span>func_name<span class="o">)</span>
+        <span class="c">#print('ini %s'%str(func_name))</span>
+        super<span class="o">(</span>STBreakpoint, self<span class="o">)</span>.__init__<span class="o">(</span>
+            func_name, gdb.BP_BREAKPOINT, <span class="nv">internal</span><span class="o">=</span>False
+        <span class="o">)</span>
+
+    def _stop<span class="o">(</span>self<span class="o">)</span>:
+        comm <span class="o">=</span> get_current<span class="o">()[</span><span class="s1">'comm'</span><span class="o">]</span>.string<span class="o">()</span>
+        <span class="k">if </span>not comm.startswith<span class="o">(</span><span class="s1">'trinity'</span><span class="o">)</span>:
+            <span class="k">return
+        </span>print<span class="o">(</span>self.func_name<span class="o">)</span>We 
+
+    def stop<span class="o">(</span>self<span class="o">)</span>:
+        comm <span class="o">=</span> get_current<span class="o">()[</span><span class="s1">'comm'</span><span class="o">]</span>.string<span class="o">()</span>
+        <span class="k">if </span>not comm.startswith<span class="o">(</span><span class="s1">'trinity'</span><span class="o">)</span>:
+            <span class="k">return</span>
+        &lt;/div&gt;
+
+
+...<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+The node(s) dumped contain the trace. 
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">STBreakpoint</span><span class="p">(</span><span class="n">gdb</span><span class="o">.</span><span class="n">Breakpoint</span><span class="p">):</span>
+<span class="o">&gt;</span>
+
+
+
+    <span class="n">bplist</span>   <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">todelete</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edges</span>    <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">graph</span>    <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+            <span class="n">get_bt_start</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="c"># node = self.node      = self.graph.add_node(func_name)</span>
+        <span class="c"># if not node in self.graph.nodes: self.graph.load_node(self.node)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>    <span class="o">=</span> <span class="n">parent</span>
+        <span class="n">STBreakpoint</span><span class="o">.</span><span class="n">bplist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">func_name</span><span class="p">)</span>
+        <span class="c">#print('ini %s'%str(func_name))</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">STBreakpoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">func_name</span><span class="p">,</span> <span class="n">gdb</span><span class="o">.</span><span class="n">BP_BREAKPOINT</span><span class="p">,</span> <span class="n">internal</span><span class="o">=</span><span class="bp">False</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">comm</span> <span class="o">=</span> <span class="n">get_current</span><span class="p">()[</span><span class="s">'comm'</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">comm</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'trinity'</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span><span class="n">We</span> 
+
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">comm</span> <span class="o">=</span> <span class="n">get_current</span><span class="p">()[</span><span class="s">'comm'</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">comm</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'trinity'</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="n">STBreakpoint</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">get_bt_start</span><span class="p">()</span>
+
+
+        <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="n">STBreakpoint</span><span class="o">.</span><span class="n">todelete</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">bp</span><span class="o">.</span><span class="n">func_name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span>
+                    <span class="n">bp</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">for</span> <span class="n">callee</span> <span class="ow">in</span> <span class="n">get_callees</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">callee</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">STBreakpoint</span><span class="o">.</span><span class="n">bplist</span><span class="p">:</span>
+                <span class="n">STBreakpoint</span><span class="p">(</span><span class="n">callee</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span>
+
+        <span class="n">STBreakpoint</span><span class="o">.</span><span class="n">todelete</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+            <p>
+            <li>
+            <ul>Example with dynamic tracking of chdir("/")<a href=http://stacktrack.github.io/tree.html?json=sys_chdir.json>sys_chdir</a></ul>
+            </li>
+        </div>
+
+
+            <h2 id="traced_syscalls">Examples: Syscall Tracking</h2>
+
+
+            <p>Following syscall execution traces have been generated with the trinity syscall fuzzer:
+
+            <div id="syscall_list"></div>
+
+            <script src="js/traces.js"></script>
+
+            <script>
+            function print_syscall(syscall){
+                var link = " <span class=sc><a href=tree.html?json=/json/sys_" + syscall[0] + "_callees.json&trace=/json/" + syscall[1] + ">" + syscall[0] + "</a></span> ";
+                document.getElementById("syscall_list").innerHTML += link;
+            }
+
+            syscalls.forEach(print_syscall);
+            </script>
+
+            </p>
+            <h2 id="Future Work">Future Work</h2>
+            There are a lot of improvements to be made, for example 
+            <!-- Time however ... :o -->
+            <ul>
+            <li>Source code integration</li>
+            <li>Argument tracking</li>
+            <li>Wider Coverage: lkm, android ...</li>
+            <li>Indirect Function Calls: Resolving indirect function calls is halting equivalent. I will try to approximate this using both semantic and dynamic analysis.</li>
+            <li>Dynamic Instrumentation:
+            In order to be able to provide maximum coverage, dynamic instrumentation has to be created to generate code to reach different parts of the code.</li>
+            <li>...</li>
+            </ul>
+
+
+
+
+
+
+
+
+
+
+<script>
+// Generate ToC
+
+var newLine, el, title, link;
+var ToC = "<nav role='navigation' class='table-of-contents'>" +
+          "<h2>Contents</h2>" +
+          "<ul id='ToC'>";
+
+$("h2").each(function(){
+    el = $(this);
+      title = el.text();
+      link = "#" + el.attr("id");
+
+      newLine =
+        "<li>" +
+          "<a href='" + link + "'>" +
+            title +
+          "</a>" +
+        "</li>";
+
+      ToC += newLine;
+
+    });
+
+ToC += "</ul>" + "</nav>";    
+//alert(ToC);
+$("#ToC_div").html(ToC);
+
+
+</script>
+
+
+</div>
+  
+  <footer>
+   <ul>
+   <li><a href="mailto:thomaspollet@gmail.com">email</a></li>
+   <li><a href="https://github.com/stacktrack">github.com/stacktrack</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>

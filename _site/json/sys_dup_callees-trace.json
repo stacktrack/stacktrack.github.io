@@ -1,0 +1,410 @@
+{
+ "sourcefile": "",
+ "type": "original",
+ "name": "sys_dup",
+ "children": [
+  {
+   "sourcefile": "",
+   "type": "original",
+   "name": "get_unused_fd_flags",
+   "children": [
+    {
+     "sourcefile": "",
+     "type": "original",
+     "name": "__alloc_fd",
+     "children": [
+      {
+       "sourcefile": "",
+       "type": "original",
+       "name": "find_next_zero_bit",
+       "children": [
+        {
+         "sourcefile": "",
+         "type": "original",
+         "name": "_find_next_bit",
+         "children": [],
+         "label": "_find_next_bit",
+         "size": 1,
+         "index": 2695
+        }
+       ],
+       "label": "find_next_zero_bit",
+       "size": 1,
+       "index": 2694
+      },
+      {
+       "sourcefile": "",
+       "type": "original",
+       "name": "_raw_spin_lock",
+       "children": [],
+       "label": "_raw_spin_lock",
+       "size": 1,
+       "index": 2693
+      },
+      {
+       "sourcefile": "",
+       "type": "original",
+       "name": "expand_files",
+       "children": [
+        {
+         "sourcefile": "",
+         "type": "original",
+         "name": "_cond_resched",
+         "children": [
+          {
+           "sourcefile": "",
+           "type": "original",
+           "name": "preempt_schedule_common",
+           "children": [
+            {
+             "sourcefile": "",
+             "type": "original",
+             "name": "__schedule",
+             "children": [
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "__switch_to",
+               "children": [],
+               "label": "__switch_to",
+               "size": 1,
+               "index": 2722
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "wq_worker_waking_up",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "kthread_data",
+                 "children": [],
+                 "label": "kthread_data",
+                 "size": 1,
+                 "index": 2710
+                }
+               ],
+               "label": "wq_worker_waking_up",
+               "size": 1,
+               "index": 2709
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "ttwu_do_wakeup",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "check_preempt_curr",
+                 "children": [
+                  {
+                   "sourcefile": "",
+                   "type": "original",
+                   "name": "resched_curr",
+                   "children": [],
+                   "label": "resched_curr",
+                   "size": 1,
+                   "index": 2714
+                  }
+                 ],
+                 "label": "check_preempt_curr",
+                 "size": 1,
+                 "index": 2712
+                }
+               ],
+               "label": "ttwu_do_wakeup",
+               "size": 1,
+               "index": 2711
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "hrtimer_active",
+               "children": [],
+               "label": "hrtimer_active",
+               "size": 1,
+               "index": 2705
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "__perf_event_task_sched_out",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "perf_event_update_userpage",
+                 "children": [],
+                 "label": "perf_event_update_userpage",
+                 "size": 1,
+                 "index": 2730
+                },
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "ctx_sched_out",
+                 "children": [
+                  {
+                   "sourcefile": "",
+                   "type": "original",
+                   "name": "perf_pmu_disable",
+                   "children": [],
+                   "label": "perf_pmu_disable",
+                   "size": 1,
+                   "index": 2718
+                  },
+                  {
+                   "sourcefile": "",
+                   "type": "original",
+                   "name": "perf_pmu_enable",
+                   "children": [],
+                   "label": "perf_pmu_enable",
+                   "size": 1,
+                   "index": 2721
+                  },
+                  {
+                   "sourcefile": "",
+                   "type": "original",
+                   "name": "group_sched_out",
+                   "children": [
+                    {
+                     "sourcefile": "",
+                     "type": "original",
+                     "name": "event_sched_out",
+                     "children": [],
+                     "label": "event_sched_out",
+                     "size": 1,
+                     "index": 2720
+                    }
+                   ],
+                   "label": "group_sched_out",
+                   "size": 1,
+                   "index": 2719
+                  }
+                 ],
+                 "label": "ctx_sched_out",
+                 "size": 1,
+                 "index": 2716
+                },
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "local_clock",
+                 "children": [],
+                 "label": "local_clock",
+                 "size": 1,
+                 "index": 2717
+                }
+               ],
+               "label": "__perf_event_task_sched_out",
+               "size": 1,
+               "index": 2715
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "activate_task",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "enqueue_task",
+                 "children": [],
+                 "label": "enqueue_task",
+                 "size": 1,
+                 "index": 2708
+                }
+               ],
+               "label": "activate_task",
+               "size": 1,
+               "index": 2707
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "finish_task_switch",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "__perf_event_task_sched_in",
+                 "children": [
+                  {
+                   "sourcefile": "",
+                   "type": "original",
+                   "name": "perf_event_context_sched_in",
+                   "children": [
+                    {
+                     "sourcefile": "",
+                     "type": "original",
+                     "name": "perf_event_sched_in",
+                     "children": [
+                      {
+                       "sourcefile": "",
+                       "type": "original",
+                       "name": "ctx_sched_in",
+                       "children": [
+                        {
+                         "sourcefile": "",
+                         "type": "original",
+                         "name": "group_sched_in",
+                         "children": [
+                          {
+                           "sourcefile": "",
+                           "type": "original",
+                           "name": "event_sched_in",
+                           "children": [],
+                           "label": "event_sched_in",
+                           "size": 1,
+                           "index": 2729
+                          }
+                         ],
+                         "label": "group_sched_in",
+                         "size": 1,
+                         "index": 2728
+                        }
+                       ],
+                       "label": "ctx_sched_in",
+                       "size": 1,
+                       "index": 2727
+                      }
+                     ],
+                     "label": "perf_event_sched_in",
+                     "size": 1,
+                     "index": 2726
+                    },
+                    {
+                     "sourcefile": "",
+                     "type": "original",
+                     "name": "perf_ctx_unlock",
+                     "children": [],
+                     "label": "perf_ctx_unlock",
+                     "size": 1,
+                     "index": 2731
+                    }
+                   ],
+                   "label": "perf_event_context_sched_in",
+                   "size": 1,
+                   "index": 2725
+                  }
+                 ],
+                 "label": "__perf_event_task_sched_in",
+                 "size": 1,
+                 "index": 2724
+                }
+               ],
+               "label": "finish_task_switch",
+               "size": 1,
+               "index": 2723
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "_raw_spin_lock_irq",
+               "children": [],
+               "label": "_raw_spin_lock_irq",
+               "size": 1,
+               "index": 2706
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "update_rq_clock",
+               "children": [
+                {
+                 "sourcefile": "",
+                 "type": "original",
+                 "name": "sched_clock_cpu",
+                 "children": [
+                  {
+                   "sourcefile": "",
+                   "type": "original",
+                   "name": "sched_clock",
+                   "children": [],
+                   "label": "sched_clock",
+                   "size": 1,
+                   "index": 2704
+                  }
+                 ],
+                 "label": "sched_clock_cpu",
+                 "size": 1,
+                 "index": 2703
+                }
+               ],
+               "label": "update_rq_clock",
+               "size": 1,
+               "index": 2702
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "ttwu_stat",
+               "children": [],
+               "label": "ttwu_stat",
+               "size": 1,
+               "index": 2713
+              },
+              {
+               "sourcefile": "",
+               "type": "original",
+               "name": "rcu_note_context_switch",
+               "children": [],
+               "label": "rcu_note_context_switch",
+               "size": 1,
+               "index": 2701
+              }
+             ],
+             "label": "__schedule",
+             "size": 1,
+             "index": 2700
+            }
+           ],
+           "label": "preempt_schedule_common",
+           "size": 1,
+           "index": 2699
+          }
+         ],
+         "label": "_cond_resched",
+         "size": 1,
+         "index": 2698
+        }
+       ],
+       "label": "expand_files",
+       "size": 1,
+       "index": 2696
+      }
+     ],
+     "label": "__alloc_fd",
+     "size": 1,
+     "index": 2692
+    }
+   ],
+   "label": "get_unused_fd_flags",
+   "size": 1,
+   "index": 2691
+  },
+  {
+   "sourcefile": "",
+   "type": "original",
+   "name": "__fget",
+   "children": [],
+   "label": "__fget",
+   "size": 1,
+   "index": 2690
+  },
+  {
+   "sourcefile": "",
+   "type": "original",
+   "name": "__fd_install",
+   "children": [],
+   "label": "__fd_install",
+   "size": 1,
+   "index": 2697
+  }
+ ],
+ "label": "sys_dup",
+ "size": 1,
+ "index": 2689
+}

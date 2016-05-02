@@ -1,0 +1,59 @@
+{
+ "name": "sys_sched_getscheduler", 
+ "sourcefile": "", 
+ "label": "sys_sched_getscheduler", 
+ "type": "original", 
+ "children": [
+  {
+   "name": "security_task_getscheduler", 
+   "sourcefile": "", 
+   "label": "security_task_getscheduler", 
+   "type": "original", 
+   "children": [
+    {
+     "name": "__fentry__", 
+     "sourcefile": "", 
+     "label": "__fentry__", 
+     "type": "original", 
+     "children": [], 
+     "size": 1
+    }
+   ], 
+   "size": 1
+  }, 
+  {
+   "name": "find_task_by_vpid", 
+   "sourcefile": "", 
+   "label": "find_task_by_vpid", 
+   "type": "original", 
+   "children": [
+    {
+     "name": "find_pid_ns", 
+     "sourcefile": "", 
+     "label": "find_pid_ns", 
+     "type": "original", 
+     "children": [
+      {
+       "type": "duplicate", 
+       "name": "__fentry__", 
+       "label": "__fentry__"
+      }
+     ], 
+     "size": 1
+    }, 
+    {
+     "type": "duplicate", 
+     "name": "__fentry__", 
+     "label": "__fentry__"
+    }
+   ], 
+   "size": 1
+  }, 
+  {
+   "type": "duplicate", 
+   "name": "__fentry__", 
+   "label": "__fentry__"
+  }
+ ], 
+ "size": 1
+}

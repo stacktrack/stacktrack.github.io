@@ -1,0 +1,348 @@
+{
+ "children": [
+  {
+   "children": [
+    {
+     "children": [],
+     "label": "security_settime",
+     "sourcefile": "",
+     "index": 2704,
+     "type": "original",
+     "size": 1,
+     "name": "security_settime"
+    },
+    {
+     "children": [
+      {
+       "children": [],
+       "label": "timekeeping_forward_now",
+       "sourcefile": "",
+       "index": 2715,
+       "type": "original",
+       "size": 1,
+       "name": "timekeeping_forward_now"
+      },
+      {
+       "children": [
+        {
+         "children": [],
+         "label": "ntp_get_next_leap",
+         "sourcefile": "",
+         "index": 2709,
+         "type": "original",
+         "size": 1,
+         "name": "ntp_get_next_leap"
+        },
+        {
+         "children": [],
+         "label": "update_vsyscall",
+         "sourcefile": "",
+         "index": 2710,
+         "type": "original",
+         "size": 1,
+         "name": "update_vsyscall"
+        },
+        {
+         "children": [
+          {
+           "children": [],
+           "label": "notifier_call_chain",
+           "sourcefile": "",
+           "index": 2712,
+           "type": "original",
+           "size": 1,
+           "name": "notifier_call_chain"
+          }
+         ],
+         "label": "raw_notifier_call_chain",
+         "sourcefile": "",
+         "index": 2711,
+         "type": "original",
+         "size": 1,
+         "name": "raw_notifier_call_chain"
+        },
+        {
+         "children": [],
+         "label": "update_fast_timekeeper",
+         "sourcefile": "",
+         "index": 2713,
+         "type": "original",
+         "size": 1,
+         "name": "update_fast_timekeeper"
+        },
+        {
+         "children": [
+          {
+           "children": [],
+           "label": "ntp_update_frequency",
+           "sourcefile": "",
+           "index": 2719,
+           "type": "original",
+           "size": 1,
+           "name": "ntp_update_frequency"
+          }
+         ],
+         "label": "ntp_clear",
+         "sourcefile": "",
+         "index": 2718,
+         "type": "original",
+         "size": 1,
+         "name": "ntp_clear"
+        }
+       ],
+       "label": "timekeeping_update",
+       "sourcefile": "",
+       "index": 2708,
+       "type": "original",
+       "size": 1,
+       "name": "timekeeping_update"
+      },
+      {
+       "children": [],
+       "label": "tk_set_wall_to_mono",
+       "sourcefile": "",
+       "index": 2717,
+       "type": "original",
+       "size": 1,
+       "name": "tk_set_wall_to_mono"
+      },
+      {
+       "children": [],
+       "label": "_raw_spin_unlock_irqrestore",
+       "sourcefile": "",
+       "index": 2714,
+       "type": "original",
+       "size": 1,
+       "name": "_raw_spin_unlock_irqrestore"
+      },
+      {
+       "children": [
+        {
+         "children": [
+          {
+           "children": [
+            {
+             "children": [
+              {
+               "children": [],
+               "label": "_find_next_bit",
+               "sourcefile": "",
+               "index": 2724,
+               "type": "original",
+               "size": 1,
+               "name": "_find_next_bit"
+              }
+             ],
+             "label": "find_next_bit",
+             "sourcefile": "",
+             "index": 2723,
+             "type": "original",
+             "size": 1,
+             "name": "find_next_bit"
+            },
+            {
+             "children": [],
+             "label": "cpumask_next_and",
+             "sourcefile": "",
+             "index": 2725,
+             "type": "original",
+             "size": 1,
+             "name": "cpumask_next_and"
+            }
+           ],
+           "label": "smp_call_function_many",
+           "sourcefile": "",
+           "index": 2722,
+           "type": "original",
+           "size": 1,
+           "name": "smp_call_function_many"
+          }
+         ],
+         "label": "on_each_cpu",
+         "sourcefile": "",
+         "index": 2721,
+         "type": "original",
+         "size": 1,
+         "name": "on_each_cpu"
+        },
+        {
+         "children": [
+          {
+           "children": [],
+           "label": "ktime_get_update_offsets_now",
+           "sourcefile": "",
+           "index": 2728,
+           "type": "original",
+           "size": 1,
+           "name": "ktime_get_update_offsets_now"
+          },
+          {
+           "children": [],
+           "label": "_raw_spin_lock",
+           "sourcefile": "",
+           "index": 2727,
+           "type": "original",
+           "size": 1,
+           "name": "_raw_spin_lock"
+          },
+          {
+           "children": [],
+           "label": "__hrtimer_get_next_event",
+           "sourcefile": "",
+           "index": 2729,
+           "type": "original",
+           "size": 1,
+           "name": "__hrtimer_get_next_event"
+          },
+          {
+           "children": [
+            {
+             "children": [
+              {
+               "children": [],
+               "label": "clockevents_program_min_delta",
+               "sourcefile": "",
+               "index": 2734,
+               "type": "original",
+               "size": 1,
+               "name": "clockevents_program_min_delta"
+              },
+              {
+               "children": [],
+               "label": "ktime_get",
+               "sourcefile": "",
+               "index": 2732,
+               "type": "original",
+               "size": 1,
+               "name": "ktime_get"
+              }
+             ],
+             "label": "clockevents_program_event",
+             "sourcefile": "",
+             "index": 2731,
+             "type": "original",
+             "size": 1,
+             "name": "clockevents_program_event"
+            }
+           ],
+           "label": "tick_program_event",
+           "sourcefile": "",
+           "index": 2730,
+           "type": "original",
+           "size": 1,
+           "name": "tick_program_event"
+          }
+         ],
+         "label": "retrigger_next_event",
+         "sourcefile": "",
+         "index": 2726,
+         "type": "original",
+         "size": 1,
+         "name": "retrigger_next_event"
+        },
+        {
+         "children": [
+          {
+           "children": [],
+           "label": "ktime_mono_to_any",
+           "sourcefile": "",
+           "index": 2735,
+           "type": "original",
+           "size": 1,
+           "name": "ktime_mono_to_any"
+          },
+          {
+           "children": [
+            {
+             "children": [],
+             "label": "__wake_up_common",
+             "sourcefile": "",
+             "index": 2737,
+             "type": "original",
+             "size": 1,
+             "name": "__wake_up_common"
+            }
+           ],
+           "label": "__wake_up_locked",
+           "sourcefile": "",
+           "index": 2736,
+           "type": "original",
+           "size": 1,
+           "name": "__wake_up_locked"
+          }
+         ],
+         "label": "timerfd_clock_was_set",
+         "sourcefile": "",
+         "index": 2733,
+         "type": "original",
+         "size": 1,
+         "name": "timerfd_clock_was_set"
+        }
+       ],
+       "label": "clock_was_set",
+       "sourcefile": "",
+       "index": 2720,
+       "type": "original",
+       "size": 1,
+       "name": "clock_was_set"
+      },
+      {
+       "children": [],
+       "label": "set_normalized_timespec",
+       "sourcefile": "",
+       "index": 2716,
+       "type": "original",
+       "size": 1,
+       "name": "set_normalized_timespec"
+      },
+      {
+       "children": [],
+       "label": "_raw_spin_lock_irqsave",
+       "sourcefile": "",
+       "index": 2707,
+       "type": "original",
+       "size": 1,
+       "name": "_raw_spin_lock_irqsave"
+      }
+     ],
+     "label": "do_settimeofday64",
+     "sourcefile": "",
+     "index": 2706,
+     "type": "original",
+     "size": 1,
+     "name": "do_settimeofday64"
+    },
+    {
+     "children": [],
+     "label": "update_vsyscall_tz",
+     "sourcefile": "",
+     "index": 2705,
+     "type": "original",
+     "size": 1,
+     "name": "update_vsyscall_tz"
+    }
+   ],
+   "label": "do_sys_settimeofday",
+   "sourcefile": "",
+   "index": 2703,
+   "type": "original",
+   "size": 1,
+   "name": "do_sys_settimeofday"
+  },
+  {
+   "children": [],
+   "label": "_copy_from_user",
+   "sourcefile": "",
+   "index": 2702,
+   "type": "original",
+   "size": 1,
+   "name": "_copy_from_user"
+  }
+ ],
+ "label": "sys_settimeofday",
+ "sourcefile": "",
+ "index": 2701,
+ "type": "original",
+ "size": 1,
+ "name": "sys_settimeofday"
+}

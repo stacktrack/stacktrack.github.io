@@ -1,0 +1,177 @@
+{
+ "name": "sys_sched_setscheduler",
+ "children": [
+  {
+   "name": "do_sched_setscheduler",
+   "children": [
+    {
+     "name": "_sched_setscheduler",
+     "children": [
+      {
+       "name": "__sched_setscheduler",
+       "children": [
+        {
+         "name": "security_task_setscheduler",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "security_task_setscheduler"
+        },
+        {
+         "name": "_raw_spin_lock_irqsave",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "_raw_spin_lock_irqsave"
+        },
+        {
+         "name": "_raw_spin_unlock_irqrestore",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "_raw_spin_unlock_irqrestore"
+        },
+        {
+         "name": "__setscheduler_params",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "__setscheduler_params"
+        },
+        {
+         "name": "task_rq_unlock",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "task_rq_unlock"
+        },
+        {
+         "name": "rt_mutex_get_effective_prio",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "rt_mutex_get_effective_prio"
+        },
+        {
+         "name": "dequeue_task",
+         "children": [
+          {
+           "name": "update_rq_clock",
+           "children": [
+            {
+             "name": "sched_clock_cpu",
+             "children": [
+              {
+               "name": "sched_clock",
+               "children": [],
+               "sourcefile": "",
+               "size": 1,
+               "type": "original",
+               "label": "sched_clock"
+              }
+             ],
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "label": "sched_clock_cpu"
+            }
+           ],
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "label": "update_rq_clock"
+          }
+         ],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "dequeue_task"
+        },
+        {
+         "name": "rt_mutex_adjust_pi",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "rt_mutex_adjust_pi"
+        },
+        {
+         "name": "capable",
+         "children": [
+          {
+           "name": "ns_capable",
+           "children": [
+            {
+             "name": "security_capable",
+             "children": [],
+             "sourcefile": "",
+             "size": 1,
+             "type": "original",
+             "label": "security_capable"
+            }
+           ],
+           "sourcefile": "",
+           "size": 1,
+           "type": "original",
+           "label": "ns_capable"
+          }
+         ],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "capable"
+        },
+        {
+         "name": "enqueue_task",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "enqueue_task"
+        },
+        {
+         "name": "_raw_spin_lock",
+         "children": [],
+         "sourcefile": "",
+         "size": 1,
+         "type": "original",
+         "label": "_raw_spin_lock"
+        }
+       ],
+       "sourcefile": "",
+       "size": 1,
+       "type": "original",
+       "label": "__sched_setscheduler"
+      }
+     ],
+     "sourcefile": "",
+     "size": 1,
+     "type": "original",
+     "label": "_sched_setscheduler"
+    },
+    {
+     "name": "_copy_from_user",
+     "children": [],
+     "sourcefile": "",
+     "size": 1,
+     "type": "original",
+     "label": "_copy_from_user"
+    }
+   ],
+   "sourcefile": "",
+   "size": 1,
+   "type": "original",
+   "label": "do_sched_setscheduler"
+  }
+ ],
+ "sourcefile": "",
+ "size": 1,
+ "type": "original",
+ "label": "sys_sched_setscheduler"
+}

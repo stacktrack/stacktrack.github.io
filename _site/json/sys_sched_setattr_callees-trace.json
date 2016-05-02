@@ -1,0 +1,131 @@
+{
+ "size": 1,
+ "label": "sys_sched_setattr",
+ "type": "original",
+ "name": "sys_sched_setattr",
+ "sourcefile": "",
+ "children": [
+  {
+   "size": 1,
+   "label": "find_task_by_vpid",
+   "type": "original",
+   "name": "find_task_by_vpid",
+   "sourcefile": "",
+   "children": [
+    {
+     "size": 1,
+     "label": "find_pid_ns",
+     "type": "original",
+     "name": "find_pid_ns",
+     "sourcefile": "",
+     "children": [],
+     "index": 2694
+    }
+   ],
+   "index": 2693
+  },
+  {
+   "size": 1,
+   "label": "__sched_setscheduler",
+   "type": "original",
+   "name": "__sched_setscheduler",
+   "sourcefile": "",
+   "children": [
+    {
+     "size": 1,
+     "label": "_raw_spin_unlock_irqrestore",
+     "type": "original",
+     "name": "_raw_spin_unlock_irqrestore",
+     "sourcefile": "",
+     "children": [],
+     "index": 2698
+    },
+    {
+     "size": 1,
+     "label": "_raw_spin_lock",
+     "type": "original",
+     "name": "_raw_spin_lock",
+     "sourcefile": "",
+     "children": [],
+     "index": 2696
+    },
+    {
+     "size": 1,
+     "label": "capable",
+     "type": "original",
+     "name": "capable",
+     "sourcefile": "",
+     "children": [
+      {
+       "size": 1,
+       "label": "ns_capable",
+       "type": "original",
+       "name": "ns_capable",
+       "sourcefile": "",
+       "children": [
+        {
+         "size": 1,
+         "label": "security_capable",
+         "type": "original",
+         "name": "security_capable",
+         "sourcefile": "",
+         "children": [],
+         "index": 2701
+        }
+       ],
+       "index": 2700
+      }
+     ],
+     "index": 2699
+    },
+    {
+     "size": 1,
+     "label": "task_rq_unlock",
+     "type": "original",
+     "name": "task_rq_unlock",
+     "sourcefile": "",
+     "children": [],
+     "index": 2703
+    },
+    {
+     "size": 1,
+     "label": "security_task_setscheduler",
+     "type": "original",
+     "name": "security_task_setscheduler",
+     "sourcefile": "",
+     "children": [],
+     "index": 2702
+    },
+    {
+     "size": 1,
+     "label": "_raw_spin_lock_irqsave",
+     "type": "original",
+     "name": "_raw_spin_lock_irqsave",
+     "sourcefile": "",
+     "children": [],
+     "index": 2697
+    }
+   ],
+   "index": 2695
+  },
+  {
+   "size": 1,
+   "label": "_copy_from_user",
+   "type": "original",
+   "name": "_copy_from_user",
+   "sourcefile": "",
+   "children": [],
+   "index": 2692
+  },
+  {
+   "size": 1,
+   "label": "__get_user_4",
+   "type": "original",
+   "name": "__get_user_4",
+   "sourcefile": "",
+   "children": [],
+   "index": 2691
+  }
+ ],
+ "index": 2690
+}

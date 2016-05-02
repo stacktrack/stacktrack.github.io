@@ -1,0 +1,123 @@
+{
+ "size": 1,
+ "type": "original",
+ "sourcefile": "",
+ "name": "sys_prctl",
+ "children": [
+  {
+   "size": 1,
+   "type": "original",
+   "sourcefile": "",
+   "name": "strncpy_from_user",
+   "children": [],
+   "label": "strncpy_from_user",
+   "index": 2741
+  },
+  {
+   "size": 1,
+   "type": "original",
+   "sourcefile": "",
+   "name": "security_task_prctl",
+   "children": [],
+   "label": "security_task_prctl",
+   "index": 2740
+  },
+  {
+   "size": 1,
+   "type": "original",
+   "sourcefile": "",
+   "name": "__set_task_comm",
+   "children": [
+    {
+     "size": 1,
+     "type": "original",
+     "sourcefile": "",
+     "name": "strlcpy",
+     "children": [
+      {
+       "size": 1,
+       "type": "original",
+       "sourcefile": "",
+       "name": "memcpy",
+       "children": [],
+       "label": "memcpy",
+       "index": 2745
+      }
+     ],
+     "label": "strlcpy",
+     "index": 2744
+    },
+    {
+     "size": 1,
+     "type": "original",
+     "sourcefile": "",
+     "name": "_raw_spin_lock",
+     "children": [],
+     "label": "_raw_spin_lock",
+     "index": 2743
+    },
+    {
+     "size": 1,
+     "type": "original",
+     "sourcefile": "",
+     "name": "perf_event_comm",
+     "children": [
+      {
+       "size": 1,
+       "type": "original",
+       "sourcefile": "",
+       "name": "perf_event_aux",
+       "children": [
+        {
+         "size": 1,
+         "type": "original",
+         "sourcefile": "",
+         "name": "perf_event_aux_ctx",
+         "children": [],
+         "label": "perf_event_aux_ctx",
+         "index": 2748
+        }
+       ],
+       "label": "perf_event_aux",
+       "index": 2747
+      },
+      {
+       "size": 1,
+       "type": "original",
+       "sourcefile": "",
+       "name": "perf_event_comm_output",
+       "children": [],
+       "label": "perf_event_comm_output",
+       "index": 2749
+      }
+     ],
+     "label": "perf_event_comm",
+     "index": 2746
+    }
+   ],
+   "label": "__set_task_comm",
+   "index": 2742
+  },
+  {
+   "size": 1,
+   "type": "original",
+   "sourcefile": "",
+   "name": "proc_comm_connector",
+   "children": [
+    {
+     "size": 1,
+     "type": "original",
+     "sourcefile": "",
+     "name": "ktime_get",
+     "children": [],
+     "label": "ktime_get",
+     "index": 2751
+    }
+   ],
+   "label": "proc_comm_connector",
+   "index": 2750
+  }
+ ],
+ "label": "sys_prctl",
+ "index": 2739
+}

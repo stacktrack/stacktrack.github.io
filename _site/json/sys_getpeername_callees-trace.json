@@ -1,0 +1,52 @@
+{
+ "type": "original",
+ "size": 1,
+ "name": "sys_getpeername",
+ "sourcefile": "",
+ "label": "sys_getpeername",
+ "children": [
+  {
+   "type": "original",
+   "size": 1,
+   "name": "SYSC_getpeername",
+   "sourcefile": "",
+   "label": "SYSC_getpeername",
+   "children": [
+    {
+     "type": "original",
+     "size": 1,
+     "name": "sockfd_lookup_light",
+     "sourcefile": "",
+     "label": "sockfd_lookup_light",
+     "children": [
+      {
+       "type": "original",
+       "size": 1,
+       "name": "__fdget",
+       "sourcefile": "",
+       "label": "__fdget",
+       "children": [
+        {
+         "type": "original",
+         "size": 1,
+         "name": "__fget_light",
+         "sourcefile": "",
+         "label": "__fget_light",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "original",
+     "size": 1,
+     "name": "security_socket_getpeername",
+     "sourcefile": "",
+     "label": "security_socket_getpeername",
+     "children": []
+    }
+   ]
+  }
+ ]
+}
