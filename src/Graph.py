@@ -43,7 +43,7 @@ import argparse
 #
 DBHOST = 'localhost'
 DBUSER = 'root'
-DBPASS = 'fucksec'
+DBPASS = 'kcofpass'
 DB     = 'stacktrack'
 
 
@@ -63,7 +63,7 @@ class Graph():
            - (json) dict
 
            There can only be one node with the same name. If the name 
-           already exists in _instances, the corresponding node value
+           already exists in Graph.nodes , the corresponding node value
            is returned
         '''
         callees     = set()

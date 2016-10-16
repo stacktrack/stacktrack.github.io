@@ -38,6 +38,7 @@ var vis = d3.select("#tree").append("svg:svg")
 
 var gdict = [];
 var root;
+var trace;
 
 // Copy all node info into the 'gdict' lookup table
 // We use this table to expand "copied" and "duplicate" nodes
@@ -74,9 +75,9 @@ function node_to_dict(node) {
 }
 
 
-function init(x,y) {
-    node_depth  = x;
-    node_height = y;
+function init() {
+    node_height = getParameterByName('y') ? getParameterByName('y') : 20;
+    node_depth  = getParameterByName('x') ? getParameterByName('x') : 100;
     // Show the spinner while the tree is drawn
     $("#loading").show();
     // Tree depth
@@ -88,16 +89,7 @@ function init(x,y) {
     $("input[name='depth']").val(depth + 1)
     tree = d3.layout.tree();
 
-    if (getParameterByName('trace')){
-        //trace_f = '/json/' + getParameterByName('trace');
-        trace_f = getParameterByName('trace');
-        d3.json(trace_f, function(error, tree) {
-            if(tree){
-                trace = tree;
-            }
-        });
-    }
-
+    
     var json_f = getParameterByName('json') ? getParameterByName('json') : 'sys_chdir.json' ;
     //json_f = '/json/' + json_f; // todo: error checking
     d3.json(json_f, function(error, tree) {
@@ -124,15 +116,58 @@ function init(x,y) {
         toggle_to(root,depth);
         goto_node(root);
     });
+
 }
 
+function follow_trace(){
+    function trace_child(child){
+        
+    }
+    trace_f = getParameterByName('trace');
+    if (! trace_f ){
+            //trace_f = '/json/' + getParameterByName('trace');
+        return
+    }
+
+    d3.json(trace_f, function(error, tree) {
+        if(tree){
+            trace = tree;
+            console.log(tree);
+            console.log(root);
+        }
+        else {
+            alert('trace error ' + error);
+        }
+    });
+
+    console.log(trace);
+    console.log('tree');
+    //console.log(root);
+    var nodes = tree.nodes(root).reverse();
+    root.children.forEach(trace_child);
+    var links = vis.selectAll("path.link");
+    links_l = links.filter(function(l){
+        return l.target.name == "capable";
+    });
+    traced = trace.nodes(root);
+    traced_paths = [];
+    console.log(traced);
+    traced.forEach(function(node){
+        node.children.forEach(function(c){
+            //traced_paths =  
+            console.log(c);
+        });
+    });
+    linke.style("stroke", "red");
+    update(tree);
+}
 
 function toggle_to(node,depth){
     if (depth <= 0 ){ 
         return;
     }
     children = node.children ? node.children : node._children;
-    if ( ! children ){
+    if ( ! children || children == 'undefined' ){
         return;
     }
     children.forEach(function(c){
@@ -225,6 +260,7 @@ function node_color(node) {
 // Check if a node is in the trace tree
 // TODO: optimize
 function is_traced(node){
+    return false;
     path   = get_path(node);
     traced = trace;
     if( ! traced || ! traced.children ){
@@ -251,7 +287,7 @@ function is_traced(node){
 // CSS class of traced links
 function get_link_class(link){
     pclass = "link";
-    if(is_traced(link.target)){
+    if(!is_traced(link.target)){
         pclass += " trace";
     }
     return pclass;
@@ -372,8 +408,8 @@ function update(source) {
 
     // Enter any new links at the parent's previous position.
     link.enter().insert("svg:path", "g")
-        .attr("class", get_link_class)
-        //.attr("class", "link")
+        //.attr("class", get_link_class)
+        .attr("class", "link")
         .attr("d", function(d) {
             var o = {
                 x: source.x0,
@@ -477,9 +513,7 @@ var spinner = new Spinner(opts).spin();
 $("#loading").append(spinner.el);
 ///////// End Spinner
 
-node_height = getParameterByName('y') ? getParameterByName('y') : 20;
-node_depth  = getParameterByName('x') ? getParameterByName('x') : 100;
-init(node_depth,node_height); // Draw the tree
+init(); // Draw the tree
 //$("#control").draggable();
 
 // Cause enter on the depth to expand

@@ -8,4 +8,4 @@ do
     echo "['$syscall','$line'],"
 done
 
-echo '];') > /var/www/html/stacktrack.github.com/js/traces.js
+echo '];') > /var/u/stacktrack.github.com/js/traces.js
