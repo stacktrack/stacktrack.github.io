@@ -33,7 +33,7 @@ import sys
 import MySQLdb as mdb
 import json
 import signal
-from Graph import *
+from Graph_sqlite import *
 
 
 SLAVE_PROCESS_NAME = 'trinity-'

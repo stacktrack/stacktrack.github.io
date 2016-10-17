@@ -331,6 +331,7 @@ def main():
     parser.add_argument("-e", "--callees", help="Export caller tree", action='store_true')
     parser.add_argument("-a", "--allnodes", help="Dump all nodes", action='store_true')
     parser.add_argument("-d", "--directory", help="Output directory", default = '/tmp')
+    parser.add_argument("-c", "--children", help="Get children", action='store_true')
     parser.add_argument("nodes",nargs="*")
     args = parser.parse_args()
     if args.allnodes:
@@ -349,6 +350,11 @@ def main():
 
     g.load(load_callers = args.callers, load_callees = args.callees)
     
+    if args.children:
+        for callee in node.get_callees():
+            print(callee)
+        exit()
+
     for node in nodenames:
         for direction in ( 'callers', 'callees' ):
             g.dump_node(node, args.directory , direction, force = force)    
